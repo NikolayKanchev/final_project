@@ -1,0 +1,23 @@
+{% extends 'others/dropdown.html' %}
+{% load static %}
+
+{% block dropdown_content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'others/dropdown.css' %}">
+
+    {% for c in children %}
+        {% if not c.pk == chosen_child.pk %}
+
+        <li><a href="{% url 'home' pk=c.pk %}" class="child-container-dropdown">
+            <div id="dropdown-child">
+                <img id="img-hearts-dropdown" class="card-img-top" src="{% static 'images/hearts.png' %}" alt="hearts">
+                <div class="crop-container-dropdown">
+                    <img id='picture-dropdown' class="card-img-top" src="{{ c.picture.url }}" alt="{{ c.name }}'s picture">
+                </div>
+                <span class="text name">{{ c.name }}</span>
+            </div>
+        </a></li>
+
+        {% endif %}
+
+    {% endfor %}
+{% endblock %}

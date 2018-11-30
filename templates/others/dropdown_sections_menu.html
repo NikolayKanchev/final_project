@@ -1,0 +1,11 @@
+{% load static %}
+
+{% block dropdown_content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home/children-sidenav.css' %}">
+
+    <div id="small-sidenav-menu" class="dropdown-menu tab-content">
+
+        {% include 'others/chidren_sidenav.html' %}
+
+    </div>
+{% endblock %}

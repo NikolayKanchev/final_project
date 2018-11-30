@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'login_register/style.css' %}">
+
+    <div class="container-fluid">
+        <div id="cards" class="row">
+            <div class="col-md-4 mt-5 single-card">
+              <div class="card text-center">
+                <div class="card-body card_title">
+                    <div id="form-container">
+                        <h3 class="card-title">Login</h3>
+                        <hr>
+                        <br>
+                        <form method="post" class="form">
+                            <br>
+                            {% csrf_token %}
+                            {% bootstrap_form form layout='inline'%}
+                            <ul class="form-actions">
+                                <li><input id="submit" type="submit" value="Login" class="btn btn-primary" /></li>
+                            </ul>
+                        </form>
+                    </div>
+
+                </div>
+              </div>
+            </div>
+
+            <h4 id="or">OR</h4>
+
+            <div class="col-md-4 mt-5 single-card">
+          <div class="card text-center">
+            <div class="card-body">
+
+                <h3 class="card-title">Login With</h3>
+                <hr class="social-hr">
+                <div class="card_title">
+                    <div id="form-container">
+                        <ul id="social-container">
+                            <li>
+                                <button id="facebook" type="submit" class="btn social-btn">
+                                    <i class="fab fa-facebook-f"></i>
+                                    <span style="color: #eeeeee">Facebook</span>
+                                </button>
+                            </li>
+                            <li>
+                                <button id="google" type="submit" class="btn social-btn">
+                                    <img id="google-img" src="{% static 'images/new-google-favicon-512.png' %}">
+                                    <span style="color: gray; font-weight: 600">Google</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+          </div>
+        </div>
+
+        </div>
+            <div id="register-div">
+                <ul id="register-ul">
+                    <li id="li-register"><p>Don't have an account? <a id="register" href="{% url 'signup' %}">Sign up</a></p></li>
+                    <li><label class="checkbox-inline"><input id="checkbox" type="checkbox" value=""><span id="text-keep">Keep me signed in</span></label></li>
+                </ul>
+            </div>
+    </div>
+
+{% endblock %}

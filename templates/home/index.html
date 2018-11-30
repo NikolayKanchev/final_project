@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'home/home.css' %}">
+
+    {% if not user.is_authenticated %}
+
+        {% include "user_manual/manual.html" %}
+
+    {% else %}
+
+        {% include 'others/chidren_info.html' %}
+
+        {% include 'others/chidren_sidenav.html' %}
+
+    {% endif %}
+
+{% endblock %}

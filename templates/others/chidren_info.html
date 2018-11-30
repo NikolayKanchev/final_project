@@ -1,0 +1,191 @@
+{% load static %}
+{% include "others/tooltip_links.html" %}
+{#<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">#}
+{#<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>#}
+<link rel="stylesheet" type="text/css" href="{% static 'home/children-info.css' %}">
+
+<div id="children-info-container">
+
+    <div class="change-children-cont">
+
+    {% if children %}
+        {% for c in children %}
+
+            {% if c.pk == chosen_child.pk %}
+                <div class="child-container target">
+                    <a id="chosen-child-pick-name" href="#">
+                        <div>
+                            <img id="img-hearts" class="card-img-top" src="{% static 'images/hearts.png' %}" alt="hearts">
+                            <div class="crop-container">
+                                <img id='picture' class="card-img-top" src="{{ chosen_child.picture.url }}" alt="{{ chosen_child.name }}'s picture">
+                            </div>
+                        </div>
+                        <div id="chosen-child-name">
+                            <br>
+                            <span class="text name">{{ c.name }}</span>
+                        </div>
+
+                    </a>
+                    <span>
+                        <span class="edit-child-details">
+                                <a href="{% url 'update_child' pk=c.pk %}" data-toggle="tooltip" data-placement="left" title="Edit {{ c.name }}'s details!"><span id="pencil"><img src="{% static '/open-iconic-master/svg/pencil.svg' %}" class="icon" alt="pencil"></span></a>
+                                <br>
+                        </span>
+                        <span>
+                            <span class="info-details age">
+                                <span> {{ chosen_child.age.years }} years</span>
+                                <span>, {{ chosen_child.age.months }} monts</span>
+                                <span>, {{ chosen_child.age.days }} days</span><br>
+                            </span>
+                            <span class="info-details" >
+                                <span class="est-size">Estimated clothes size: </span>
+                                <span class="est-size"> {{ chosen_child.get_clothes_sizes_str }}</span>
+                                <span id="edit-size" data-toggle="tooltip" data-placement="top" title="Not the right size? Click to edit"> edit size </span>
+                                <br>
+                            </span>
+                            <span class="info-details">
+                                <span class="est-size">Estimated shoes size: </span>
+                                <span class="est-size"> {{ chosen_child.get_clothes_sizes_str }}</span><br>
+                                <span id="edit-size" data-toggle="tooltip" data-placement="right" title="Not the right size? Click to edit"> edit size </span>
+                            </span>
+
+                        </span>
+                    </span>
+                </div>
+            {% else %}
+                <a id="not-chosen-child-container" href="{% url 'home' pk=c.pk %}" class="child-container">
+                    <img id="img-hearts" class="card-img-top" src="{% static 'images/hearts.png' %}" alt="hearts">
+                    <div class="crop-container">
+                        <img id='picture' class="card-img-top" src="{{ c.picture.url }}" alt="{{ c.name }}'s picture">
+                    </div>
+                    <div class="text name">{{ c.name }}</div>
+                </a>
+            {% endif %}
+
+        {% endfor %}
+    {% endif %}
+
+    </div>
+
+    <div class="small-children-menu">
+        {% if children %}
+            <div id="small-children-info">
+                <img id="img-hearts-small" class="card-img-top" src="{% static 'images/hearts.png' %}" alt="hearts">
+                <div class="crop-container">
+                    <img id='picture-small-drop-down' class="card-img-top" src="{{ chosen_child.picture.url }}" alt="{{ chosen_child.name }}'s picture">
+                </div>
+                <a id="child-small-dropdown" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="caret"><a href="#" ></a></span>
+                </a>
+                {% include "others/dropdown_child.html" %}
+            </div>
+            <div id="children-small-info">
+                <div>
+                    <div class="flex-start">
+                        <div class="est-size">{{ chosen_child.name }}</div>
+                        <div class="pink">
+                            <span> {{ chosen_child.age.years }} years</span>
+                            <span>, {{ chosen_child.age.months }} monts</span>
+                            <span>, {{ chosen_child.age.days }} days</span><br>
+                            <span id="small-children-info-pencil" class="edit-child-details">
+                                <a href="{% url 'update_child' pk=chosen_child.pk %}" data-toggle="tooltip" data-placement="left" title="Edit {{ chosen_child.name }}'s details!"><span id="pencil"><img src="{% static '/open-iconic-master/svg/pencil.svg' %}" class="icon" alt="pencil"></span></a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="flex-start">
+                        <span class="est-size">Estimated size: </span>
+                        <span class="pink"> {{ chosen_child.get_clothes_sizes_str }}</span>
+                        <span id="edit-size" data-toggle="tooltip" data-placement="right" title="Not the right size? Click to edit"> edit size </span>
+                    </div>
+                    <div class="flex-start">
+                        <span class="est-size">Estimated shoes size: </span>
+                        <span class="pink"> {{ chosen_child.get_clothes_sizes_str }}</span>
+                        <span id="edit-size" data-toggle="tooltip" data-placement="right" title="Not the right size? Click to edit"> edit size </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="small-sections-menu">
+            <a id="child-small-dropdown" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <span class="caret">
+                    <a href="#" >
+                        <img id="folder-blue" class="card-img-top" src="{% static 'images/folder-blue.png' %}" alt="folder blue">
+                    </a>
+                </span>
+            </a>
+            {% include 'others/dropdown_sections_menu.html' %}
+
+        </div>
+        {% else %}
+            <div class="">
+                <div >
+                    <a id="child-small-dropdown" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="caret"><a href="#" ></a></span>
+                    </a>
+                    {% include "others/dropdown_add_child.html" %}
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+</div>
+
+<script src="{% static 'js/tooltip.js' %}"></script>
+
+
+{##}
+{#<script>#}
+{#    $(document).ready(function(){#}
+{##}
+{#    $('.child-container').click(function () {#}
+{#        alert("Your anchor is clicked.");#}
+{#    });#}
+{##}
+{##}
+{##}
+{#        $("#c").click(function() {#}
+{#            $('.main-children-container').fadeOut(1000, function() {#}
+{#                $(this).css("background-color", "#FF0000").fadeIn(10000);#}
+{#            });#}
+{#         });​#}
+{#    });​#}
+{#</script>#}
+
+
+{##}
+{#<div id="child-info">#}
+{#    <form id="child-name">#}
+{#        {% if children %}#}
+{#            <div class="row">#}
+{#                <div id="cloud">#}
+{#                     <h2 id="child">{{ chosen_child.name }}</h2>#}
+{#                    <a id="settings" class="child-icon" href="{% url 'update_child' pk=chosen_child.pk %}"><img src="{% static '/open-iconic-master/svg/cog.svg' %}" class="icon" alt="cog"></a>#}
+{#                     <div class="dropdown">#}
+{#                        <button type="button" class="btn dropdown-toggle"></button>#}
+{#                        <div class="dropdown-menu" id="dropdown">#}
+{#                            {% for c in children %}#}
+{#                                <div id="child-name">#}
+{#                                    <a class="dropdown-item item" href="{% url 'home' pk=c.pk %}">{{ c.name }}</a>#}
+{#                                    <a id="trash" href="{% url 'update_child' pk=c.pk %}"><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="icon" alt="trash"></a>#}
+{#                                </div>#}
+{#                            {% endfor %}#}
+{#                            <div class="dropdown-divider"></div>#}
+{#                          <a class="dropdown-item item" href="{% url 'add_child' %}">Add Child</a>#}
+{#                        </div>#}
+{#                     </div>#}
+{#                </div>#}
+{#                <div id="child-data">#}
+{#                    <span class="text">Age: </span>#}
+{#                    <span> {{ chosen_child.age }} years</span>#}
+{#                    <span>, {{ chosen_child.age_months }} monts</span>#}
+{#                    <span>, {{ chosen_child.age_days }} days</span><br>#}
+{#                    <span class="text">Estimated size: </span>#}
+{#                    <span> {{ chosen_child.get_clothes_sizes_str }}</span><br>#}
+{#                </div>#}
+{#            </div>#}
+{#        {% else %}#}
+{#            Add a child#}
+{#        {% endif %}#}
+{#    </form>#}
+{#</div>#}

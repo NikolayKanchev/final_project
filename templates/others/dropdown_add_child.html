@@ -1,0 +1,13 @@
+{% extends 'others/dropdown.html' %}
+{% load static %}
+
+{% block dropdown_content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'others/dropdown.css' %}">
+
+{#        <li><a href="{% url 'add_child' %}" data-toggle="tooltip" data-placement="left" title="Add child!">Add normal born child</a></li>#}
+        <li><a href="{% url 'add_child' %}">Add normal born child</a></li>
+        <li><a href="{% url 'add_child' %}">Add preemie</a></li>
+        <li><a href="{% url 'add_child' %}">Add a not born yet child</a></li>
+
+
+{% endblock %}
