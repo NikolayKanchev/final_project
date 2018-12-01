@@ -1,47 +1,44 @@
-{% extends 'base.html' %}
-{% load static %}
-{% load bootstrap4 %}
-{% load crispy_forms_tags %}
-
-{% block title %}Details{% endblock %}
-
-{% block content %}
-
-    <link rel="stylesheet" type="text/css" href="{% static 'home/update_child.css' %}">
-
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-8">
-          <h1 class="mt-2">Details</h1>
-          <hr class="mt-0 mb-4">
-
-            <form method="post">
-                {% csrf_token %}
-
-                <div>{{ form.user }}</div>
-                <div class="row">
-                  <div class="col-3">
-                    {{ form.name|as_crispy_field }}
-                  </div>
-                  <div class="col-3">
-                    {{ form.date_of_birth|as_crispy_field }}
-                  </div>
-                  <div class="col-2">
-                    {{ form.gender|as_crispy_field }}
-                  </div>
-                  <div class="col-3">
-                    {{ form.child_status|as_crispy_field }}
-                  </div>
-                    <div class="col-3">
-                    {{ form.size_system|as_crispy_field }}
-                  </div>
-                  <div class="form-actions">
-                      <button type="submit" class="btn btn-primary" style="height: 38px; margin-top: 37px">Save</button>
-                  </div>
-
-                  <hr class="col-11">
-
-
+{#{% extends 'base.html' %}#}
+{#{% load static %}#}
+{#{% load bootstrap4 %}#}
+{#{% load crispy_forms_tags %}#}
+{##}
+{#{% block title %}Details{% endblock %}#}
+{##}
+{#{% block content %}#}
+{##}
+{#    <link rel="stylesheet" type="text/css" href="{% static 'home/update_child.css' %}">#}
+{##}
+{#    <div class="container">#}
+{#      <div class="row justify-content-center">#}
+{#        <div class="col-8">#}
+{#          <h1 class="mt-2">Details</h1>#}
+{#          <hr class="mt-0 mb-4">#}
+{##}
+{#            <form method="post" enctype="multipart/form-data">#}
+{#                {% csrf_token %}#}
+{##}
+{#                <div>{{ form.user }}</div>#}
+{#                <div class="row">#}
+{#                      <div class="col-3">#}
+{#                        {{ form.name|as_crispy_field }}#}
+{#                      </div>#}
+{#                      <div class="col-3">#}
+{#                        {{ form.date_of_birth|as_crispy_field }}#}
+{#                      </div>#}
+{#                      <div class="col-2">#}
+{#                        {{ form.gender|as_crispy_field }}#}
+{#                      </div>#}
+{#                      <div class="col-3">#}
+{#                        {{ form.size_system|as_crispy_field }}#}
+{#                      </div>#}
+{#                      <div class="form-actions">#}
+{#                          <button type="submit" class="btn btn-primary" style="height: 38px; margin-top: 37px">Save</button>#}
+{#                      </div>#}
+{##}
+{#                      <hr class="col-11">#}
+{##}
+{##}
 {#                ************************Sizes****************************#}
 {#                  <h6 class="col-12">Specify the clothing size:</h6>#}
 {#                    <div style="display: flex;  margin-left: 20px;">#}
@@ -91,30 +88,75 @@
 {#                      {% endfor %}#}
 {#                    </div>#}
 {#                **********************End Sizes***************************#}
-                        <div class="" style="width: 500px; padding-left: 150px;">
-                          {{ form.picture|as_crispy_field }}
-                        </div>
+{#                        <div class="" style="width: 500px; padding-left: 150px;">#}
+{#                          {{ form.picture|as_crispy_field }}#}
+{#                        </div>#}
 {#                    </div>#}
+{##}
+{##}
+{#                </div>#}
+{#            </form>#}
+{##}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{##}
+{#    <script>#}
+{#        $(function () {#}
+{#            $('.dp').datetimepicker({#}
+{#                format:'YYYY-MM-DD',#}
+{#                locale: 'pt-br',#}
+{#                maxDate: moment(),#}
+{#                useCurrent: false,#}
+{#            });#}
+{#         });#}
+{#    </script>#}
+{#{% endblock %}#}
 
-                  <div class="col-3">
-                    {{ form.due_date|as_crispy_field }}
+{% extends 'base_card.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% load crispy_forms_tags %}
+
+{% block card_title %} Edit {{ child.name }}'s Details{% endblock %}
+
+{% block card_content %}
+
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-10">
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div>{{ form.user }}</div>
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6">
+                    {{ form.name|as_crispy_field }}
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6">
+                    {{ form.date_of_birth|as_crispy_field }}
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6">
+                    {{ form.gender|as_crispy_field }}
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6" >
+                     {{ form.picture|as_crispy_field }}
+                  </div>
+{#                  <div class="col-lg-10 col-md-10 col-sm-10"></div>#}
+                  <div class="col-lg-10 col-md-10 col-sm-10 hidden">
+                    {{ form.size_system|as_crispy_field }}
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 form-actions">
+                      <button type="submit" class="btn btn-primary" >Save</button>
                   </div>
 
                 </div>
             </form>
 
         </div>
+
       </div>
     </div>
 
-    <script>
-        $(function () {
-            $('.dp').datetimepicker({
-                format:'YYYY-MM-DD',
-                locale: 'pt-br',
-                maxDate: moment(),
-                useCurrent: false,
-            });
-         });
-    </script>
 {% endblock %}

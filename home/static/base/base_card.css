@@ -32,17 +32,17 @@ hr {
     /*width: 90%;*/
 /*}*/
 
-/*.container-fluid{*/
-    /*padding-top: 35px;*/
-/*}*/
-
-@media screen and (max-width: 767px) {
-    #cards{
-        /*height: 850px;*/
-        margin-bottom: 20px;
-    }
-
-    .left-container{
-        display: none;
-    }
+.container-fluid{
+    padding-top: 35px;
 }
+
+/*@media screen and (max-width: 767px) {*/
+    /*#cards{*/
+        /*!*height: 850px;*!*/
+        /*margin-top: 10px;*/
+    /*}*/
+
+    /*.left-container{*/
+        /*display: none;*/
+    /*}*/
+/*}*/

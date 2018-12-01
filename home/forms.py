@@ -16,6 +16,7 @@ class ChildForm(forms.ModelForm):
         self.fields['user'].queryset = User.objects.filter(pk=user.pk)
         self.initial['user'] = User.objects.filter(pk=user.pk).first()
         self.fields['user'].widget = HiddenInput()
+        self.fields['size_system'].widget = HiddenInput()
         # self.fields['child_status'].widget = forms.RadioSelect()
         self.fields['date_of_birth'].widget = TextInput(attrs={'class': 'dp'})
         # self.fields['due_date'].widget = TextInput(attrs={'class': 'dp'})
