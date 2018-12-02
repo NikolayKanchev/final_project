@@ -63,7 +63,15 @@
             {% endif %}
 
         {% endfor %}
+
+    {% else %}
+{#*******************************************************************************************************#}
     {% endif %}
+        <a id="big-add-menu" href="{% url 'add_child' %}" class="btn add-new" data-toggle="dropdown">
+            <div id="img-cont-add"><img id='icon-plus' class="icon" src="{% static 'images/plus.png' %}" alt="add_new">
+            Add Child</div>
+        </a>
+        {% include "others/dropdown_add_child.html" %}
 
     </div>
 
@@ -119,9 +127,11 @@
         </div>
         {% else %}
             <div class="">
+{#            #**************************************************************************************#}
                 <div >
-                    <a id="child-small-dropdown" class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <span class="caret"><a href="#" ></a></span>
+                    <a href="#" class="btn add-new" data-toggle="dropdown">
+                        <div id="img-cont-add"><img id='icon-plus' class="icon" src="{% static 'images/plus.png' %}" alt="add_new">
+                        Add Child</div>
                     </a>
                     {% include "others/dropdown_add_child.html" %}
                 </div>
@@ -129,6 +139,7 @@
         {% endif %}
 
     </div>
+
 </div>
 
 <script src="{% static 'js/tooltip.js' %}"></script>

@@ -47,6 +47,74 @@ a:hover{
     justify-content: center;
 }
 
+.add-new{
+    position: absolute;
+    margin-top: 23px;
+    margin-left: 40%;
+    height: 55px;
+    border: 1px solid #ec6ead;
+    background-color: inherit;
+    color: #ec6ead;
+    border-radius: 20px;
+}
+
+.add-new:hover #img-cont-add{
+    color: #eeeeee;
+}
+
+.change-children-cont .dropdown-menu{
+    border: 1px solid #ec6ead;
+    /*margin-top: 20px;*/
+    width: 500px;
+    height: 72px;
+}
+
+.change-children-cont li:hover{
+    color: #ec6ead;
+}
+
+.small-children-menu .dropdown-menu{
+    height: auto;
+    margin-right: 3px;
+}
+
+.small-children-menu .add-new{
+    margin-left: -15%;
+}
+
+.add-new:hover{
+    background-color: #ec6ead;
+}
+
+.add-new:hover img{
+    padding: 1px;
+    background-color: #eeeeee;
+}
+
+.add-new img{
+    width: 10px;
+}
+
+#img-cont-add{
+    width: 100%;
+    margin-top: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #ec6ead;
+}
+
+#img-cont-add img{
+    margin-top: -2px;
+}
+
+#add{
+    padding-top: 30px;
+}
+
+.svg-icon {
+
+}
+
 #not-chosen-child-container .text{
     font-size: 10px;
     width: 100%;
@@ -153,6 +221,14 @@ a:hover{
 @media (max-width: 470px) {
     #children-container{
         width: 80%;
+    }
+}
+
+@media (max-width: 501px) {
+    .small-children-menu .dropdown-menu{
+        width: 97%;
+        height: auto;
+        margin-left: auto;
     }
 }
 

@@ -227,7 +227,7 @@ class FullTermChild(Child):
 
 
 class Preemie(Child):
-    # due_date = models.DateField(default=None)
+    due_date = models.DateField(default=None)
     pass
 
 
