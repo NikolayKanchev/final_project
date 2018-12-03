@@ -14,7 +14,7 @@
             <div class="col-lg-3 col-md-2 left-container"></div>
 
             <div id="card-container" class="col-lg-6 col-md-8 col-sm-12 mt-lg-5 mt-md-2 mt-sm-5">
-              <div class="card text-center">
+              <div class="card text-center pt-5 pb-5">
                 <div class="card-body card_title">
                     <div id="form-container">
                         <h5 class="card-title">
@@ -44,6 +44,13 @@
                 format:'YYYY-MM-DD',
                 locale: 'pt-br',
                 maxDate: moment(),
+                useCurrent: false,
+            });
+         });
+        $(function () {
+            $('.dp_due_date').datetimepicker({
+                format:'YYYY-MM-DD',
+                locale: 'pt-br',
                 useCurrent: false,
             });
          });

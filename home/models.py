@@ -12,6 +12,7 @@ class Category(models.Model):
 
 
 class Child(models.Model):
+
     EU_SIZES_DICT = {
         '32': 0, '38': 1, '44': 2, '50': 3, '56': 4, '62': 5, '68': 6, '74': 7, '80': 8, '86': 9, '92': 10, '98': 11,
         '104': 12, '110': 13, '116': 14, '122': 15, '128': 16, '134': 17, '140': 18, '146': 19, '152': 20
@@ -68,9 +69,9 @@ class Child(models.Model):
 
     user = models.ForeignKey(User, on_delete=CASCADE)
     name = models.CharField(max_length=250)
-    gender = models.CharField(max_length=5, choices=CHILD_GENDER_CHOICES, default=None)
-    picture = models.ImageField(upload_to='pic_folder/', default='pic_folder/None/no-img.jpg')
-    date_of_birth = models.DateField()
+    gender = models.CharField(max_length=5, choices=CHILD_GENDER_CHOICES, default=None, blank=True, null=True)
+    picture = models.ImageField(upload_to='pic_folder/', default='pic_folder/None/no-img.jpg', blank=True)
+    date_of_birth = models.DateField(default=None, blank=True, null=True)
     size_system = models.CharField(max_length=5, choices=SIZE_SYSTEMS, default="EU")
     # child_status = models.CharField(max_length=15, choices=CHILD_STATUS_CHOICES, default="F")
 
@@ -90,8 +91,11 @@ class Child(models.Model):
     @property
     def age(self):
         today = date.today()
-        age = relativedelta(today, date(self.date_of_birth.year, self.date_of_birth.month, self.date_of_birth.day))
-        return age
+        if not self.date_of_birth is None:
+            age = relativedelta(today, date(self.date_of_birth.year, self.date_of_birth.month, self.date_of_birth.day))
+            return age
+        else:
+            return
 
     @property
     def clothes_size(self):
@@ -228,8 +232,16 @@ class FullTermChild(Child):
 
 class Preemie(Child):
     due_date = models.DateField(default=None)
-    pass
 
 
 class NotBornChild(Child):
-    pass
+    # name = models.CharField(max_length=250, default=None, blank=True)
+    # gender = models.CharField(max_length=5, default=None, blank=True)
+    # picture = models.ImageField(upload_to='pic_folder/', default='pic_folder/None/no-img.jpg', blank=True)
+    # date_of_birth = models.DateField(default=None, blank=True)
+    due_date = models.DateField(default=None)
+
+    @property
+    def is_not_born(self):
+        return True
+

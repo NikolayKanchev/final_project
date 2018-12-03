@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'accounts.User'
 
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 

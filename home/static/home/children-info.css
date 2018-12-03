@@ -213,6 +213,13 @@ a:hover{
     margin-right: 10px;
 }
 
+.est-size-not-born{
+    font-size: 18px;
+    font-weight: 700;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
 .age{
     font-weight: 700;
     color: #ec6ead;
@@ -312,6 +319,10 @@ a:hover{
     #small-children-info-pencil{
         margin-top: -20px;
         margin-left: 138px;
+    }
+
+    #small-children-info-pencil-not-born{
+        margin-left: 5px;
     }
 
 }

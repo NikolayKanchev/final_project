@@ -32,22 +32,24 @@
                                 <br>
                         </span>
                         <span>
-                            <span class="info-details age">
-                                <span> {{ chosen_child.age.years }} years</span>
-                                <span>, {{ chosen_child.age.months }} monts</span>
-                                <span>, {{ chosen_child.age.days }} days</span><br>
-                            </span>
-                            <span class="info-details" >
-                                <span class="est-size">Estimated clothes size: </span>
-                                <span class="est-size"> {{ chosen_child.get_clothes_sizes_str }}</span>
-                                <span id="edit-size" data-toggle="tooltip" data-placement="top" title="Not the right size? Click to edit"> edit size </span>
-                                <br>
-                            </span>
-                            <span class="info-details">
-                                <span class="est-size">Estimated shoes size: </span>
-                                <span class="est-size"> {{ chosen_child.get_clothes_sizes_str }}</span><br>
-                                <span id="edit-size" data-toggle="tooltip" data-placement="right" title="Not the right size? Click to edit"> edit size </span>
-                            </span>
+                            {% if not not_born_yet %}
+                                <span class="info-details age">
+                                    <span> {{ chosen_child.age.years }} years</span>
+                                    <span>, {{ chosen_child.age.months }} monts</span>
+                                    <span>, {{ chosen_child.age.days }} days</span><br>
+                                </span>
+                                <span class="info-details" >
+                                    <span class="est-size">Estimated clothes size: </span>
+                                    <span class="est-size"> {{ chosen_child.get_clothes_sizes_str }}</span>
+                                    <span id="edit-size" data-toggle="tooltip" data-placement="top" title="Not the right size? Click to edit"> edit size </span>
+                                    <br>
+                                </span>
+                                <span class="info-details">
+                                    <span class="est-size">Estimated shoes size: </span>
+                                    <span class="est-size"> {{ chosen_child.get_clothes_sizes_str }}</span><br>
+                                    <span id="edit-size" data-toggle="tooltip" data-placement="right" title="Not the right size? Click to edit"> edit size </span>
+                                </span>
+                            {% endif %}
 
                         </span>
                     </span>
@@ -67,6 +69,7 @@
     {% else %}
 {#*******************************************************************************************************#}
     {% endif %}
+
         <a id="big-add-menu" href="{% url 'add_child' %}" class="btn add-new" data-toggle="dropdown">
             <div id="img-cont-add"><img id='icon-plus' class="icon" src="{% static 'images/plus.png' %}" alt="add_new">
             Add Child</div>
@@ -90,26 +93,35 @@
             <div id="children-small-info">
                 <div>
                     <div class="flex-start">
-                        <div class="est-size">{{ chosen_child.name }}</div>
+                        <div class="est-size-not-born">{{ chosen_child.name }}</div>
                         <div class="pink">
-                            <span> {{ chosen_child.age.years }} years</span>
-                            <span>, {{ chosen_child.age.months }} monts</span>
-                            <span>, {{ chosen_child.age.days }} days</span><br>
-                            <span id="small-children-info-pencil" class="edit-child-details">
-                                <a href="{% url 'update_child' pk=chosen_child.pk %}" data-toggle="tooltip" data-placement="left" title="Edit {{ chosen_child.name }}'s details!"><span id="pencil"><img src="{% static '/open-iconic-master/svg/pencil.svg' %}" class="icon" alt="pencil"></span></a>
-                            </span>
+                            {% if not not_born_yet %}
+                                <span> {{ chosen_child.age.years }} years</span>
+                                <span>, {{ chosen_child.age.months }} monts</span>
+                                <span>, {{ chosen_child.age.days }} days</span><br>
+                                <span id="small-children-info-pencil" class="edit-child-details">
+                                    <a href="{% url 'update_child' pk=chosen_child.pk %}" data-toggle="tooltip" data-placement="left" title="Edit {{ chosen_child.name }}'s details!"><span id="pencil"><img src="{% static '/open-iconic-master/svg/pencil.svg' %}" class="icon" alt="pencil"></span></a>
+                                </span>
+                            {% else %}
+                                <span id="small-children-info-pencil-not-born" class="edit-child-detail">
+                                    <a href="{% url 'update_child' pk=chosen_child.pk %}" data-toggle="tooltip" data-placement="left" title="Edit {{ chosen_child.name }}'s details!"><span id="pencil"><img src="{% static '/open-iconic-master/svg/pencil.svg' %}" class="icon" alt="pencil"></span></a>
+                                </span>
+                            {% endif %}
                         </div>
                     </div>
-                    <div class="flex-start">
-                        <span class="est-size">Estimated size: </span>
-                        <span class="pink"> {{ chosen_child.get_clothes_sizes_str }}</span>
-                        <span id="edit-size" data-toggle="tooltip" data-placement="right" title="Not the right size? Click to edit"> edit size </span>
-                    </div>
-                    <div class="flex-start">
-                        <span class="est-size">Estimated shoes size: </span>
-                        <span class="pink"> {{ chosen_child.get_clothes_sizes_str }}</span>
-                        <span id="edit-size" data-toggle="tooltip" data-placement="right" title="Not the right size? Click to edit"> edit size </span>
-                    </div>
+                        {% if not not_born_yet %}
+                            <div class="flex-start">
+                                <span class="est-size">Estimated size: </span>
+                                <span class="pink"> {{ chosen_child.get_clothes_sizes_str }}</span>
+                                <span id="edit-size" data-toggle="tooltip" data-placement="right" title="Not the right size? Click to edit"> edit size </span>
+                            </div>
+                            <div class="flex-start">
+                                <span class="est-size">Estimated shoes size: </span>
+                                <span class="pink"> {{ chosen_child.get_clothes_sizes_str }}</span>
+                                <span id="edit-size" data-toggle="tooltip" data-placement="right" title="Not the right size? Click to edit"> edit size </span>
+                            </div>
+                        {% endif %}
+
                 </div>
 
             </div>

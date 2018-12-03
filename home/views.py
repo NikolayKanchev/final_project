@@ -1,8 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from home.forms import ChildForm
-from home.models import Preemie, Child, FullTermChild
+from home.forms import ChildForm, PreemieForm, NotBornChildForm
+from home.models import Child, FullTermChild, Preemie, NotBornChild
 
 
 class HomeView(ListView):
@@ -19,9 +19,18 @@ class HomeView(ListView):
         if 'pk' in self.kwargs:
             obj = Child.objects.filter(pk=self.kwargs['pk']).first()
             context['chosen_child'] = obj
+            if obj is not None and obj.age is None:
+                context['not_born_yet'] = True
+            else:
+                context['not_born_yet'] = False
+
         else:
             obj = Child.objects.filter(user=self.request.user.pk).last()
             context['chosen_child'] = obj
+            if obj is not None and obj.age is None:
+                context['not_born_yet'] = True
+            else:
+                context['not_born_yet'] = False
 
         return context
 
@@ -36,6 +45,34 @@ class AddFullTermChildView(CreateView):
 
     def get_form_kwargs(self):
         kwargs = super(AddFullTermChildView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+
+class AddPreemieView(CreateView):
+    model = Preemie
+    template_name = 'home/add_preemie.html'
+    form_class = PreemieForm
+
+    def get_success_url(self):
+        return reverse('home', args=(self.object.id,))
+
+    def get_form_kwargs(self):
+        kwargs = super(AddPreemieView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+
+class AddNotBornView(CreateView):
+    model = NotBornChild
+    template_name = 'home/add_not_born_child.html'
+    form_class = NotBornChildForm
+
+    def get_success_url(self):
+        return reverse('home', args=(self.object.id,))
+
+    def get_form_kwargs(self):
+        kwargs = super(AddNotBornView, self).get_form_kwargs()
         kwargs['user'] = self.request.user
         return kwargs
 
