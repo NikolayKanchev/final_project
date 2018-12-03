@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from home.forms import ChildForm, PreemieForm, NotBornChildForm
+from home.forms import ChildForm, PreemieForm, NotBornChildForm, UpdateSizeSystemForm, UpdateSizesForm
 from home.models import Child, FullTermChild, Preemie, NotBornChild
 
 
@@ -98,3 +98,31 @@ class DeleteChildView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         """ Only let the user access this page if they own the object being deleted"""
         return self.get_object().user == self.request.user
+
+
+class UpdateSizeSystemView(UpdateView):
+    model = Child
+    template_name = 'home/update_size_system.html'
+    form_class = UpdateSizeSystemForm
+
+    def get_success_url(self):
+        return reverse('home', args=(self.object.id,))
+
+    def get_form_kwargs(self):
+        kwargs = super(UpdateSizeSystemView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+
+class UpdateSizesView(UpdateView):
+    model = Child
+    template_name = 'home/update_sizes.html'
+    form_class = UpdateSizesForm
+
+    def get_success_url(self):
+        return reverse('home', args=(self.object.id,))
+
+    def get_form_kwargs(self):
+        kwargs = super(UpdateSizesView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs

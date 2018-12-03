@@ -58,12 +58,35 @@ class NotBornChildForm(forms.ModelForm):
         self.fields['user'].queryset = User.objects.filter(pk=user.pk)
         self.initial['user'] = User.objects.filter(pk=user.pk).first()
         self.fields['user'].widget = HiddenInput()
-        # self.initial['date_of_birth'] = None
         self.fields['due_date'].widget = TextInput(attrs={'class': 'dp_due_date'})
         self.initial['name'] = "Coming Soon"
-        # self.fields['size_system'].widget = HiddenInput()
-        # self.fields['date_of_birth'].widget = HiddenInput()
         self.fields['name'].widget = HiddenInput()
-        # self.fields['gender'].widget = HiddenInput()
-        # self.initial['picture'] = "pic_folder/None/no-img.jpg"
-        # self.fields['picture'].widget = HiddenInput()
+
+
+class UpdateSizeSystemForm(forms.ModelForm):
+    class Meta:
+        model = NotBornChild
+        fields = ['user', 'name', 'size_system']
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user')
+        super(UpdateSizeSystemForm, self).__init__(*args, **kwargs)
+        self.fields['user'].queryset = User.objects.filter(pk=user.pk)
+        self.initial['user'] = User.objects.filter(pk=user.pk).first()
+        self.fields['user'].widget = HiddenInput()
+        self.fields['name'].widget = HiddenInput()
+
+
+class UpdateSizesForm(forms.ModelForm):
+    class Meta:
+        model = NotBornChild
+        fields = ['user', 'name', 'size_system', 'corrected_sizes']
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user')
+        super(UpdateSizesForm, self).__init__(*args, **kwargs)
+        self.fields['user'].queryset = User.objects.filter(pk=user.pk)
+        self.initial['user'] = User.objects.filter(pk=user.pk).first()
+        self.fields['user'].widget = HiddenInput()
+        self.fields['name'].widget = HiddenInput()
+        self.fields['size_system'].widget = HiddenInput()

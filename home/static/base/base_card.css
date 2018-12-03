@@ -17,6 +17,11 @@ hr {
     color:black;
 }
 
+#sizes-cont{
+    display: flex;
+    justify-content: center;
+}
+
 .card{
     height: 100%;
 }

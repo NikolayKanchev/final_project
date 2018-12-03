@@ -34,6 +34,7 @@
                         <span>
                             {% if not not_born_yet %}
                                 <span class="info-details age">
+                                    <a href="{% url 'update_size_system' pk=c.pk %}"><span id="edit-size-system" data-toggle="tooltip" data-placement="top" title="Edit size system">{{ chosen_child.size_system }}</span></a>
                                     <span> {{ chosen_child.age.years }} years</span>
                                     <span>, {{ chosen_child.age.months }} monts</span>
                                     <span>, {{ chosen_child.age.days }} days</span><br>
@@ -41,7 +42,7 @@
                                 <span class="info-details" >
                                     <span class="est-size">Estimated clothes size: </span>
                                     <span class="est-size"> {{ chosen_child.get_clothes_sizes_str }}</span>
-                                    <span id="edit-size" data-toggle="tooltip" data-placement="top" title="Not the right size? Click to edit"> edit size </span>
+                                    <a id="edit-size" href="{% url 'update_sizes' pk=c.pk %}"><span data-toggle="tooltip" data-placement="top" title="Not the right size? Click to edit"> edit size </span></a>
                                     <br>
                                 </span>
                                 <span class="info-details">
@@ -93,7 +94,8 @@
             <div id="children-small-info">
                 <div>
                     <div class="flex-start">
-                        <div class="est-size-not-born">{{ chosen_child.name }}</div>
+                        <span><a id="edit-size-system" href="{% url 'update_size_system' pk=chosen_child.pk %}"><span data-toggle="tooltip" data-placement="top" title="Edit size system">{{ chosen_child.size_system }}</span></a></span>
+                        <div style="margin-right: 5px">{{ chosen_child.name }}</div>
                         <div class="pink">
                             {% if not not_born_yet %}
                                 <span> {{ chosen_child.age.years }} years</span>
@@ -113,7 +115,7 @@
                             <div class="flex-start">
                                 <span class="est-size">Estimated size: </span>
                                 <span class="pink"> {{ chosen_child.get_clothes_sizes_str }}</span>
-                                <span id="edit-size" data-toggle="tooltip" data-placement="right" title="Not the right size? Click to edit"> edit size </span>
+                                <a id="edit-size" href="{% url 'update_sizes' pk=chosen_child.pk %}"><span data-toggle="tooltip" data-placement="top" title="Not the right size? Click to edit"> edit size </span></a>
                             </div>
                             <div class="flex-start">
                                 <span class="est-size">Estimated shoes size: </span>
@@ -155,60 +157,3 @@
 </div>
 
 <script src="{% static 'js/tooltip.js' %}"></script>
-
-
-{##}
-{#<script>#}
-{#    $(document).ready(function(){#}
-{##}
-{#    $('.child-container').click(function () {#}
-{#        alert("Your anchor is clicked.");#}
-{#    });#}
-{##}
-{##}
-{##}
-{#        $("#c").click(function() {#}
-{#            $('.main-children-container').fadeOut(1000, function() {#}
-{#                $(this).css("background-color", "#FF0000").fadeIn(10000);#}
-{#            });#}
-{#         });​#}
-{#    });​#}
-{#</script>#}
-
-
-{##}
-{#<div id="child-info">#}
-{#    <form id="child-name">#}
-{#        {% if children %}#}
-{#            <div class="row">#}
-{#                <div id="cloud">#}
-{#                     <h2 id="child">{{ chosen_child.name }}</h2>#}
-{#                    <a id="settings" class="child-icon" href="{% url 'update_child' pk=chosen_child.pk %}"><img src="{% static '/open-iconic-master/svg/cog.svg' %}" class="icon" alt="cog"></a>#}
-{#                     <div class="dropdown">#}
-{#                        <button type="button" class="btn dropdown-toggle"></button>#}
-{#                        <div class="dropdown-menu" id="dropdown">#}
-{#                            {% for c in children %}#}
-{#                                <div id="child-name">#}
-{#                                    <a class="dropdown-item item" href="{% url 'home' pk=c.pk %}">{{ c.name }}</a>#}
-{#                                    <a id="trash" href="{% url 'update_child' pk=c.pk %}"><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="icon" alt="trash"></a>#}
-{#                                </div>#}
-{#                            {% endfor %}#}
-{#                            <div class="dropdown-divider"></div>#}
-{#                          <a class="dropdown-item item" href="{% url 'add_child' %}">Add Child</a>#}
-{#                        </div>#}
-{#                     </div>#}
-{#                </div>#}
-{#                <div id="child-data">#}
-{#                    <span class="text">Age: </span>#}
-{#                    <span> {{ chosen_child.age }} years</span>#}
-{#                    <span>, {{ chosen_child.age_months }} monts</span>#}
-{#                    <span>, {{ chosen_child.age_days }} days</span><br>#}
-{#                    <span class="text">Estimated size: </span>#}
-{#                    <span> {{ chosen_child.get_clothes_sizes_str }}</span><br>#}
-{#                </div>#}
-{#            </div>#}
-{#        {% else %}#}
-{#            Add a child#}
-{#        {% endif %}#}
-{#    </form>#}
-{#</div>#}

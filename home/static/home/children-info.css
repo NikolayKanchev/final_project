@@ -116,10 +116,10 @@ a:hover{
 }
 
 #not-chosen-child-container .text{
-    font-size: 10px;
+    font-size: 12px;
     width: 100%;
     text-align: center;
-    margin: 0;
+    margin-left: -5px;
     padding-right: 15px;
 }
 
@@ -172,6 +172,31 @@ a:hover{
     cursor: pointer;
 }
 
+#edit-size-system{
+    background-color: #000000;
+    color: white;
+    border-radius: 5px;
+    font-size: 8px;
+    height: 18px;
+    padding: 3px 5px;
+    margin-right: 5px;
+    /*margin-top: 10px;*/
+    cursor: pointer;
+}
+
+/*#edit-size-system-small{*/
+    /*background-color: #000000;*/
+    /*color: white;*/
+    /*border-radius: 5px;*/
+    /*font-size: 8px;*/
+    /*height: 18px;*/
+    /*padding: 3px 5px;*/
+    /*margin-right: 5px;*/
+    /*margin-left: -105px;*/
+    /*!*margin-top: 10px;*!*/
+    /*cursor: pointer;*/
+/*}*/
+
 .crop-container{
     width: 75px;
     height: 75px;
@@ -211,13 +236,6 @@ a:hover{
     font-size: 12px;
     font-weight: 700;
     margin-right: 10px;
-}
-
-.est-size-not-born{
-    font-size: 18px;
-    font-weight: 700;
-    margin-right: 10px;
-    margin-top: 10px;
 }
 
 .age{
