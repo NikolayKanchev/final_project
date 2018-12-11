@@ -47,8 +47,8 @@
                                 </span>
                                 <span class="info-details">
                                     <span class="est-size">Estimated shoes size: </span>
-                                    <span class="est-size"> {{ chosen_child.get_clothes_sizes_str }}</span><br>
-                                    <span id="edit-size" data-toggle="tooltip" data-placement="right" title="Not the right size? Click to edit"> edit size </span>
+                                    <span class="est-size"> {{ chosen_child.get_shoe_sizes_str }}</span><br>
+                                    <a id="edit-size" href="{% url 'update_shoe_sizes' pk=c.pk %}"><span id="edit-size" data-toggle="tooltip" data-placement="right" title="Not the right size? Click to edit"> edit size </span></a>
                                 </span>
                             {% endif %}
 
@@ -119,7 +119,7 @@
                             </div>
                             <div class="flex-start">
                                 <span class="est-size">Estimated shoes size: </span>
-                                <span class="pink"> {{ chosen_child.get_clothes_sizes_str }}</span>
+                                <span class="pink"> {{ chosen_child.get_shoe_sizes_str }}</span>
                                 <span id="edit-size" data-toggle="tooltip" data-placement="right" title="Not the right size? Click to edit"> edit size </span>
                             </div>
                         {% endif %}

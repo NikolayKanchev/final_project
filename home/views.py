@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from home.forms import ChildForm, PreemieForm, NotBornChildForm, UpdateSizeSystemForm, UpdateSizesForm
+from home.forms import ChildForm, PreemieForm, NotBornChildForm, UpdateSizeSystemForm, UpdateSizesForm, UpdateShoeSizesForm
 from home.models import Child
 
 
@@ -124,5 +124,19 @@ class UpdateSizesView(UpdateView):
 
     def get_form_kwargs(self):
         kwargs = super(UpdateSizesView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+
+class UpdateShoeSizesView(UpdateView):
+    model = Child
+    template_name = 'home/update_shoe_sizes.html'
+    form_class = UpdateShoeSizesForm
+
+    def get_success_url(self):
+        return reverse('home', args=(self.object.id,))
+
+    def get_form_kwargs(self):
+        kwargs = super(UpdateShoeSizesView, self).get_form_kwargs()
         kwargs['user'] = self.request.user
         return kwargs

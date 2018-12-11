@@ -2,15 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1f42c493-d170-4927-bd28-6ab7f709cc2b" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/templates/home/update_shoe_sizes.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/6f692ac6-6509-4fff-af96-d2f42f942f90.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/6f692ac6-6509-4fff-af96-d2f42f942f90.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/6f692ac6-6509-4fff-af96-d2f42f942f90/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/6f692ac6-6509-4fff-af96-d2f42f942f90/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/migrations/0001_initial.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/home/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/add_full_term_child.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/add_full_term_child.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/add_not_born_child.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/add_not_born_child.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/add_preemie.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/add_preemie.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/others/chidren_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/others/chidren_info.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,21 +47,6 @@
         <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="postgres: database" type="6d9b600a:PostgresImplModel$Database" />
       </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="postgres: database" type="6d9b600a:PostgresImplModel$Database" />
-        <item name="public: schema" type="a16502c0:PostgresImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="postgres: database" type="6d9b600a:PostgresImplModel$Database" />
-        <item name="public: schema" type="a16502c0:PostgresImplModel$Schema" />
-        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
     </expand>
     <select />
   </component>
@@ -72,22 +58,34 @@
       <file leaf-file-name="chidren_info.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/others/chidren_info.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="149" column="44" selection-start-line="149" selection-start-column="44" selection-end-line="149" selection-end-column="44" />
+            <state relative-caret-position="286">
+              <caret line="50" column="80" lean-forward="true" selection-start-line="50" selection-start-column="80" selection-end-line="50" selection-end-column="80" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/home/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="3" column="94" selection-start-line="3" selection-start-column="94" selection-end-line="3" selection-end-column="94" />
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/home/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-37">
-              <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
+            <state relative-caret-position="330">
+              <caret line="305" column="44" lean-forward="true" selection-start-line="305" selection-start-column="44" selection-end-line="305" selection-end-column="44" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
                 <element signature="e#345#576#0" />
-                <element signature="e#599#1487#0" />
-                <element signature="e#1506#3219#0" />
+                <element signature="e#7416#7624#0" />
+                <element signature="e#9021#10882#0" />
               </folding>
             </state>
           </provider>
@@ -96,32 +94,26 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/home/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="66" column="17" lean-forward="true" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#78#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-2765">
+              <caret line="3" column="123" selection-start-line="3" selection-start-column="123" selection-end-line="3" selection-end-column="123" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/home/urls.py">
+      <file leaf-file-name="update_shoe_sizes.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/home/update_shoe_sizes.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="535">
+              <caret line="68" column="56" selection-start-line="68" selection-start-column="56" selection-end-line="68" selection-end-column="56" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/home/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-235">
-              <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
+            <state relative-caret-position="359">
+              <caret line="114" column="57" lean-forward="true" selection-start-line="114" selection-start-column="57" selection-end-line="114" selection-end-column="57" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -134,6 +126,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>dropdown-menu</find>
+      <find>size_</find>
+      <find>get_clothe</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -156,20 +150,21 @@
         <option value="$PROJECT_DIR$/home/admin.py" />
         <option value="$PROJECT_DIR$/parents_assistant/settings.py" />
         <option value="$PROJECT_DIR$/templates/home/update_size_system.html" />
-        <option value="$PROJECT_DIR$/home/urls.py" />
-        <option value="$PROJECT_DIR$/templates/home/update_child.html" />
         <option value="$PROJECT_DIR$/templates/base_card.html" />
         <option value="$PROJECT_DIR$/home/static/base/base_card.css" />
         <option value="$PROJECT_DIR$/templates/home/update_sizes.html" />
         <option value="$PROJECT_DIR$/home/static/home/home.css" />
-        <option value="$PROJECT_DIR$/templates/others/chidren_info.html" />
         <option value="$PROJECT_DIR$/home/static/home/children-info.css" />
-        <option value="$PROJECT_DIR$/home/views.py" />
         <option value="$PROJECT_DIR$/templates/home/add_full_term_child.html" />
-        <option value="$PROJECT_DIR$/home/models.py" />
-        <option value="$PROJECT_DIR$/home/forms.py" />
         <option value="$PROJECT_DIR$/templates/home/add_not_born_child.html" />
         <option value="$PROJECT_DIR$/templates/home/add_preemie.html" />
+        <option value="$PROJECT_DIR$/templates/home/update_child.html" />
+        <option value="$PROJECT_DIR$/templates/others/chidren_info.html" />
+        <option value="$PROJECT_DIR$/home/urls.py" />
+        <option value="$PROJECT_DIR$/home/views.py" />
+        <option value="$PROJECT_DIR$/home/forms.py" />
+        <option value="$PROJECT_DIR$/templates/home/update_shoe_sizes.html" />
+        <option value="$PROJECT_DIR$/home/models.py" />
       </list>
     </option>
   </component>
@@ -242,15 +237,15 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\KEA\Projects\Third Year\parents_assistant\home" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\KEA\Projects\Third Year\parents_assistant\templates\home" />
       <recent name="D:\KEA\Projects\Third Year\parents_assistant\accounts\static\images" />
       <recent name="D:\KEA\Projects\Third Year\parents_assistant" />
       <recent name="D:\KEA\Projects\Third Year\parents_assistant\templates" />
       <recent name="D:\KEA\Projects\Third Year\parents_assistant\home\static\home" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\KEA\Projects\Third Year\parents_assistant\home" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -336,7 +331,21 @@
       <option name="project" value="LOCAL" />
       <updated>1543847954653</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="All the subclasses of Child were removed">
+      <created>1544515266055</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1544515266056</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Update Child is fixed">
+      <created>1544515956746</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1544515956746</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -362,6 +371,7 @@
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1738255" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" weight="0.3295302" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.32905984" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -373,7 +383,6 @@
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Database Console" order="0" weight="0.32905984" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.32905984" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -388,7 +397,9 @@
     <MESSAGE value="Delete Child done" />
     <MESSAGE value="CRUD for all 3 type of children done!" />
     <MESSAGE value="Update size system and update sizes Implamented" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update size system and update sizes Implamented" />
+    <MESSAGE value="All the subclasses of Child were removed" />
+    <MESSAGE value="Update Child is fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Child is fixed" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/templates/others/chidren_info.html">
@@ -585,13 +596,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/home/update_child.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1129">
-          <caret line="88" column="28" selection-start-line="41" selection-start-column="17" selection-end-line="88" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/base_card.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -603,23 +607,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
           <caret line="21" column="28" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/home/update_sizes.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="902">
-          <caret line="81" column="14" lean-forward="true" selection-start-line="81" selection-start-column="14" selection-end-line="81" selection-end-column="14" />
-          <folding>
-            <element signature="e#1105#1124#0#HTML" expanded="true" />
-            <element signature="e#1100#1570#0#HTML" />
-            <element signature="e#1667#1686#0#HTML" expanded="true" />
-            <element signature="e#1627#2157#0#HTML" />
-            <element signature="e#2187#2206#0#HTML" expanded="true" />
-            <element signature="e#2182#2678#0#HTML" />
-            <element signature="e#2743#2762#0#HTML" expanded="true" />
-            <element signature="e#2738#3172#0#HTML" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -663,57 +650,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/others/chidren_info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="149" column="44" selection-start-line="149" selection-start-column="44" selection-end-line="149" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/home/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/home/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="66" column="17" lean-forward="true" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#78#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/home/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-37">
-          <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-            <element signature="e#345#576#0" />
-            <element signature="e#599#1487#0" />
-            <element signature="e#1506#3219#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/home/add_not_born_child.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
           <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/home/add_full_term_child.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="50" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -727,12 +667,77 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/home/add_full_term_child.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" column="50" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/home/update_child.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="139" column="24" lean-forward="true" selection-start-line="139" selection-start-column="24" selection-end-line="139" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="94" selection-start-line="3" selection-start-column="94" selection-end-line="3" selection-end-column="94" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/home/update_sizes.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="78" column="22" lean-forward="true" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2765">
+          <caret line="3" column="123" selection-start-line="3" selection-start-column="123" selection-end-line="3" selection-end-column="123" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/home/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-235">
-          <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
+        <state relative-caret-position="359">
+          <caret line="114" column="57" lean-forward="true" selection-start-line="114" selection-start-column="57" selection-end-line="114" selection-end-column="57" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/home/update_shoe_sizes.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="68" column="56" selection-start-line="68" selection-start-column="56" selection-end-line="68" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/others/chidren_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="50" column="80" lean-forward="true" selection-start-line="50" selection-start-column="80" selection-end-line="50" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="305" column="44" lean-forward="true" selection-start-line="305" selection-start-column="44" selection-end-line="305" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+            <element signature="e#345#576#0" />
+            <element signature="e#7416#7624#0" />
+            <element signature="e#9021#10882#0" />
           </folding>
         </state>
       </provider>

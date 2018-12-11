@@ -98,3 +98,18 @@ class UpdateSizesForm(forms.ModelForm):
         self.fields['user'].widget = HiddenInput()
         self.fields['name'].widget = HiddenInput()
         self.fields['size_system'].widget = HiddenInput()
+
+
+class UpdateShoeSizesForm(forms.ModelForm):
+    class Meta:
+        model = Child
+        fields = ['user', 'name', 'size_system', 'corrected_shoe_sizes']
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user')
+        super(UpdateShoeSizesForm, self).__init__(*args, **kwargs)
+        self.fields['user'].queryset = User.objects.filter(pk=user.pk)
+        self.initial['user'] = User.objects.filter(pk=user.pk).first()
+        self.fields['user'].widget = HiddenInput()
+        self.fields['name'].widget = HiddenInput()
+        self.fields['size_system'].widget = HiddenInput()
