@@ -48,12 +48,12 @@ class Child(models.Model):
                (33, '5.5'), (34, '6'), (35, '6.5'), (36, '7'), (37, '7.5'), (38, '8'), (39, '8.5'), (40, '9')),
     }
 
-    # F, P = "F", "P"
-    # CHILD_STATUS_CHOICES = (
-    #     (F, "Full term"),
-    #     (P, "Preemie"),
-    #     # ("N", 'Not born yet'),
-    # )
+    F, P, N = "F", "P", "Not born yet"
+    CHILD_STATUS_CHOICES = (
+        (F, "Full term"),
+        (P, "Preemie"),
+        (N, 'Not born yet'),
+    )
 
     CHILD_GENDER_CHOICES = (
         ("BOY", 'Boy'),
@@ -73,7 +73,8 @@ class Child(models.Model):
     picture = models.ImageField(upload_to='pic_folder/', default='pic_folder/None/no-img.jpg', blank=True)
     date_of_birth = models.DateField(default=None, blank=True, null=True)
     size_system = models.CharField(max_length=5, choices=SIZE_SYSTEMS, default="EU")
-    # child_status = models.CharField(max_length=15, choices=CHILD_STATUS_CHOICES, default="F")
+    child_status = models.CharField(max_length=15, choices=CHILD_STATUS_CHOICES, default="F")
+    due_date = models.DateField(default=None, blank=True, null=True)
 
     CORRECTED_SIZE_CHOICES = ((0, '32'), (1, '38'), (2, '44'),
                               (3, '50'), (4, '56'), (5, '62'),
@@ -224,24 +225,4 @@ class Child(models.Model):
         else:  # if there is no corrected sizes
             # if self.baby_status == "Preemie":
             pass
-
-
-class FullTermChild(Child):
-    pass
-
-
-class Preemie(Child):
-    due_date = models.DateField(default=None)
-
-
-class NotBornChild(Child):
-    # name = models.CharField(max_length=250, default=None, blank=True)
-    # gender = models.CharField(max_length=5, default=None, blank=True)
-    # picture = models.ImageField(upload_to='pic_folder/', default='pic_folder/None/no-img.jpg', blank=True)
-    # date_of_birth = models.DateField(default=None, blank=True)
-    due_date = models.DateField(default=None)
-
-    @property
-    def is_not_born(self):
-        return True
 

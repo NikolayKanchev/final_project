@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from home.forms import ChildForm, PreemieForm, NotBornChildForm, UpdateSizeSystemForm, UpdateSizesForm
-from home.models import Child, FullTermChild, Preemie, NotBornChild
+from home.models import Child
 
 
 class HomeView(ListView):
@@ -36,7 +36,7 @@ class HomeView(ListView):
 
 
 class AddFullTermChildView(CreateView):
-    model = FullTermChild
+    model = Child
     template_name = 'home/add_full_term_child.html'
     form_class = ChildForm
 
@@ -50,7 +50,7 @@ class AddFullTermChildView(CreateView):
 
 
 class AddPreemieView(CreateView):
-    model = Preemie
+    model = Child
     template_name = 'home/add_preemie.html'
     form_class = PreemieForm
 
@@ -64,7 +64,7 @@ class AddPreemieView(CreateView):
 
 
 class AddNotBornView(CreateView):
-    model = NotBornChild
+    model = Child
     template_name = 'home/add_not_born_child.html'
     form_class = NotBornChildForm
 
