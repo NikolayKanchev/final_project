@@ -90,9 +90,13 @@ class Child(models.Model):
         return self.CLOTHING_SIZES.get(self.size_system)
 
     @property
+    def shoe_sizes(self):
+        return self.SHOE_SIZES.get(self.size_system)
+
+    @property
     def age(self):
         today = date.today()
-        if not self.date_of_birth is None:
+        if self.date_of_birth is not None:
             age = relativedelta(today, date(self.date_of_birth.year, self.date_of_birth.month, self.date_of_birth.day))
             return age
         else:
