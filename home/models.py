@@ -84,7 +84,7 @@ class Child(models.Model):
             return age
         else:
             return
-
+    #  ***********************************CLOTHES*******************************************************
     """The possible clothes sizes"""
     @property
     def sizes(self):
@@ -215,8 +215,7 @@ class Child(models.Model):
                         return estimated_size - corrected_size3
 
         else:  # if there is no corrected sizes
-            # if self.baby_status == "Preemie":
-            pass
+            return 0
 
 # **********************************************SHOES**********************************************************
 

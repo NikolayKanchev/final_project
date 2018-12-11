@@ -10,7 +10,7 @@ class HomeView(ListView):
     context_object_name = 'children'
 
     def get_queryset(self):
-        return Child.objects.filter(user=self.request.user.pk)
+        return Child.objects.filter(user=self.request.user.pk).order_by("pk")
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(HomeView,

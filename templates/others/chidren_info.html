@@ -34,21 +34,21 @@
                         <span>
                             {% if not not_born_yet %}
                                 <span class="info-details age">
-                                    <a href="{% url 'update_size_system' pk=c.pk %}"><span id="edit-size-system" data-toggle="tooltip" data-placement="top" title="Edit size system">{{ chosen_child.size_system }}</span></a>
+                                    <a id="edit-size-system" href="{% url 'update_size_system' pk=c.pk %}"><span data-toggle="tooltip" data-placement="top" title="Edit size system">{{ chosen_child.size_system }}</span></a>
                                     <span> {{ chosen_child.age.years }} years</span>
                                     <span>, {{ chosen_child.age.months }} monts</span>
                                     <span>, {{ chosen_child.age.days }} days</span><br>
                                 </span>
                                 <span class="info-details" >
-                                    <span class="est-size">Estimated clothes size: </span>
+                                    <span class="est-size left">Clothes Sizes: </span>
                                     <span class="est-size"> {{ chosen_child.get_clothes_sizes_str }}</span>
                                     <a id="edit-size" href="{% url 'update_sizes' pk=c.pk %}"><span data-toggle="tooltip" data-placement="top" title="Not the right size? Click to edit"> edit size </span></a>
                                     <br>
                                 </span>
                                 <span class="info-details">
-                                    <span class="est-size">Estimated shoes size: </span>
+                                    <span class="est-size left">Shoes Sizes: </span>
                                     <span class="est-size"> {{ chosen_child.get_shoe_sizes_str }}</span><br>
-                                    <a id="edit-size" href="{% url 'update_shoe_sizes' pk=c.pk %}"><span id="edit-size" data-toggle="tooltip" data-placement="right" title="Not the right size? Click to edit"> edit size </span></a>
+                                    <a id="edit-size" href="{% url 'update_shoe_sizes' pk=c.pk %}"><span data-toggle="tooltip" data-placement="right" title="Not the right size? Click to edit"> edit size </span></a>
                                 </span>
                             {% endif %}
 
@@ -113,14 +113,14 @@
                     </div>
                         {% if not not_born_yet %}
                             <div class="flex-start">
-                                <span class="est-size">Estimated size: </span>
-                                <span class="pink"> {{ chosen_child.get_clothes_sizes_str }}</span>
+                                <span class="est-size left">Clothes Sizes: </span>
+                                <span class="pink width"> {{ chosen_child.get_clothes_sizes_str }}</span>
                                 <a id="edit-size" href="{% url 'update_sizes' pk=chosen_child.pk %}"><span data-toggle="tooltip" data-placement="top" title="Not the right size? Click to edit"> edit size </span></a>
                             </div>
                             <div class="flex-start">
-                                <span class="est-size">Estimated shoes size: </span>
-                                <span class="pink"> {{ chosen_child.get_shoe_sizes_str }}</span>
-                                <span id="edit-size" data-toggle="tooltip" data-placement="right" title="Not the right size? Click to edit"> edit size </span>
+                                <span class="est-size left">Shoes sizes: </span>
+                                <span class="pink width"> {{ chosen_child.get_shoe_sizes_str }}</span>
+                                <a id="edit-size" href="{% url 'update_shoe_sizes' pk=chosen_child.pk %}"><span data-toggle="tooltip" data-placement="right" title="Not the right size? Click to edit"> edit size </span></a>
                             </div>
                         {% endif %}
 

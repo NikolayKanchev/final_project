@@ -2,6 +2,10 @@
     color: #ec6ead;
 }
 
+.width{
+    width: 70px;
+}
+
 .flex-start{
     display: flex;
     justify-content: flex-start;
@@ -166,8 +170,8 @@ a:hover{
     font-size: 9px;
     height: 18px;
     padding-top: 3px;
-    padding-left: 2px;
-    padding-right: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
     margin-left: 3px;
     cursor: pointer;
 }
@@ -180,8 +184,9 @@ a:hover{
     height: 18px;
     padding: 3px 5px;
     margin-right: 5px;
-    /*margin-top: 10px;*/
+    margin-left: 7px;
     cursor: pointer;
+    margin-top: 3px;
 }
 
 /*#edit-size-system-small{*/
@@ -220,7 +225,7 @@ a:hover{
 
 .info-details{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
     color: #3494e6;
     font-weight: 500;
@@ -236,6 +241,14 @@ a:hover{
     font-size: 12px;
     font-weight: 700;
     margin-right: 10px;
+    width: 70px;
+    color: #ec6ead;
+}
+
+.left{
+    margin-left: 10px;
+    width: 80px;
+    color: #3494e6;
 }
 
 .age{
@@ -336,11 +349,16 @@ a:hover{
 
     #small-children-info-pencil{
         margin-top: -20px;
-        margin-left: 138px;
+        margin-left: 144px;
     }
 
     #small-children-info-pencil-not-born{
         margin-left: 5px;
+    }
+
+    #edit-size{
+        font-size: 8px;
+        height: 17px;
     }
 
 }
