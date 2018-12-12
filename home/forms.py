@@ -113,3 +113,4 @@ class UpdateShoeSizesForm(forms.ModelForm):
         self.fields['user'].widget = HiddenInput()
         self.fields['name'].widget = HiddenInput()
         self.fields['size_system'].widget = HiddenInput()
+

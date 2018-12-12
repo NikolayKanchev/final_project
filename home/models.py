@@ -13,19 +13,36 @@ class Category(models.Model):
 
 class Child(models.Model):
 
-    EU_SIZES_DICT = {
+    SIZES_DICT = {
         '32': 0, '38': 1, '44': 2, '50': 3, '56': 4, '62': 5, '68': 6, '74': 7, '80': 8, '86': 9, '92': 10, '98': 11,
-        '104': 12, '110': 13, '116': 14, '122': 15, '128': 16, '134': 17, '140': 18, '146': 19, '152': 20
+        '104': 12, '110': 13, '116': 14, '122': 15, '128': 16, '134': 17, '140': 18, '146': 19, '152': 20,
+        '-': 0, '--': 1, '---': 2, '----': 3, '0m': 4, '3m': 5, '6m': 6, '9m': 7, '12m': 8, '18m': 9, '24m': 10, '2': 11,
+        '3': 12, '4': 13, '5': 14, '6': 15, '7': 16, '8': 17, '9': 18, '10': 19, '11': 20, '12': 21,
+        'new3': 3, '2T': 11, '3T': 12, '4T': 13, '6X-7': 16, '14': 21,
+    }
+
+    SHOE_SIZES_DICT = {
+        '15': 0, '16': 1, '17': 2, '18': 3, '19': 4, '20': 5, '21': 6, '22': 7, '23': 8, '24': 9, '25': 10, '26': 11,
+        '26.5': 12, '27': 13, '28': 14, '29': 15, '30': 16, '31': 17, '32': 18, '33': 19, '34': 20, '35': 21, '36': 22, '37': 23,
+
+        '0': 0, '0.5': 1, '1.5': 2, '2.5': 3, '3': 4, '3.5': 5, '4.5': 6, '5.5': 7, '6': 8, '7': 9, '7.5': 10, '8.5': 11,
+        '9': 12, '9.5': 13, '10': 14, '11': 15, '11.5': 16, '12.5': 17, '13': 18, '1 ': 19, '2 ': 20, '2.5 ': 21,
+        '3.5 ': 22, '4 ': 23,
+
+        ' 0': 0, ' 1': 1, ' 2': 2, ' 3': 3, ' 4': 4, ' 4.5': 5, ' 5.5': 6, ' 6.5': 7, ' 7': 8, ' 8': 9, ' 8.5': 10,
+        ' 9.5': 11, ' 10': 12, ' 10.5': 13, ' 11': 14, ' 12': 15, ' 12.5': 16, ' 13.5': 17, ' 1 ': 18, ' 2 ': 19,
+        ' 3 ': 20, ' 3.5 ': 21, ' 4.5 ': 22, ' 5 ': 23,
+
     }
 
     CLOTHING_SIZES = {
         'EU': ((0, '32'), (1, '38'), (2, '44'), (3, '50'), (4, '56'), (5, '62'), (6, '68'), (7, '74'), (8, '80'),
                (9, '86'), (10, '92'), (11, '98'), (12, '104'), (13, '110'), (14, '116'), (15, '122'), (16, '128'),
                (17, '134'), (18, '140'), (19, '146'), (20, '152')),
-        'UK': ((0, ''), (1, ''), (2, ''), (3, ''), (4, '0m'), (5, '3m'), (6, '6m'), (7, '9m'), (8, '12m'),
+        'UK': ((0, '-'), (1, '--'), (2, '---'), (3, '----'), (4, '0m'), (5, '3m'), (6, '6m'), (7, '9m'), (8, '12m'),
                (9, '18m'), (10, '24m'), (11, '2'), (12, '3'), (13, '4'), (14, '5'), (15, '6'), (16, '7'),
                (17, '8'), (18, '9'), (19, '10'), (20, '11'), (21, '12')),
-        'US': ((0, ''), (1, ''), (2, ''), (3, 'new3'), (4, '0m'), (5, '3m'), (6, '6m'), (7, '9m'), (8, '12m'),
+        'US': ((0, '-'), (1, '--'), (2, '---'), (3, 'new3'), (4, '0m'), (5, '3m'), (6, '6m'), (7, '9m'), (8, '12m'),
                (9, '18m'), (10, '24m'), (11, '2T'), (12, '3T'), (13, '4T'), (14, '5'), (15, '6'), (16, '6X-7'),
                (17, '8'), (18, '9'), (19, '10'), (20, '11'), (21, '14')),
     }
@@ -37,11 +54,11 @@ class Child(models.Model):
                (24, '38')),
         'UK': ((0, '0'), (1, '0.5'), (2, '1.5'), (3, '2.5'), (4, '3'), (5, '3.5'), (6, '4.5'), (7, '5.5'), (8, '6'),
                (9, '7'), (10, '7.5'), (11, '8.5'), (12, '9'), (13, '9.5'), (14, '10'), (15, '11'), (16, '11.5'),
-               (17, '12.5'), (18, '13'), (19, '1'), (20, '2'), (21, '2.5'), (22, '3.5'), (23, '4'),
+               (17, '12.5'), (18, '13'), (19, '1 '), (20, '2 '), (21, '2.5 '), (22, '3.5 '), (23, '4 '),
                (24, '5')),
-        'US': ((0, '0'), (1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '4.5'), (6, '5.5'), (7, '6.5'), (8, '7'),
+        'US': ((0, '0'), (1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, ' 4.5'), (6, ' 5.5'), (7, '6.5'), (8, '7'),
                (9, '8'), (10, '8.5'), (11, '9.5'), (12, '10'), (13, '10.5'), (14, '11'), (15, '12'), (16, '12.5'),
-               (17, '13.5'), (18, '1'), (19, '2'), (20, '3'), (21, '3.5'), (22, '4.5'), (23, '5'),
+               (17, '13.5'), (18, '1 '), (19, '2 '), (20, '3 '), (21, '3.5 '), (22, '4.5 '), (23, '5 '),
                (24, '6')),
     }
 
@@ -72,9 +89,13 @@ class Child(models.Model):
     size_system = models.CharField(max_length=5, choices=SIZE_SYSTEMS, default="EU")
     child_status = models.CharField(max_length=15, choices=CHILD_STATUS_CHOICES, default="F")
     due_date = models.DateField(default=None, blank=True, null=True)
+    clothes_size_difference = models.IntegerField(default=None, blank=True, null=True)
+    shoe_size_difference = models.IntegerField(default=None, blank=True, null=True)
 
-    corrected_sizes = MultiSelectField(choices=CLOTHING_SIZES.get("EU"), max_choices=3, default=None, blank=True, null=True)
-    corrected_shoe_sizes = MultiSelectField(choices=SHOE_SIZES.get("EU"), max_choices=3, default=None, blank=True, null=True)
+    SIZE_SYSTEM = EU
+
+    corrected_sizes = MultiSelectField(choices=CLOTHING_SIZES.get(SIZE_SYSTEM), max_choices=3, default=None, blank=True, null=True)
+    corrected_shoe_sizes = MultiSelectField(choices=SHOE_SIZES.get(SIZE_SYSTEM), max_choices=3, default=None, blank=True, null=True)
 
     @property
     def age(self):
@@ -146,11 +167,50 @@ class Child(models.Model):
 
     # Just the string representation
     def get_clothes_sizes_str(self):
+
         if self.get_clothes_size:
             if type(self.get_clothes_size) is tuple:
-                return f"{self.get_clothes_size[0]} - {self.get_clothes_size[1]}"
+                size_difference = self.get_clothes_size_difference(self.get_clothes_size[1])
+                size1_index = self.SIZES_DICT.get(self.get_clothes_size[0]) + size_difference
+                size1 = self.sizes[size1_index]
+                size2_index = self.SIZES_DICT.get(self.get_clothes_size[1]) + size_difference
+                size2 = self.sizes[size2_index]
+
+                return f"{size1[1]} - {size2[1]} : {size_difference}"
             else:
-                return f"{self.get_clothes_size}"
+                size_difference = self.get_clothes_size_difference(self.get_clothes_size)
+                size1_index = self.SIZES_DICT.get(self.get_clothes_size) + size_difference
+                size1 = self.sizes[size1_index]
+
+                return f"{size1[1]} : {size_difference}"
+
+    def get_clothes_size_difference(self, estimated_size):
+
+        if self.corrected_sizes is not None:
+            if len(self.corrected_sizes) == 0:
+                self.corrected_sizes = None
+                self.save()
+                return self.clothes_size_difference
+            elif len(self.corrected_sizes) == 1:
+                self.clothes_size_difference = int(self.corrected_sizes[0]) - self.SIZES_DICT.get(estimated_size)
+                self.corrected_sizes = None
+                self.save()
+                return self.clothes_size_difference
+            elif len(self.corrected_sizes) == 2:
+                self.clothes_size_difference = int(self.corrected_sizes[1]) - self.SIZES_DICT.get(estimated_size)
+                self.corrected_sizes = None
+                self.save()
+                return self.clothes_size_difference
+            elif len(self.corrected_sizes) == 3:
+                self.clothes_size_difference = int(self.corrected_sizes[2]) - self.SIZES_DICT.get(estimated_size)
+                self.corrected_sizes = None
+                self.save()
+                return self.clothes_size_difference
+        else:
+            if self.clothes_size_difference is None:
+                return 0
+            else:
+                return self.clothes_size_difference
 
     # It is used many times in the get_clothes_size() and get_shoe_size() property.
     # It returns the right size based on the which part of the period (the beginning, the end or the middle)
@@ -172,50 +232,6 @@ class Child(models.Model):
             if (first_month + (last_month - first_month) / 3 - 1) < \
                     self.age.months < (last_month - ((last_month - first_month) / 3 - 1)):
                 return first_size, second_size
-
-    """sd(size difference) Returns the difference between the estimated size and the real one"""
-    def sd(self):
-        if self.corrected_sizes is not None:
-            if type(self.get_clothes_size) is tuple:
-                estimated_size2 = self.EU_SIZES_DICT.get(str(self.get_clothes_size[1]))
-
-                if len(self.corrected_sizes) == 1:
-                    corrected_size = self.corrected_sizes[0][0]
-                    return corrected_size - estimated_size2
-
-                elif len(self.corrected_sizes) == 2:
-                    corrected_size2 = self.corrected_sizes[1][0]
-                    return corrected_size2 - estimated_size2
-
-                elif len(self.corrected_sizes) == 3:
-                    corrected_size3 = self.corrected_sizes[2][0]
-                    return corrected_size3 - estimated_size2
-
-            else:
-                estimated_size = self.EU_SIZES_DICT.get(str(self.get_clothes_size))
-
-                if len(self.corrected_sizes) == 1:
-                    corrected_size = self.corrected_sizes[0][0]
-                    return corrected_size - estimated_size
-
-                elif len(self.corrected_sizes) == 2:
-                    corrected_size2 = self.corrected_sizes[1][0]
-                    return corrected_size2 - estimated_size
-
-                elif len(self.corrected_sizes) == 3:
-                    corrected_size1 = self.corrected_sizes[0][0]
-                    corrected_size2 = self.corrected_sizes[1][0]
-                    corrected_size3 = self.corrected_sizes[2][0]
-
-                    if corrected_size2 == estimated_size:
-                        return 0
-                    elif corrected_size1 >= estimated_size:
-                        return estimated_size - corrected_size1
-                    elif corrected_size3 <= estimated_size:
-                        return estimated_size - corrected_size3
-
-        else:  # if there is no corrected sizes
-            return 0
 
 # **********************************************SHOES**********************************************************
 
@@ -298,8 +314,54 @@ class Child(models.Model):
 
     # Just the string representation
     def get_shoe_sizes_str(self):
-        if self.get_clothes_size:
+        if self.get_shoe_size:
             if type(self.get_shoe_size) is tuple:
-                return f"{self.get_shoe_size[0]} - {self.get_shoe_size[1]}"
+                size_difference = self.get_shoe_size_difference(self.get_shoe_size[1])
+                size1_index = self.SHOE_SIZES_DICT.get(self.get_shoe_size[0]) + size_difference
+                size1 = self.shoe_sizes[size1_index]
+                size2_index = self.SHOE_SIZES_DICT.get(self.get_shoe_size[1]) + size_difference
+                size2 = self.shoe_sizes[size2_index]
+
+                return f"{size1[1]} - {size2[1]} : {size_difference}"
             else:
-                return f"{self.get_shoe_size}"
+                size_difference = self.get_shoe_size_difference(self.get_shoe_size)
+                size1_index = self.SHOE_SIZES_DICT.get(self.get_shoe_size) + size_difference
+                size1 = self.shoe_sizes[size1_index]
+
+                return f"{size1[1]} : {size_difference}"
+
+        # if self.get_clothes_size:
+        #     if type(self.get_shoe_size) is tuple:
+        #         return f"{self.get_shoe_size[0]} - {self.get_shoe_size[1]}"
+        #     else:
+        #         return f"{self.get_shoe_size}"
+
+    def get_shoe_size_difference(self, estimated_size):
+
+        if self.corrected_shoe_sizes is not None:
+            if len(self.corrected_shoe_sizes) == 0:
+                self.corrected_shoe_sizes = None
+                self.save()
+                if self.shoe_size_difference is None:
+                    self.shoe_size_difference = 0
+                return self.shoe_size_difference
+            elif len(self.corrected_shoe_sizes) == 1:
+                self.shoe_size_difference = int(self.corrected_shoe_sizes[0]) - self.SHOE_SIZES_DICT.get(estimated_size)
+                self.corrected_shoe_sizes = None
+                self.save()
+                return self.shoe_size_difference
+            elif len(self.corrected_shoe_sizes) == 2:
+                self.shoe_size_difference = int(self.corrected_shoe_sizes[1]) - self.SHOE_SIZES_DICT.get(estimated_size)
+                self.corrected_shoe_sizes = None
+                self.save()
+                return self.shoe_size_difference
+            elif len(self.corrected_shoe_sizes) == 3:
+                self.shoe_size_difference = int(self.corrected_shoe_sizes[2]) - self.SHOE_SIZES_DICT.get(estimated_size)
+                self.corrected_shoe_sizes = None
+                self.save()
+                return self.shoe_size_difference
+        else:
+            if self.shoe_size_difference is None:
+                return 0
+            else:
+                return self.shoe_size_difference
