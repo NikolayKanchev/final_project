@@ -174,6 +174,8 @@ class Child(models.Model):
         if self.get_clothes_size:
             if type(self.get_clothes_size) is tuple:
                 size_difference = self.get_clothes_size_difference(self.get_clothes_size[1])
+                if size_difference is None:
+                    size_difference = 0
                 size1_index = self.SIZES_DICT.get(self.get_clothes_size[0]) + size_difference
                 size1 = self.sizes[size1_index]
                 size2_index = self.SIZES_DICT.get(self.get_clothes_size[1]) + size_difference
@@ -182,6 +184,8 @@ class Child(models.Model):
                 return f"{size1[1]} - {size2[1]} : {size_difference}"
             else:
                 size_difference = self.get_clothes_size_difference(self.get_clothes_size)
+                if size_difference is None:
+                    size_difference = 0
                 size1_index = self.SIZES_DICT.get(self.get_clothes_size) + size_difference
                 size1 = self.sizes[size1_index]
 
@@ -366,12 +370,12 @@ class Child(models.Model):
 
 
 class Section(models.Model):
-    user = models.ForeignKey(Child, on_delete=CASCADE)
+    child = models.ForeignKey(Child, on_delete=CASCADE)
     name = models.CharField(max_length=50)
 
 
 class Category(models.Model):
-    user = models.ForeignKey(Section, on_delete=CASCADE)
+    section = models.ForeignKey(Section, on_delete=CASCADE)
     name = models.CharField(max_length=50)
     num_items = models.IntegerField(default=None, blank=True, null=True)
 
