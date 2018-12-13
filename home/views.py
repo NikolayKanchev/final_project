@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from home.forms import ChildForm, PreemieForm, NotBornChildForm, UpdateSizeSystemForm, UpdateSizesForm, UpdateShoeSizesForm
-from home.models import Child
+from home.models import Child, Section, Category
 
 
 class HomeView(ListView):
@@ -19,6 +19,10 @@ class HomeView(ListView):
         if 'pk' in self.kwargs:
             obj = Child.objects.filter(pk=self.kwargs['pk']).first()
             context['chosen_child'] = obj
+
+            sections = Section.objects.filter(child=obj)
+            context['chosen_child_sections'] = sections
+
             if obj is not None and obj.age is None:
                 context['not_born_yet'] = True
             else:
@@ -27,6 +31,10 @@ class HomeView(ListView):
         else:
             obj = Child.objects.filter(user=self.request.user.pk).last()
             context['chosen_child'] = obj
+
+            sections = Section.objects.filter(child=obj)
+            context['chosen_child_sections'] = sections
+
             if obj is not None and obj.age is None:
                 context['not_born_yet'] = True
             else:
@@ -138,5 +146,19 @@ class UpdateShoeSizesView(UpdateView):
 
     def get_form_kwargs(self):
         kwargs = super(UpdateShoeSizesView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+
+class AddSectionView(CreateView):
+    model = Section
+    template_name = 'home/add_section.html'
+    form_class = SectionForm
+
+    def get_success_url(self):
+        return reverse('home', args=(self.object.id,))
+
+    def get_form_kwargs(self):
+        kwargs = super(AddSectionView, self).get_form_kwargs()
         kwargs['user'] = self.request.user
         return kwargs
