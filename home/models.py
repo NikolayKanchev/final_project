@@ -7,12 +7,9 @@ from multiselectfield import MultiSelectField
 from accounts.models import User
 
 
-class Category(models.Model):
-    user = models.ForeignKey(User, on_delete=CASCADE)
-
-
 class Child(models.Model):
 
+    # region ****************************** STATIC **************************************
     SIZES_DICT = {
         '32': 0, '38': 1, '44': 2, '50': 3, '56': 4, '62': 5, '68': 6, '74': 7, '80': 8, '86': 9, '92': 10, '98': 11,
         '104': 12, '110': 13, '116': 14, '122': 15, '128': 16, '134': 17, '140': 18, '146': 19, '152': 20,
@@ -84,6 +81,8 @@ class Child(models.Model):
         (US, "US"),
     )
 
+    # endregion
+
     user = models.ForeignKey(User, on_delete=CASCADE)
     name = models.CharField(max_length=250)
     gender = models.CharField(max_length=5, choices=CHILD_GENDER_CHOICES, default=None, blank=True, null=True)
@@ -109,7 +108,7 @@ class Child(models.Model):
         else:
             return
 
-#  ***********************************CLOTHES*******************************************************
+    # region *********************************** CLOTHES ******************************************
     """The possible clothes sizes"""
     @property
     def sizes(self):
@@ -236,9 +235,9 @@ class Child(models.Model):
             if (first_month + (last_month - first_month) / 3 - 1) < \
                     self.age.months < (last_month - ((last_month - first_month) / 3 - 1)):
                 return first_size, second_size
+# endregion
 
-# **********************************************SHOES**********************************************************
-
+    # region ************************************ SHOES *******************************************
     """The possible shoe sizes"""
     @property
     def shoe_sizes(self):
@@ -362,3 +361,21 @@ class Child(models.Model):
                 return 0
             else:
                 return self.shoe_size_difference
+
+    # endregion
+
+
+class Section(models.Model):
+    user = models.ForeignKey(Child, on_delete=CASCADE)
+    name = models.CharField(max_length=50)
+
+
+class Category(models.Model):
+    user = models.ForeignKey(Section, on_delete=CASCADE)
+    name = models.CharField(max_length=50)
+    num_items = models.IntegerField(default=None, blank=True, null=True)
+
+
+
+
+
