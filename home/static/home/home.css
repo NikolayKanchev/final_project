@@ -339,12 +339,16 @@
 	margin-top: -1px;
 }
 
-/*.dropdown:hover .dropdown-menu{*/
-    /*display: block;*/
-    /*left: auto;*/
-    /*right: 0;*/
-	/*top: 10px;*/
-/*}*/
+.sidenav{
+	position: absolute;
+	margin-left: 220px;
+	margin-top: -40px;
+}
+
+.sidenav .dropdown-menu{
+	width: auto;
+	height: auto;
+}
 
 .dropdown-menu .item:hover{
 	background-color: #2e3450;
@@ -360,7 +364,7 @@
 	margin-right: auto;
 	/* Center the image */
 	/* Do not repeat the image */
-	background: url("../images/cloud3.png") no-repeat center;
+	/*background: url("../images/cloud3.png") no-repeat center;*/
 	background-size: cover;
 	color: #2e3450;
 	width: 212px;

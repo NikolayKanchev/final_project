@@ -25,6 +25,17 @@
                                 <img id="clothes-icon" src="{% static 'images/empty_folder.png' %}" class="icon" alt="pencil">
                             {% endif %}
                             </span><span class="text-menu">{{ s.name }}</span></a>
+                            {% if s.name != "Clothes" and s.name != "Shoes" and s.name != "Toys" %}
+                            <div class="dropdown sidenav">
+                              <a class="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span id="pencil"><img src="{% static '/open-iconic-master/svg/menu.svg' %}" class="icon" alt="pencil"></span>
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{% url 'update_section' pk=s.pk %}" style="color: #2e3450">Change Name</a>
+                                <a class="dropdown-item" href="{% url 'delete_section' pk=s.pk %}" style="color: #2e3450">Delete</a>
+                              </div>
+                            </div>
+                            {% endif %}
                         </h4>
                     </div>
                     <div id="collapse{{ s.pk }}" class="panel-collapse collapse">
@@ -34,6 +45,15 @@
                                 <tr>
                                     <td>
                                         <a href="">{{ category.name }}</a> <span class="label label-success">{{ category.num_items }}</span>
+                                        <div class="dropdown sidenav">
+                                          <a class="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span id="pencil"><img src="{% static '/open-iconic-master/svg/menu.svg' %}" class="icon" alt="pencil"></span>
+                                          </a>
+                                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="{% url 'update_category' pk=category.pk %}">Change Name</a>
+                                            <a class="dropdown-item" href="{% url 'delete_category' pk=category.pk %}">Delete</a>
+                                          </div>
+                                        </div>
                                     </td>
                                 </tr>
                                 {% endfor %}

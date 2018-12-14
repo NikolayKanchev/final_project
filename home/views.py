@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from home.forms import ChildForm, PreemieForm, NotBornChildForm, UpdateSizeSystemForm, UpdateSizesForm, \
-    UpdateShoeSizesForm, SectionForm, CategoryForm
+    UpdateShoeSizesForm, SectionForm, CategoryForm, UpdateCategoryForm, UpdateSectionForm
 from home.models import Child, Section, Category
 
 
@@ -21,7 +21,7 @@ class HomeView(ListView):
             obj = Child.objects.filter(pk=self.kwargs['pk']).first()
             context['chosen_child'] = obj
 
-            sections = Section.objects.filter(child=obj)
+            sections = Section.objects.filter(child=obj).order_by('pk')
             context['chosen_child_sections'] = sections
 
             if obj is not None and obj.age is None:
@@ -33,7 +33,7 @@ class HomeView(ListView):
             obj = Child.objects.filter(user=self.request.user.pk).last()
             context['chosen_child'] = obj
 
-            sections = Section.objects.filter(child=obj)
+            sections = Section.objects.filter(child=obj).order_by('pk')
             context['chosen_child_sections'] = sections
 
             if obj is not None and obj.age is None:
@@ -178,4 +178,46 @@ class AddCategoryView(CreateView):
         kwargs = super(AddCategoryView, self).get_form_kwargs()
         kwargs.update({'pk': self.kwargs.get('pk')})
         return kwargs
+
+
+class UpdateCategoryView(UpdateView):
+    model = Category
+    template_name = 'home/update_category.html'
+    form_class = UpdateCategoryForm
+
+    def get_success_url(self):
+        return reverse('home', args=(self.object.section.child.pk,))
+
+    def get_form_kwargs(self):
+        kwargs = super(UpdateCategoryView, self).get_form_kwargs()
+        kwargs.update({'pk': self.kwargs.get('pk')})
+        return kwargs
+
+
+class UpdateSectionView(UpdateView):
+    model = Section
+    template_name = 'home/update_section.html'
+    form_class = UpdateSectionForm
+
+    def get_success_url(self):
+        return reverse('home', args=(self.object.child.id,))
+
+    def get_form_kwargs(self):
+        kwargs = super(UpdateSectionView, self).get_form_kwargs()
+        kwargs.update({'pk': self.kwargs.get('pk')})
+        return kwargs
+
+
+class DeleteCategoryView(DeleteView):
+    model = Category
+
+    def get_success_url(self):
+        return reverse('home', args=(self.object.section.child.pk,))
+
+
+class DeleteSectionView(DeleteView):
+    model = Section
+
+    def get_success_url(self):
+        return reverse('home', args=(self.object.child.id,))
 
