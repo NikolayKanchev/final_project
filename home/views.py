@@ -1,7 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from home.forms import ChildForm, PreemieForm, NotBornChildForm, UpdateSizeSystemForm, UpdateSizesForm, UpdateShoeSizesForm
+from home.forms import ChildForm, PreemieForm, NotBornChildForm, UpdateSizeSystemForm, UpdateSizesForm, \
+    UpdateShoeSizesForm, SectionForm, CategoryForm
 from home.models import Child, Section, Category
 
 
@@ -156,9 +157,25 @@ class AddSectionView(CreateView):
     form_class = SectionForm
 
     def get_success_url(self):
-        return reverse('home', args=(self.object.id,))
+        return reverse('home', args=(self.object.child.id,))
 
     def get_form_kwargs(self):
         kwargs = super(AddSectionView, self).get_form_kwargs()
-        kwargs['user'] = self.request.user
+        kwargs.update({'pk': self.kwargs.get('pk')})
         return kwargs
+
+
+class AddCategoryView(CreateView):
+    model = Category
+    template_name = 'home/add_category.html'
+    form_class = CategoryForm
+
+    def get_success_url(self):
+        section = Section.objects.filter(pk=self.kwargs.get('pk')).first()
+        return reverse('home', args=(section.child.pk,))
+
+    def get_form_kwargs(self):
+        kwargs = super(AddCategoryView, self).get_form_kwargs()
+        kwargs.update({'pk': self.kwargs.get('pk')})
+        return kwargs
+

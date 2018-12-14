@@ -2,7 +2,7 @@ from django import forms
 from django.forms import HiddenInput, TextInput
 
 from accounts.models import User
-from home.models import Child
+from home.models import Child, Section, Category
 
 
 class ChildForm(forms.ModelForm):
@@ -113,4 +113,33 @@ class UpdateShoeSizesForm(forms.ModelForm):
         self.fields['user'].widget = HiddenInput()
         self.fields['name'].widget = HiddenInput()
         self.fields['size_system'].widget = HiddenInput()
+
+
+class SectionForm(forms.ModelForm):
+    class Meta:
+        model = Section
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        self.pk = kwargs.pop("pk")
+        super(SectionForm, self).__init__(*args, **kwargs)
+        self.fields['child'].queryset = Child.objects.all()
+        self.initial['child'] = Child.objects.filter(pk=self.pk).first()
+        self.fields['child'].widget = HiddenInput()
+
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        self.pk = kwargs.pop("pk")
+        super(CategoryForm, self).__init__(*args, **kwargs)
+        self.fields['section'].queryset = Section.objects.all()
+        self.initial['section'] = Section.objects.filter(pk=self.pk).first()
+        self.fields['section'].widget = HiddenInput()
+        self.fields['num_items'].widget = HiddenInput()
+
+
 

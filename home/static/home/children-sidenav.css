@@ -23,6 +23,31 @@
     box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
 }
 
+.panel-heading_new_section{
+    border: 1px solid #ec6ead;
+    border-radius: 10px;
+    margin: 5px 0;
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+    font-size: 12px;
+}
+
+.panel-heading_new_section a{
+    color: #3494e6;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 5px;
+    /*border: 1px solid red;*/
+}
+
+.panel-heading_new_section .new-section{
+    padding-left: 28px;
+    color: #ec6ead;
+}
+
+.panel-heading_new_section #clothes-icon{
+    margin-bottom: 5px;
+}
+
 .panel{
     background-color: aliceblue;
     width: 16em;

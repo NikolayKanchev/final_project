@@ -21,6 +21,8 @@
                                 <img id="clothes-icon" src="{% static 'images/shoes.png' %}" class="icon" alt="pencil">
                             {% elif s.name == "Toys"%}
                                 <img id="clothes-icon" src="{% static 'images/teddy_bear.png' %}" class="icon" alt="pencil">
+                            {% else %}
+                                <img id="clothes-icon" src="{% static 'images/empty_folder.png' %}" class="icon" alt="pencil">
                             {% endif %}
                             </span><span class="text-menu">{{ s.name }}</span></a>
                         </h4>
@@ -35,22 +37,30 @@
                                     </td>
                                 </tr>
                                 {% endfor %}
+                                {% if chosen_child_sections %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'add_category' pk=s.pk %}"> Add new category</a>
+                                        </td>
+                                    </tr>
+                                {% endif %}
                             </table>
                         </div>
                     </div>
                 </div>
 
                 {% endfor %}
-
+                {% if chosen_child_sections %}
                 <div class="panel">
-                    <div id="new-section-id" class="panel-heading">
+                    <div id="new-section-id" class="panel-heading_new_section">
                         <h4 class="panel-title">
-                        <a href=""><span class="glyphicon glyphicon-file">
-                                <img id="clothes-icon" src="{% static 'images/folder.png' %}" class="icon" alt="pencil">
+                        <a href="{% url 'add_section' pk=chosen_child.pk %}"><span class="glyphicon glyphicon-file">
+                                <img id="clothes-icon" src="{% static 'images/folder_plus.png' %}" class="icon" alt="pencil">
                             </span><span class="new-section">New Section</span></a>
                         </h4>
                     </div>
                 </div>
+                {% endif %}
             </div>
         </div>
 
