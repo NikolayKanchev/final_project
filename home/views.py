@@ -1,9 +1,34 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.http import JsonResponse
 from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
 from home.forms import ChildForm, PreemieForm, NotBornChildForm, UpdateSizeSystemForm, UpdateSizesForm, \
     UpdateShoeSizesForm, SectionForm, CategoryForm, UpdateCategoryForm, UpdateSectionForm
 from home.models import Child, Section, Category
+
+
+class JSONResponseMixin:
+    """
+    A mixin that can be used to render a JSON response.
+    """
+    def render_to_json_response(self, context, **response_kwargs):
+        """
+        Returns a JSON response, transforming 'context' to make the payload.
+        """
+        return JsonResponse(
+            self.get_data(context),
+            **response_kwargs
+        )
+
+    def get_data(self, context):
+        """
+        Returns an object that will be serialized as JSON by json.dumps().
+        """
+        # Note: This is *EXTREMELY* naive; in reality, you'll need
+        # to do much more complex handling to ensure that arbitrary
+        # objects -- such as Django model instances or querysets
+        # -- can be serialized as JSON.
+        return context
 
 
 class HomeView(ListView):
@@ -221,3 +246,15 @@ class DeleteSectionView(DeleteView):
     def get_success_url(self):
         return reverse('home', args=(self.object.child.id,))
 
+
+# class MainSectionView(JSONResponseMixin, TemplateView):
+#
+#     def post(self, request, *args, **kwargs):
+#         id = request.POST.get('id')
+#
+#         data = {'rating': question.rating}
+#
+#         return self.render_to_response(data)
+#
+#     def render_to_response(self, context, **response_kwargs):
+#         return self.render_to_json_response(context, **response_kwargs)

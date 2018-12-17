@@ -323,6 +323,34 @@
 			/*}*/
 
 		/*}*/
+/******************************* Main page ********************************************/
+
+#sidenav-container{
+	/*border: 1px solid red;*/
+	width: auto;
+}
+
+#main-page-container{
+	/*border: 1px solid red;*/
+	width: 83%;
+	height: auto;
+}
+
+#commercial-container{
+	/*border: 1px solid red;*/
+	width: 16%;
+	height: auto;
+}
+
+#page-container{
+	display: flex;
+	justify-content: space-between;
+	margin-top: 70px;
+	margin-left: 5px;
+	margin-right: 10px;
+}
+
+/***************************************************************************************/
 
 #child-info{
 	display: flex;

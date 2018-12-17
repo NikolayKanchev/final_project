@@ -16,7 +16,17 @@
 
         {% include 'others/chidren_info.html' %}
 
-        {% include 'others/chidren_sidenav.html' %}
+        <div id="page-container">
+            <div id="sidenav-container">
+                {% include 'others/chidren_sidenav.html' %}
+            </div>
+            <div id="main-page-container">
+                {% include 'home/chidren_main_section.html' %}
+            </div>
+            <div id="commercial-container">
+                {% include 'home/commercial_section.html' %}
+            </div>
+        </div>
 
     {% endif %}
 

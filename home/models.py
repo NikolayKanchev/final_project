@@ -181,7 +181,7 @@ class Child(models.Model):
                 size2_index = self.SIZES_DICT.get(self.get_clothes_size[1]) + size_difference
                 size2 = self.sizes[size2_index]
 
-                return f"{size1[1]} - {size2[1]} : {size_difference}"
+                return f"{size1[1]} - {size2[1]}"
             else:
                 size_difference = self.get_clothes_size_difference(self.get_clothes_size)
                 if size_difference is None:
@@ -189,7 +189,7 @@ class Child(models.Model):
                 size1_index = self.SIZES_DICT.get(self.get_clothes_size) + size_difference
                 size1 = self.sizes[size1_index]
 
-                return f"{size1[1]} : {size_difference}"
+                return f"{size1[1]}"
 
     def get_clothes_size_difference(self, estimated_size):
 
@@ -329,13 +329,13 @@ class Child(models.Model):
                 size2_index = self.SHOE_SIZES_DICT.get(self.get_shoe_size[1]) + size_difference
                 size2 = self.shoe_sizes[size2_index]
 
-                return f"{size1[1]} - {size2[1]} : {size_difference}"
+                return f"{size1[1]} - {size2[1]}"
             else:
                 size_difference = self.get_shoe_size_difference(self.get_shoe_size)
                 size1_index = self.SHOE_SIZES_DICT.get(self.get_shoe_size) + size_difference
                 size1 = self.shoe_sizes[size1_index]
 
-                return f"{size1[1]} : {size_difference}"
+                return f"{size1[1]}"
 
     def get_shoe_size_difference(self, estimated_size):
         if self.corrected_shoe_sizes is not None:

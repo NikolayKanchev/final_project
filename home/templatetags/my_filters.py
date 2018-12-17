@@ -4,4 +4,4 @@ register = template.Library()
 
 @register.filter
 def get_categories(section):
-    return section.category_set.filter(section=section)
+    return section.category_set.filter(section=section).order_by("pk")

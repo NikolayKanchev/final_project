@@ -1,0 +1,36 @@
+{% load get_categories from my_filters %}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'home/main-section.css' %}">
+
+<div class="main-section-cont">
+
+    <div class="sections">
+        {% for s in chosen_child_sections %}
+                {% if s.name == "Clothes" and chosen_child.name == "Coming Soon" %}
+                    <div class="section min-height">
+                        <h3>Current Warrobe</h3>
+                {% elif s.name == "Clothes" %}
+                    <div class="section min-height">
+                        <h3>{{ chosen_child.name }}'s Current Warrobe</h3>
+                {% else %}
+                    <div class="section">
+                        <h3>{{ s.name }}</h3>
+                {% endif %}
+                <div class="categories">
+                    {% for category in s|get_categories %}
+
+                        <H6>{{ category.name }} - {{ category.num_items }}</H6>
+
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+        {% if chosen_child_sections.length > 4 %}
+            <div class="section hidden"></div>
+            <div class="section hidden"></div>
+            <div class="section hidden"></div>
+        {% endif %}
+    </div>
+
+</div>
