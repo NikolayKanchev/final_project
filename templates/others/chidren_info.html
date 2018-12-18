@@ -6,7 +6,9 @@
 
 <div id="children-info-container">
 
-    <div class="change-children-cont">
+    <div class="change-children-cont
+    {% if chosen_child.gender == "BOY" %} boy {% else %} girl {% endif %}
+    ">
 
     {% if children %}
         {% for c in children %}

@@ -6,31 +6,139 @@
 <div class="main-section-cont">
 
     <div class="sections">
+{# *************************** Boys *****************************#}
+
+    {% if chosen_child.gender == "BOY" %}
         {% for s in chosen_child_sections %}
-                {% if s.name == "Clothes" and chosen_child.name == "Coming Soon" %}
-                    <div class="section min-height">
-                        <h3>Current Warrobe</h3>
-                {% elif s.name == "Clothes" %}
-                    <div class="section min-height">
-                        <h3>{{ chosen_child.name }}'s Current Warrobe</h3>
-                {% else %}
-                    <div class="section">
-                        <h3>{{ s.name }}</h3>
-                {% endif %}
+            {% if s|get_categories %}
+                {% if chosen_child.name != "Coming Soon" %}
+                    {% if s.name == "Clothes" and chosen_child.name == "Coming Soon" %}
+                        <div class="section min-height boy">
+                            <h3 class="blue">Current Wardrobe <span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes" style="margin-left: 50px">Sizes</span></h3>
+                    {% elif s.name == "Clothes" %}
+                        <div class="section min-height boy">
+                            <h3 class="blue">{{ chosen_child.name }}'s Current Wardrobe <span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes">Sizes: {{ chosen_child.get_clothes_sizes_str }}</span></h3>
+                    {% else %}
+                        <div class="section boy">
+                            <h3 class="blue">{{ s.name }}</h3>
+                    {% endif %}
+                 {% else %}
+                    {% if s.name == "Clothes" %}
+                        <div class="section min-height boy">
+                            <h3 class="blue">Wardrobe <span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes">Sizes</span></h3>
+                    {% elif s.name == "Shoes" %}
+                        <div class="section min-height boy">
+                            <h3 class="blue">Shoes<span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes">Sizes</span></h3>
+                    {% else %}
+                        <div class="section min-height boy">
+                            <h3 class="blue">{{ s.name }}<span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes">Sizes</span></h3>
+                    {% endif %}
+                 {% endif %}
+            <hr class="hr-section-name">
+                <div class="category-row">
+                    <span class="category-row-name clothes-sizes-name"></span>
+                    <span class="pink category-row-details">
+                        <span class="format-sizes bolder black">Items</span>
+                        <span class="format-sizes"></span>
+                        <span class="format-sizes"></span>
+                        <span class="format-sizes"></span>
+                    </span>
+                    <hr>
+                </div>
                 <div class="categories">
                     {% for category in s|get_categories %}
 
-                        <H6>{{ category.name }} - {{ category.num_items }}</H6>
+                        <div class="category-row">
+                            <span class="category-row-name">
+                                <H6 class="pink">{{ category.name }}</H6>
+                            </span>
+                            <span class="category-row-details blue">
+                                <span class="total format-sizes">0</span>
+                                <span class="add-item format-sizes"><a><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
+                                <span class="delete-item format-sizes"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
+                                <span class="needs-more format-sizes pink bolder">Needs more</span>
+                            </span>
+                        </div>
+                        <hr>
 
                     {% endfor %}
                 </div>
             </div>
+            {% endif %}
         {% endfor %}
-        {% if chosen_child_sections.length > 4 %}
-            <div class="section hidden"></div>
-            <div class="section hidden"></div>
-            <div class="section hidden"></div>
-        {% endif %}
+    {% else %}
+{# *************************** Girls *****************************#}
+
+        {% for s in chosen_child_sections %}
+            {% if s|get_categories %}
+                {% if chosen_child.name != "Coming Soon" %}
+                    {% if s.name == "Clothes" and chosen_child.name == "Coming Soon" %}
+                        <div class="section min-height girl">
+                            <h3 class="pink">Current Wardrobe <span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes" style="margin-left: 150px"> Sizes </span></h3>
+                    {% elif s.name == "Clothes" %}
+                        <div class="section min-height girl">
+                            <h3 class="pink">{{ chosen_child.name }}'s Current Wardrobe <span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes">Sizes: {{ chosen_child.get_clothes_sizes_str }}</span></h3>
+                     {% elif s.name == "Shoes" %}
+                        <div class="section min-height girl">
+                            <h3 class="pink">{{ chosen_child.name }}'s Current Shoes <span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes" style="margin-left: 100px">Sizes</span></h3>
+                    {% else %}
+                        <div class="section girl">
+                            <h3 class="pink">{{ s.name }}</h3>
+                    {% endif %}
+                {% else %}
+                   {% if s.name == "Clothes" %}
+                        <div class="section min-height boy">
+                            <h3 class="blue">
+                                <span class="width-200">Wardrobe</span>
+                                <span class="sizes-text margin-left-sizes" data-toggle="tooltip" data-placement="top" title="Change sizes" style="margin-left: 180px">Sizes</span>
+                            </h3>
+                    {% elif s.name == "Shoes" %}
+                        <div class="section min-height boy">
+                            <h3 class="blue">
+                                <span class="width-200">Shoes</span>
+                                <span class="sizes-text margin-left-sizes" data-toggle="tooltip" data-placement="top" title="Change sizes">Sizes</span>
+                            </h3>
+                    {% else %}
+                        <div class="section min-height boy">
+                            <h3 class="blue">
+                                <span class="width-200">{{ s.name }}</span>
+                                <span class="sizes-text margin-left-sizes" data-toggle="tooltip" data-placement="top" title="Change sizes">Sizes</span>
+                            </h3>
+                    {% endif %}
+                {% endif %}
+
+                    <hr class="hr-section-name">
+                    <div class="category-row">
+                        <span class="category-row-name clothes-sizes-name"></span>
+                        <span class="pink category-row-details">
+                            <span class="format-sizes bolder black">Items</span>
+                            <span class="format-sizes"></span>
+                            <span class="format-sizes"></span>
+                            <span class="format-sizes"></span>
+                        </span>
+                        <hr>
+                    </div>
+                    <div class="categories">
+                        {% for category in s|get_categories %}
+
+                            <div class="category-row">
+                                <span class="category-row-name">
+                                    <H6 class="pink">{{ category.name }}</H6>
+                                </span>
+                                <span class="category-row-details blue">
+                                    <span class="total format-sizes">0</span>
+                                    <span class="add-item format-sizes"><a><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
+                                    <span class="delete-item format-sizes"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
+                                    <span class="needs-more format-sizes pink bolder">Needs more</span>
+                                </span>
+                            </div>
+                            <hr>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
     </div>
 
 </div>
