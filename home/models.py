@@ -355,11 +355,11 @@ class Child(models.Model):
                 self.corrected_shoe_sizes = None
                 self.save()
                 return self.shoe_size_difference
-            elif len(self.corrected_shoe_sizes) == 3:
-                self.shoe_size_difference = int(self.corrected_shoe_sizes[2]) - self.SHOE_SIZES_DICT.get(estimated_size)
-                self.corrected_shoe_sizes = None
-                self.save()
-                return self.shoe_size_difference
+            # elif len(self.corrected_shoe_sizes) == 3:
+            #     self.shoe_size_difference = int(self.corrected_shoe_sizes[2]) - self.SHOE_SIZES_DICT.get(estimated_size)
+            #     self.corrected_shoe_sizes = None
+            #     self.save()
+            #     return self.shoe_size_difference
         else:
             if self.shoe_size_difference is None:
                 return 0
