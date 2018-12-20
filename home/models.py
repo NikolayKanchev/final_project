@@ -380,6 +380,100 @@ class Category(models.Model):
     num_items = models.IntegerField(default=None, blank=True, null=True)
 
 
+class Item(models.Model):
+
+    NEW, AS_NEW, USED_BUT_FINE = 'N', 'AN', 'UF'
+    CONDITION_CHOICES = (
+        (NEW, 'New'),
+        (AS_NEW, 'As good as new'),
+        (USED_BUT_FINE, 'Used but fine'),
+    )
+
+    B, G, U = 'B', 'G', 'U'
+    SEX_CHOICES = (
+        (B, 'Boy'),
+        (G, 'Girl'),
+        (U, 'Unisex'),
+    )
+
+    W, SP, SU, A = 'W', 'SP', 'SU', 'A'
+    SEASON_CHOICES = (
+        (W, 'Winter'),
+        (SP, 'Spring'),
+        (SU, 'Summer'),
+        (A, 'Autumn'),
+    )
+
+    BLACK, WHITE, RED, BLUE, PURPLE, GREEN, YELLOW, ORANGE, BROWN, GREY = \
+        'BLACK', 'WHITE', 'RED', 'BLUE', 'PURPLE', 'GREEN', 'YELLOW', 'ORANGE', 'BROWN', 'GREY',
+    COLOR_CHOICES = (
+        (BLACK, 'Black'),
+        (WHITE, 'White'),
+        (RED, 'Red'),
+        (BLUE, 'Blue'),
+        (PURPLE, 'Purple'),
+        (GREEN, 'Green'),
+        (YELLOW, 'Yellow'),
+        (ORANGE, 'Orange'),
+        (BROWN, 'Brown'),
+        (GREY, 'Grey'),
+    )
+
+    category = models.ForeignKey(Category, on_delete=CASCADE)
+    # size = models
+    picture = models.ImageField(upload_to='pic_folder/', default='pic_folder/None/no-img.jpg', blank=True)
+    note = models.TextField(max_length=500, default=None, blank=True, null=True)
+    brand = models.CharField(max_length=50, default=None, blank=True, null=True)
+    condition = models.CharField(max_length=2, choices=CONDITION_CHOICES, default="EU")
+    sex = models.CharField(max_length=1, choices=SEX_CHOICES, default=None, blank=True, null=True)
+    season = models.CharField(max_length=2, choices=SEASON_CHOICES, default=None, blank=True, null=True)
+    color = models.CharField(max_length=10, choices=COLOR_CHOICES, default=None, blank=True, null=True)
+    price = models.FloatField(default=None, blank=True, null=True)
 
 
+class ClothingItem(Item):
 
+    CLOTHING_SIZES = {
+        'EU': ((0, '32'), (1, '38'), (2, '44'), (3, '50'), (4, '56'), (5, '62'), (6, '68'), (7, '74'), (8, '80'),
+               (9, '86'), (10, '92'), (11, '98'), (12, '104'), (13, '110'), (14, '116'), (15, '122'), (16, '128'),
+               (17, '134'), (18, '140'), (19, '146'), (20, '152'), (21, '152')),
+
+        'UK': ((0, '-'), (1, '--'), (2, '---'), (3, '----'), (4, '0m'), (5, '3m'), (6, '6m'), (7, '9m'), (8, '12m'),
+               (9, '18m'), (10, '24m'), (11, '2'), (12, '3'), (13, '4'), (14, '5'), (15, '6'), (16, '7'),
+               (17, '8'), (18, '9'), (19, '10'), (20, '11'), (21, '12')),
+
+        'US': ((0, '-'), (1, '--'), (2, '---'), (3, 'new3'), (4, '0m'), (5, '3m'), (6, '6m'), (7, '9m'), (8, '12m'),
+               (9, '18m'), (10, '24m'), (11, '2T'), (12, '3T'), (13, '4T'), (14, '5'), (15, '6'), (16, '6X-7'),
+               (17, '8'), (18, '9'), (19, '10'), (20, '11'), (21, '14')),
+    }
+
+    EU, UK, US = 'EU', "UK", "US"
+
+    SIZE_SYSTEM = EU
+
+    size = MultiSelectField(choices=CLOTHING_SIZES.get(SIZE_SYSTEM), max_choices=3, default=None, blank=True, null=True)
+
+
+class ShoeItem(Item):
+
+    SHOE_SIZES = {
+        'EU': ((0, '15'), (1, '16'), (2, '17'), (3, '18'), (4, '19'), (5, '20'), (6, '21'), (7, '22'), (8, '23'),
+               (9, '24'), (10, '25'), (11, '26'), (12, '26.5'), (13, '27'), (14, '28'), (15, '29'), (16, '30'),
+               (17, '31'), (18, '32'), (19, '33'), (20, '34'), (21, '35'), (22, '36'), (23, '37'),
+               (24, '38')),
+        'UK': ((0, '0'), (1, '0.5'), (2, '1.5'), (3, '2.5'), (4, '3'), (5, '3.5'), (6, '4.5'), (7, '5.5'), (8, '6'),
+               (9, '7'), (10, '7.5'), (11, '8.5'), (12, '9'), (13, '9.5'), (14, '10'), (15, '11'), (16, '11.5'),
+               (17, '12.5'), (18, '13'), (19, '1 '), (20, '2 '), (21, '2.5 '), (22, '3.5 '), (23, '4 '),
+               (24, '5 ')),
+        'US': ((0, ' 0'), (1, ' 1'), (2, ' 2'), (3, ' 3'), (4, ' 4'), (5, ' 4.5'), (6, ' 5.5'), (7, ' 6.5'), (8, ' 7'),
+               (9, ' 8'), (10, ' 8.5'), (11, ' 9.5'), (12, ' 10'), (13, ' 10.5'), (14, ' 11'), (15, ' 12'),
+               (16, ' 12.5'),
+               (17, ' 13.5'), (18, ' 1 '), (19, ' 2 '), (20, ' 3 '), (21, ' 3.5 '), (22, ' 4.5 '), (23, ' 5 '),
+               (24, ' 6 ')),
+    }
+
+    EU, UK, US = 'EU', "UK", "US"
+
+    SIZE_SYSTEM = EU
+
+    size = MultiSelectField(choices=SHOE_SIZES.get(SIZE_SYSTEM), max_choices=3, default=None, blank=True, null=True)
