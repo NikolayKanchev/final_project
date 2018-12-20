@@ -1,6 +1,6 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from home.models import Child, Section, Category
+from home.models import Child, Section, Category, ClothingItem
 
 
 @receiver(post_save, sender=Child)
@@ -27,3 +27,4 @@ def create_section_categories(sender, instance, created, **kwargs):
             Category.objects.create(section=instance, name='Baby', num_items=0)
             Category.objects.create(section=instance, name='Outdoor', num_items=0)
             Category.objects.create(section=instance, name='Musical', num_items=0)
+

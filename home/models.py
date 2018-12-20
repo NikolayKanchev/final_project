@@ -377,7 +377,10 @@ class Section(models.Model):
 class Category(models.Model):
     section = models.ForeignKey(Section, on_delete=CASCADE)
     name = models.CharField(max_length=50)
-    num_items = models.IntegerField(default=None, blank=True, null=True)
+
+    @property
+    def num_items(self):
+        return Item.objects.filter(category=self.pk).count()
 
 
 class Item(models.Model):
@@ -449,9 +452,9 @@ class ClothingItem(Item):
 
     EU, UK, US = 'EU', "UK", "US"
 
-    SIZE_SYSTEM = EU
+    size_system = EU
 
-    size = MultiSelectField(choices=CLOTHING_SIZES.get(SIZE_SYSTEM), max_choices=3, default=None, blank=True, null=True)
+    size = MultiSelectField(choices=CLOTHING_SIZES.get(size_system), max_choices=3, default=None, blank=True, null=True)
 
 
 class ShoeItem(Item):
@@ -474,6 +477,6 @@ class ShoeItem(Item):
 
     EU, UK, US = 'EU', "UK", "US"
 
-    SIZE_SYSTEM = EU
+    size_system = EU
 
-    size = MultiSelectField(choices=SHOE_SIZES.get(SIZE_SYSTEM), max_choices=3, default=None, blank=True, null=True)
+    size = MultiSelectField(choices=SHOE_SIZES.get(size_system), max_choices=3, default=None, blank=True, null=True)

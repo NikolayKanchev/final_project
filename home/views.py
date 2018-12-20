@@ -3,8 +3,9 @@ from django.http import JsonResponse
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
 from home.forms import ChildForm, PreemieForm, NotBornChildForm, UpdateSizeSystemForm, UpdateSizesForm, \
-    UpdateShoeSizesForm, SectionForm, CategoryForm, UpdateCategoryForm, UpdateSectionForm
-from home.models import Child, Section, Category
+    UpdateShoeSizesForm, SectionForm, CategoryForm, UpdateCategoryForm, UpdateSectionForm, ClothingItemForm, \
+    ShoeItemForm, ItemForm
+from home.models import Child, Section, Category, ClothingItem, ShoeItem, Item
 
 
 class JSONResponseMixin:
@@ -258,3 +259,30 @@ class DeleteSectionView(DeleteView):
 #
 #     def render_to_response(self, context, **response_kwargs):
 #         return self.render_to_json_response(context, **response_kwargs)
+
+class AddClothingItemsView(CreateView):
+    model = ClothingItem
+    template_name = 'home/add_clothing_items.html'
+    form_class = ClothingItemForm
+
+    def get_success_url(self):
+        return reverse('home', args=(self.object.category.section.child.id,))
+
+
+class AddShoeItemsView(CreateView):
+    model = ShoeItem
+    template_name = 'home/add_shoe_items.html'
+    form_class = ShoeItemForm
+
+    def get_success_url(self):
+        return reverse('home', args=(self.object.category.section.child.id,))
+
+
+class AddItemsView(CreateView):
+    model = Item
+    template_name = 'home/add_items.html'
+    form_class = ItemForm
+
+    def get_success_url(self):
+        return reverse('home', args=(self.object.category.section.child.id,))
+

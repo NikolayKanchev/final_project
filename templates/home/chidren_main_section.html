@@ -53,10 +53,22 @@
                                 <H6 class="pink">{{ category.name }}</H6>
                             </span>
                             <span class="category-row-details blue">
-                                <span class="total format-sizes">0</span>
-                                <span class="add-item format-sizes"><a><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
-                                <span class="delete-item format-sizes"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
-                                <span class="needs-more format-sizes pink bolder">Needs more</span>
+                                <span class="total format-sizes">{{ category.num_items }}</span>
+
+                                {% if s.name == 'Clothes' %}
+                                        <span class="add-item format-sizes"><a href="{% url 'add_clothing_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
+                                        <span class="delete-item format-sizes"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
+                                        <span class="needs-more format-sizes pink bolder">Needs more</span>
+                                    {% elif s.name == 'Shoes' %}
+                                        <span class="add-item format-sizes"><a href="{% url 'add_shoe_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
+                                        <span class="delete-item format-sizes"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
+                                        <span class="needs-more format-sizes pink bolder">Needs more</span>
+                                    {% else %}
+                                         <span class="add-item format-sizes"><a href="{% url 'add_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
+                                        <span class="delete-item format-sizes"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
+                                        <span class="needs-more format-sizes pink bolder">Needs more</span>
+                                    {% endif %}
+
                             </span>
                         </div>
                         <hr>
@@ -72,10 +84,10 @@
         {% for s in chosen_child_sections %}
             {% if s|get_categories %}
                 {% if chosen_child.name != "Coming Soon" %}
-                    {% if s.name == "Clothes" and chosen_child.name == "Coming Soon" %}
-                        <div class="section min-height girl">
-                            <h3 class="pink">Current Wardrobe <span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes" style="margin-left: 150px"> Sizes </span></h3>
-                    {% elif s.name == "Clothes" %}
+{#                    {% if s.name == "Clothes" and chosen_child.name == "Coming Soon" %}#}
+{#                        <div class="section min-height girl">#}
+{#                            <h3 class="pink">Current Wardrobe <span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes" style="margin-left: 150px"> Sizes </span></h3>#}
+                    {% if s.name == "Clothes" %}
                         <div class="section min-height girl">
                             <h3 class="pink">{{ chosen_child.name }}'s Current Wardrobe <span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes">Sizes: {{ chosen_child.get_clothes_sizes_str }}</span></h3>
                      {% elif s.name == "Shoes" %}
@@ -87,20 +99,20 @@
                     {% endif %}
                 {% else %}
                    {% if s.name == "Clothes" %}
-                        <div class="section min-height boy">
-                            <h3 class="blue">
+                        <div class="section min-height coming">
+                            <h3 class="pink">
                                 <span class="width-200">Wardrobe</span>
                                 <span class="sizes-text margin-left-sizes" data-toggle="tooltip" data-placement="top" title="Change sizes" style="margin-left: 180px">Sizes</span>
                             </h3>
                     {% elif s.name == "Shoes" %}
-                        <div class="section min-height boy">
-                            <h3 class="blue">
+                        <div class="section min-height coming">
+                            <h3 class="pink">
                                 <span class="width-200">Shoes</span>
                                 <span class="sizes-text margin-left-sizes" data-toggle="tooltip" data-placement="top" title="Change sizes">Sizes</span>
                             </h3>
                     {% else %}
-                        <div class="section min-height boy">
-                            <h3 class="blue">
+                        <div class="section min-height coming">
+                            <h3 class="pink">
                                 <span class="width-200">{{ s.name }}</span>
                                 <span class="sizes-text margin-left-sizes" data-toggle="tooltip" data-placement="top" title="Change sizes">Sizes</span>
                             </h3>
@@ -126,10 +138,22 @@
                                     <H6 class="pink">{{ category.name }}</H6>
                                 </span>
                                 <span class="category-row-details blue">
-                                    <span class="total format-sizes">0</span>
-                                    <span class="add-item format-sizes"><a><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
-                                    <span class="delete-item format-sizes"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
-                                    <span class="needs-more format-sizes pink bolder">Needs more</span>
+                                    <span class="total format-sizes">{{ category.num_items }}</span>
+
+                                    {% if s.name == 'Clothes' %}
+                                        <span class="add-item format-sizes"><a href="{% url 'add_clothing_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
+                                        <span class="delete-item format-sizes"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
+                                        <span class="needs-more format-sizes pink bolder">Needs more</span>
+                                    {% elif s.name == 'Shoes' %}
+                                        <span class="add-item format-sizes"><a href="{% url 'add_shoe_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
+                                        <span class="delete-item format-sizes"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
+                                        <span class="needs-more format-sizes pink bolder">Needs more</span>
+                                    {% else %}
+                                         <span class="add-item format-sizes"><a href="{% url 'add_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
+                                        <span class="delete-item format-sizes"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
+                                        <span class="needs-more format-sizes pink bolder">Needs more</span>
+                                    {% endif %}
+
                                 </span>
                             </div>
                             <hr>

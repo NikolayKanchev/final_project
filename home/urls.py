@@ -3,7 +3,7 @@ from django.urls import path, re_path
 from home.views import HomeView, UpdateChildView, DeleteChildView, AddFullTermChildView, \
     AddPreemieView, AddNotBornView, UpdateSizeSystemView, UpdateSizesView, UpdateShoeSizesView, \
     AddSectionView, AddCategoryView, UpdateCategoryView, UpdateSectionView, DeleteSectionView, \
-    DeleteCategoryView
+    DeleteCategoryView, AddClothingItemsView, AddShoeItemsView, AddItemsView
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
@@ -22,5 +22,8 @@ urlpatterns = [
     path('update_section/<int:pk>/', UpdateSectionView.as_view(), name='update_section'),
     re_path(r'delete_section/(?P<pk>\d+)/$', DeleteSectionView.as_view(), name='delete_section'),
     re_path(r'delete_category/(?P<pk>\d+)/$', DeleteCategoryView.as_view(), name='delete_category'),
+    path('add_clothing_items/<int:pk>/', AddClothingItemsView.as_view(), name='add_clothing_items'),
+    path('add_shoe_items/<int:pk>/', AddShoeItemsView.as_view(), name='add_shoe_items'),
+    path('add_items/<int:pk>/', AddItemsView.as_view(), name='add_items'),
 
 ]
