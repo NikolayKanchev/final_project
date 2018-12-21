@@ -50,7 +50,7 @@
 
                         <div class="category-row">
                             <span class="category-row-name">
-                                <H6 class="pink">{{ category.name }}</H6>
+                                <a href="{% url 'clothing_items_list' pk=category.id %}"><H6 class="pink">{{ category.name }}</H6></a>
                             </span>
                             <span class="category-row-details blue">
                                 <span class="total format-sizes">{{ category.num_items }}</span>
@@ -135,7 +135,7 @@
 
                             <div class="category-row">
                                 <span class="category-row-name">
-                                    <H6 class="pink">{{ category.name }}</H6>
+                                    <a href="{% url 'clothing_items_list' pk=category.id %}"><H6 class="pink">{{ category.name }}</H6></a>
                                 </span>
                                 <span class="category-row-details blue">
                                     <span class="total format-sizes">{{ category.num_items }}</span>

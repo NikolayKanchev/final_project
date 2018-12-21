@@ -286,3 +286,26 @@ class AddItemsView(CreateView):
     def get_success_url(self):
         return reverse('home', args=(self.object.category.section.child.id,))
 
+
+class ClothingItemsView(ListView):
+    template_name = 'home/clothing_items_list.html'
+    context_object_name = 'items'
+
+    def get_queryset(self):
+        return Item.objects.filter(category=self.kwargs['pk']).order_by("pk")
+
+
+class UpdateItemView(UpdateView):
+    model = Item
+    template_name = 'home/update_item.html'
+    form_class = ItemForm
+
+    def get_success_url(self):
+        return reverse('clothing_items_list', args=(self.object.category.id,))
+
+
+class DeleteItemView(DeleteView):
+    model = Item
+
+    def get_success_url(self):
+        return reverse('clothing_items_list', args=(self.object.category.id,))

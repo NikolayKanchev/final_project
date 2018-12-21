@@ -385,21 +385,21 @@ class Category(models.Model):
 
 class Item(models.Model):
 
-    NEW, AS_NEW, USED_BUT_FINE = 'N', 'AN', 'UF'
+    N, AN, UF = 'New', 'As good as new', 'Used but fine'
     CONDITION_CHOICES = (
-        (NEW, 'New'),
-        (AS_NEW, 'As good as new'),
-        (USED_BUT_FINE, 'Used but fine'),
+        (N, 'New'),
+        (AN, 'As good as new'),
+        (UF, 'Used but fine'),
     )
 
-    B, G, U = 'B', 'G', 'U'
+    B, G, U = 'Boy', 'Girl', 'Unisex'
     SEX_CHOICES = (
         (B, 'Boy'),
         (G, 'Girl'),
         (U, 'Unisex'),
     )
 
-    W, SP, SU, A = 'W', 'SP', 'SU', 'A'
+    W, SP, SU, A = 'Winter', 'Spring', 'Summer', 'Autumn'
     SEASON_CHOICES = (
         (W, 'Winter'),
         (SP, 'Spring'),
@@ -408,7 +408,7 @@ class Item(models.Model):
     )
 
     BLACK, WHITE, RED, BLUE, PURPLE, GREEN, YELLOW, ORANGE, BROWN, GREY = \
-        'BLACK', 'WHITE', 'RED', 'BLUE', 'PURPLE', 'GREEN', 'YELLOW', 'ORANGE', 'BROWN', 'GREY',
+        'Black', 'White', 'Red', 'Blue', 'Purple', 'Green', 'Yellow', 'Orange', 'Brown', 'Grey',
     COLOR_CHOICES = (
         (BLACK, 'Black'),
         (WHITE, 'White'),
@@ -427,9 +427,9 @@ class Item(models.Model):
     picture = models.ImageField(upload_to='pic_folder/', default='pic_folder/None/no-img.jpg', blank=True)
     note = models.TextField(max_length=500, default=None, blank=True, null=True)
     brand = models.CharField(max_length=50, default=None, blank=True, null=True)
-    condition = models.CharField(max_length=2, choices=CONDITION_CHOICES, default="EU")
-    sex = models.CharField(max_length=1, choices=SEX_CHOICES, default=None, blank=True, null=True)
-    season = models.CharField(max_length=2, choices=SEASON_CHOICES, default=None, blank=True, null=True)
+    condition = models.CharField(max_length=15, choices=CONDITION_CHOICES, default="EU")
+    sex = models.CharField(max_length=6, choices=SEX_CHOICES, default=None, blank=True, null=True)
+    season = models.CharField(max_length=7, choices=SEASON_CHOICES, default=None, blank=True, null=True)
     color = models.CharField(max_length=10, choices=COLOR_CHOICES, default=None, blank=True, null=True)
     price = models.FloatField(default=None, blank=True, null=True)
 

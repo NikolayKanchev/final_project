@@ -1,0 +1,84 @@
+{% extends 'base_card.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% load crispy_forms_tags %}
+
+{% block card_title %} Items in this category {% endblock %}
+
+{% block card_content %}
+
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-10">
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+{#                <div>{{ form.category }}</div>#}
+{#                <div>{{ form.child_status }}</div>#}
+{#                <div>{{ form.due_date }}</div>#}
+                {% for i in items %}
+
+                    <div class="items-cont" style="width: 400px">
+                        <div class="item-cont" style="display: flex; justify-content: space-between; width: 100%">
+                            <div>{{ i.brand }}</div>
+                            <div>{{ i.condition }}</div>
+                            <div>{{ i.color }}</div>
+                            <div>{{ i.sex }}</div>
+                            <a href="{% url 'update_item' pk=i.pk %}"><img src="{% static '/open-iconic-master/svg/pencil.svg' %}" class="ico" alt="plus"></a>
+                        </div>
+                        <hr>
+                    </div>
+{#                    <div class="row">#}
+{##}
+{#                      <div class="col-lg-4 col-md-4 col-sm-4">#}
+{#                        {{ i.brand }}#}
+{#                      </div>#}
+{##}
+{#                      <div class="col-lg-4 col-md-4 col-sm-4">#}
+{#                        {{ i.condition }}#}
+{#                      </div>#}
+{##}
+{#                      <div class="col-lg-3 col-md-3 col-sm-3">#}
+{#                        {{ i.sex }}#}
+{#                      </div>#}
+{##}
+{#                       <div class="col-lg-3 col-md-3 col-sm-3">#}
+{#                        {{ i.color }}#}
+{#                      </div>#}
+                {% endfor %}
+{#                  <div class="col-lg-6 col-md-6 col-sm-6">#}
+{#                    {{ form.note|as_crispy_field }}#}
+{#                  </div>#}
+{#                  <div class="col-lg-6 col-md-6 col-sm-6">#}
+{#                    {{ form.brand|as_crispy_field }}#}
+{#                  </div>#}
+{##}
+{#                  <div class="col-lg-6 col-md-6 col-sm-6" >#}
+{#                     {{ form.condition|as_crispy_field }}#}
+{#                  </div>#}
+{#                  <div class="col-lg-6 col-md-6 col-sm-6 hidden">#}
+{#                    {{ form.sex|as_crispy_field }}#}
+{#                  </div>#}
+{#                  <div class="col-lg-6 col-md-6 col-sm-6 hidden">#}
+{#                    {{ form.season|as_crispy_field }}#}
+{#                  </div>#}
+{#                  <div class="col-lg-6 col-md-6 col-sm-6 hidden">#}
+{#                    {{ form.color|as_crispy_field }}#}
+{#                  </div>#}
+{#                  <div class="col-lg-6 col-md-6 col-sm-6 hidden">#}
+{#                    {{ form.price|as_crispy_field }}#}
+{#                  </div>#}
+{#                  <div class="col-lg-10 col-md-10 col-sm-10"></div>#}
+{#                  <div class="col-lg-2 col-md-2 col-sm-2 form-actions">#}
+{#                      <button type="submit" class="btn btn-primary" >Save</button>#}
+{#                  </div>#}
+
+            </form>
+
+        </div>
+
+      </div>
+    </div>
+
+{% endblock %}
