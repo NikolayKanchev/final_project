@@ -48,7 +48,7 @@
                                             <span class="category-name">{{ category.name }}</span>
                                             {% if category.num_items and category.num_items != 0 %}
                                                 {% if category.num_items <= 10 %}
-                                                    <span class="num-items padding-to-9">5</span>
+                                                    <span class="num-items padding-to-9">{{ category.num_items }}</span>
                                                 {% elif 10 <= category.num_items and category.num_items < 100 %}
                                                     <span class="num-items padding-10-to-99">{{ category.num_items }}</span>
                                                 {% else %}

@@ -94,8 +94,8 @@ class Child(models.Model):
     clothes_size_difference = models.IntegerField(default=None, blank=True, null=True)
     shoe_size_difference = models.IntegerField(default=None, blank=True, null=True)
 
-    corrected_sizes = MultiSelectField(choices=[], max_choices=2, default=None, blank=True, null=True)
-    corrected_shoe_sizes = MultiSelectField(choices=[], max_choices=2, default=None, blank=True, null=True)
+    corrected_sizes = MultiSelectField(choices=CLOTHING_SIZES.get("EU"), max_choices=2, default=None, blank=True, null=True)
+    corrected_shoe_sizes = MultiSelectField(choices=SHOE_SIZES.get("EU"), max_choices=2, default=None, blank=True, null=True)
 
     @property
     def age(self):

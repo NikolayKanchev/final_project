@@ -4,7 +4,7 @@
 {% load crispy_forms_tags %}
 
 {% block card_title %}
-    Edit {{ child.name }}'s Current Sizes
+    Edit {{ child.name }}'s Choose The Corect Sizes
     <hr class="col-6">
 {% endblock %}
 
@@ -27,47 +27,47 @@
                     <h6 class="col-12">Specify the clothing size:</h6>
                     <div id="sizes-cont" class="col-lg-12 col-md-12 col-sm-12">
 
-                        <div style="width: 60px">
+                        <div class="sizes-column">
                           {% for field in form.corrected_sizes%}
 
                               {% if forloop.counter <= 6 %}
-                                    <tr>
-                                      <td>{{ field }}</td>
-                                      <td>{{ field.label }}</td>
-                                    </tr>
+                                    <div class="sizes-row">
+                                      <span>{{ field }}</span>
+                                      <span>{{ field.label }}</span>
+                                    </div>
                               {% endif %}
                           {% endfor %}
                         </div>
-                        <div style="width: 60px">
+                        <div class="sizes-column">
                           {% for field in form.corrected_sizes%}
 
                               {% if forloop.counter > 6 and forloop.counter <= 12 %}
-                                    <tr>
-                                      <td>{{ field }}</td>
-                                      <td>{{ field.label }}</td>
-                                    </tr>
+                                    <div class="sizes-row">
+                                      <span>{{ field }}</span>
+                                      <span>{{ field.label }}</span>
+                                    </div>
                               {% endif %}
                           {% endfor %}
                         </div>
-                        <div style="width: 60px">
+                        <div class="sizes-column">
                           {% for field in form.corrected_sizes%}
 
                               {% if forloop.counter > 12 and forloop.counter <= 18 %}
-                                    <tr>
-                                      <td>{{ field }}</td>
-                                      <td>{{ field.label }}</td>
-                                    </tr>
+                                    <div class="sizes-row">
+                                      <span>{{ field }}</span>
+                                      <span>{{ field.label }}</span>
+                                    </div>
                               {% endif %}
                           {% endfor %}
                         </div>
-                        <div style="width: 60px">
+                        <div class="sizes-column">
                       {% for field in form.corrected_sizes%}
 
                           {% if forloop.counter > 18 %}
-                                <tr>
-                                  <td>{{ field }}</td>
-                                  <td>{{ field.label }}</td>
-                                </tr>
+                                <div class="sizes-row">
+                                  <span>{{ field }}</span>
+                                  <span>{{ field.label }}</span>
+                                </div>
                           {% endif %}
                       {% endfor %}
                     </div>
