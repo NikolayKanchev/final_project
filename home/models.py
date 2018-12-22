@@ -94,10 +94,8 @@ class Child(models.Model):
     clothes_size_difference = models.IntegerField(default=None, blank=True, null=True)
     shoe_size_difference = models.IntegerField(default=None, blank=True, null=True)
 
-    SIZE_SYSTEM = EU
-
-    corrected_sizes = MultiSelectField(choices=CLOTHING_SIZES.get(SIZE_SYSTEM), max_choices=3, default=None, blank=True, null=True)
-    corrected_shoe_sizes = MultiSelectField(choices=SHOE_SIZES.get(SIZE_SYSTEM), max_choices=3, default=None, blank=True, null=True)
+    corrected_sizes = MultiSelectField(choices=[], max_choices=2, default=None, blank=True, null=True)
+    corrected_shoe_sizes = MultiSelectField(choices=[], max_choices=2, default=None, blank=True, null=True)
 
     @property
     def age(self):
@@ -208,11 +206,11 @@ class Child(models.Model):
                 self.corrected_sizes = None
                 self.save()
                 return self.clothes_size_difference
-            elif len(self.corrected_sizes) == 3:
-                self.clothes_size_difference = int(self.corrected_sizes[2]) - self.SIZES_DICT.get(estimated_size)
-                self.corrected_sizes = None
-                self.save()
-                return self.clothes_size_difference
+            # elif len(self.corrected_sizes) == 3:
+            #     self.clothes_size_difference = int(self.corrected_sizes[2]) - self.SIZES_DICT.get(estimated_size)
+            #     self.corrected_sizes = None
+            #     self.save()
+            #     return self.clothes_size_difference
         else:
             if self.clothes_size_difference is None:
                 return 0

@@ -98,6 +98,7 @@ class UpdateSizesForm(forms.ModelForm):
         self.fields['user'].widget = HiddenInput()
         self.fields['name'].widget = HiddenInput()
         self.fields['size_system'].widget = HiddenInput()
+        self.fields['corrected_sizes'].choices = kwargs['instance'].sizes
 
 
 class UpdateShoeSizesForm(forms.ModelForm):
@@ -113,6 +114,7 @@ class UpdateShoeSizesForm(forms.ModelForm):
         self.fields['user'].widget = HiddenInput()
         self.fields['name'].widget = HiddenInput()
         self.fields['size_system'].widget = HiddenInput()
+        self.fields['corrected_shoe_sizes'].choices = kwargs['instance'].shoe_sizes
 
 
 class SectionForm(forms.ModelForm):

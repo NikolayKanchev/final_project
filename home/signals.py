@@ -28,3 +28,10 @@ def create_section_categories(sender, instance, created, **kwargs):
             Category.objects.create(section=instance, name='Outdoor', num_items=0)
             Category.objects.create(section=instance, name='Musical', num_items=0)
 
+
+# @receiver(post_save, sender=Child)
+# def change_default_size_system(sender, instance, update_fields, **kwargs):
+#     print(update_fields)
+#     # instance.update(default_size_system=instance.size_system)
+
+
