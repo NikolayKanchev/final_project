@@ -83,6 +83,11 @@
     margin-right: auto;
 }
 
+#small-sidenav-menu{
+    width: auto;
+    margin-left: -220px;
+}
+
 @media screen and (max-width: 760px){
 
     .nav-list > li:hover span{
@@ -129,4 +134,12 @@
 
 #c{
     margin-top: 5px;
+}
+
+@media screen and (max-width: 450px){
+    #small-sidenav-menu{
+        width: 380px;
+        margin-left: -330px;
+        /*height: 580px;*/
+    }
 }

@@ -332,7 +332,7 @@
 
 #main-page-container{
 	/*border: 1px solid red;*/
-	width: 83%;
+	width: 45%;
 	height: auto;
 }
 
@@ -459,6 +459,10 @@
 
 .icon{
 	width: 15px;
+}
+
+.ico{
+	width: 12px;
 }
 
 @media screen and (max-width: 805px){

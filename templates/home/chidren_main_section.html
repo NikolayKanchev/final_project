@@ -38,7 +38,7 @@
                 <div class="category-row">
                     <span class="category-row-name clothes-sizes-name"></span>
                     <span class="pink category-row-details">
-                        <span class="format-sizes bolder black">Items</span>
+                        <span class="format-sizes bolder black sm-width items">Items</span>
                         <span class="format-sizes"></span>
                         <span class="format-sizes"></span>
                         <span class="format-sizes"></span>
@@ -53,19 +53,19 @@
                                 <a href="{% url 'clothing_items_list' pk=category.id %}"><H6 class="pink">{{ category.name }}</H6></a>
                             </span>
                             <span class="category-row-details blue">
-                                <span class="total format-sizes">{{ category.num_items }}</span>
+                                <span class="total format-sizes sm-width">{{ category.num_items }}</span>
 
                                 {% if s.name == 'Clothes' %}
-                                        <span class="add-item format-sizes"><a href="{% url 'add_clothing_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
-                                        <span class="delete-item format-sizes"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
+                                        <span class="add-item format-sizes sm-width"><a href="{% url 'add_clothing_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
+                                        <span class="delete-item format-sizes sm-width"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
                                         <span class="needs-more format-sizes pink bolder">Needs more</span>
                                     {% elif s.name == 'Shoes' %}
-                                        <span class="add-item format-sizes"><a href="{% url 'add_shoe_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
-                                        <span class="delete-item format-sizes"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
+                                        <span class="add-item format-sizes sm-width"><a href="{% url 'add_shoe_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
+                                        <span class="delete-item format-sizes sm-width"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
                                         <span class="needs-more format-sizes pink bolder">Needs more</span>
                                     {% else %}
-                                         <span class="add-item format-sizes"><a href="{% url 'add_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
-                                        <span class="delete-item format-sizes"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
+                                         <span class="add-item format-sizes sm-width"><a href="{% url 'add_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
+                                        <span class="delete-item format-sizes sm-width"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
                                         <span class="needs-more format-sizes pink bolder">Needs more</span>
                                     {% endif %}
 
@@ -77,6 +77,12 @@
                 </div>
             </div>
             {% endif %}
+
+            {% if s.name == 'Clothes' %}
+                <div id="small-commercial">
+                    {% include 'home/commercial_section.html' %}
+                </div>
+            {% endif %}
         {% endfor %}
     {% else %}
 {# *************************** Girls *****************************#}
@@ -84,9 +90,6 @@
         {% for s in chosen_child_sections %}
             {% if s|get_categories %}
                 {% if chosen_child.name != "Coming Soon" %}
-{#                    {% if s.name == "Clothes" and chosen_child.name == "Coming Soon" %}#}
-{#                        <div class="section min-height girl">#}
-{#                            <h3 class="pink">Current Wardrobe <span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes" style="margin-left: 150px"> Sizes </span></h3>#}
                     {% if s.name == "Clothes" %}
                         <div class="section min-height girl">
                             <h3 class="pink">{{ chosen_child.name }}'s Current Wardrobe <span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes">Sizes: {{ chosen_child.get_clothes_sizes_str }}</span></h3>
@@ -123,7 +126,7 @@
                     <div class="category-row">
                         <span class="category-row-name clothes-sizes-name"></span>
                         <span class="pink category-row-details">
-                            <span class="format-sizes bolder black">Items</span>
+                            <span class="format-sizes bolder black sm-width items">Items</span>
                             <span class="format-sizes"></span>
                             <span class="format-sizes"></span>
                             <span class="format-sizes"></span>
@@ -138,19 +141,19 @@
                                     <a href="{% url 'clothing_items_list' pk=category.id %}"><H6 class="pink">{{ category.name }}</H6></a>
                                 </span>
                                 <span class="category-row-details blue">
-                                    <span class="total format-sizes">{{ category.num_items }}</span>
+                                    <span class="total format-sizes sm-width">{{ category.num_items }}</span>
 
                                     {% if s.name == 'Clothes' %}
-                                        <span class="add-item format-sizes"><a href="{% url 'add_clothing_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
-                                        <span class="delete-item format-sizes"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
+                                        <span class="add-item format-sizes sm-width"><a href="{% url 'add_clothing_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
+                                        <span class="delete-item format-sizes sm-width"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
                                         <span class="needs-more format-sizes pink bolder">Needs more</span>
                                     {% elif s.name == 'Shoes' %}
-                                        <span class="add-item format-sizes"><a href="{% url 'add_shoe_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
-                                        <span class="delete-item format-sizes"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
+                                        <span class="add-item format-sizes sm-width"><a href="{% url 'add_shoe_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
+                                        <span class="delete-item format-sizes sm-width"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
                                         <span class="needs-more format-sizes pink bolder">Needs more</span>
                                     {% else %}
-                                         <span class="add-item format-sizes"><a href="{% url 'add_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
-                                        <span class="delete-item format-sizes"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
+                                         <span class="add-item format-sizes sm-width"><a href="{% url 'add_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
+                                        <span class="delete-item format-sizes sm-width"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
                                         <span class="needs-more format-sizes pink bolder">Needs more</span>
                                     {% endif %}
 
@@ -159,6 +162,12 @@
                             <hr>
                         {% endfor %}
                     </div>
+                </div>
+            {% endif %}
+
+            {% if s.name == 'Clothes' %}
+                <div id="small-commercial">
+                    {% include 'home/commercial_section.html' %}
                 </div>
             {% endif %}
         {% endfor %}
