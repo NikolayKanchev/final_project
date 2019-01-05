@@ -1,10 +1,11 @@
 from django.urls import path, re_path
 
+from home import views
 from home.views import HomeView, UpdateChildView, DeleteChildView, AddFullTermChildView, \
     AddPreemieView, AddNotBornView, UpdateSizeSystemView, UpdateSizesView, UpdateShoeSizesView, \
     AddSectionView, AddCategoryView, UpdateCategoryView, UpdateSectionView, DeleteSectionView, \
     DeleteCategoryView, AddClothingItemsView, AddShoeItemsView, AddItemsView, ClothingItemsView, \
-    UpdateItemView, DeleteItemView
+    UpdateItemView, DeleteItemView, PhotoView
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
@@ -29,5 +30,5 @@ urlpatterns = [
     path('list_items/<int:pk>/', ClothingItemsView.as_view(), name='clothing_items_list'),
     path('update_item/<int:pk>/', UpdateItemView.as_view(), name='update_item'),
     re_path(r'del_item/(?P<pk>\d+)/$', DeleteItemView.as_view(), name='del_item'),
-
+    path('crop/<int:pk>/', PhotoView.as_view(), name='crop-photo'),
 ]

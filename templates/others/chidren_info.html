@@ -1,5 +1,7 @@
 {% load static %}
 {% include "others/tooltip_links.html" %}
+{% load get_photos from my_filters %}
+
 {#<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">#}
 {#<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>#}
 <link rel="stylesheet" type="text/css" href="{% static 'home/children-info.css' %}">
@@ -19,7 +21,15 @@
                         <div>
                             <img id="img-hearts" class="card-img-top" src="{% static 'images/hearts.png' %}" alt="hearts">
                             <div class="crop-container">
-                                <img id='picture' class="card-img-top" src="{{ chosen_child.picture.url }}" alt="{{ chosen_child.name }}'s picture">
+                                {% if chosen_child_photo.file %}
+                                    <img id='picture' class="card-img-top" src="{{ chosen_child_photo.file.url }}" alt="{{ chosen_child_photo }}'s picture">
+                                {% else %}
+                                    {% if chosen_child.gender == "BOY" %}
+                                        <img id='picture' class="card-img-top" src="{% static 'images/new-google-favicon-512.png' %}" alt="{{ chosen_child_photo }}'s picture">
+                                    {% else %}
+                                        <img id='picture' class="card-img-top" src="{% static 'images/teddy_bear.png' %}" alt="{{ chosen_child_photo }}'s picture">
+                                    {% endif %}
+                                {% endif %}
                             </div>
                         </div>
                         <div id="chosen-child-name">
@@ -29,8 +39,9 @@
 
                     </a>
                     <span>
+                        <a class="photo-crop-link" href="{% url 'crop-photo' pk=chosen_child_photo.pk %}"><img src="{% static 'images/change_photo.png' %}" class="photo" alt="photo"></a>
                         <span class="edit-child-details">
-                                <a href="{% url 'update_child' pk=c.pk %}" data-toggle="tooltip" data-placement="left" title="Edit {{ c.name }}'s details!"><span id="pencil"><img src="{% static '/open-iconic-master/svg/pencil.svg' %}" class="icon" alt="pencil"></span></a>
+                                <a class="pencil" href="{% url 'update_child' pk=c.pk %}" data-toggle="tooltip" data-placement="left" title="Edit {{ c.name }}'s details!"><span id="pencil"><img src="{% static '/open-iconic-master/svg/pencil.svg' %}" class="icon" alt="pencil"></span></a>
                                 <br>
                         </span>
                         <span>
@@ -61,7 +72,17 @@
                 <a id="not-chosen-child-container" href="{% url 'home' pk=c.pk %}" class="child-container">
                     <img id="img-hearts" class="card-img-top" src="{% static 'images/hearts.png' %}" alt="hearts">
                     <div class="crop-container">
-                        <img id='picture' class="card-img-top" src="{{ c.picture.url }}" alt="{{ c.name }}'s picture">
+                        {% for photo in c|get_photos %}
+                            {% if photo.file %}
+                                <img id='picture' class="card-img-top" src="{{ photo.file.url }}" alt="{{ photo.file }}'s picture">
+                            {% else %}
+                                {% if c.gender == "BOY" %}
+                                    <img id='picture' class="card-img-top" src="{% static 'images/new-google-favicon-512.png' %}" alt="{{ chosen_child_photo }}'s picture">
+                                {% else %}
+                                    <img id='picture' class="card-img-top" src="{% static 'images/teddy_bear.png' %}" alt="{{ chosen_child_photo }}'s picture">
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
                     </div>
                     <div class="text name">{{ c.name }}</div>
                 </a>
@@ -85,9 +106,19 @@
         {% if children %}
             <div id="small-children-info">
                 <img id="img-hearts-small" class="card-img-top" src="{% static 'images/hearts.png' %}" alt="hearts">
+
                 <div class="crop-container">
-                    <img id='picture-small-drop-down' class="card-img-top" src="{{ chosen_child.picture.url }}" alt="{{ chosen_child.name }}'s picture">
+                    {% if chosen_child_photo.file %}
+                        <img id='picture-small-drop-down' class="card-img-top" src="{{ chosen_child_photo.file.url }}" alt="{{ chosen_child_photo }}'s picture">
+                    {% else %}
+                        {% if chosen_child.gender == "BOY" %}
+                            <img id='picture-small-drop-down' class="card-img-top" src="{% static 'images/new-google-favicon-512.png' %}" alt="{{ chosen_child_photo }}'s picture">
+                        {% else %}
+                            <img id='picture-small-drop-down' class="card-img-top" src="{% static 'images/teddy_bear.png' %}" alt="{{ chosen_child_photo }}'s picture">
+                        {% endif %}
+                    {% endif %}
                 </div>
+
                 <a id="child-small-dropdown" class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <span class="caret"><a href="#" ></a></span>
                 </a>
@@ -159,3 +190,4 @@
 </div>
 
 <script src="{% static 'js/tooltip.js' %}"></script>
+

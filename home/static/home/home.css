@@ -465,6 +465,12 @@
 	width: 12px;
 }
 
+@media screen and (max-width: 850px){
+	#page-container{
+		margin-top: 0;
+	}
+}
+
 @media screen and (max-width: 805px){
 
 	::-webkit-scrollbar {

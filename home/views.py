@@ -6,6 +6,9 @@ from home.forms import ChildForm, PreemieForm, NotBornChildForm, UpdateSizeSyste
     UpdateShoeSizesForm, SectionForm, CategoryForm, UpdateCategoryForm, UpdateSectionForm, ClothingItemForm, \
     ShoeItemForm, ItemForm
 from home.models import Child, Section, Category, ClothingItem, ShoeItem, Item
+from django.shortcuts import render, redirect
+from .models import Photo
+from .forms import PhotoForm
 
 
 class JSONResponseMixin:
@@ -50,6 +53,9 @@ class HomeView(ListView):
             sections = Section.objects.filter(child=obj).order_by('pk')
             context['chosen_child_sections'] = sections
 
+            photo = Photo.objects.filter(child=obj).first()
+            context['chosen_child_photo'] = photo
+
             if obj is not None and obj.age is None:
                 context['not_born_yet'] = True
             else:
@@ -61,6 +67,9 @@ class HomeView(ListView):
 
             sections = Section.objects.filter(child=obj).order_by('pk')
             context['chosen_child_sections'] = sections
+
+            photo = Photo.objects.filter(child=obj).first()
+            context['chosen_child_photo'] = photo
 
             if obj is not None and obj.age is None:
                 context['not_born_yet'] = True
@@ -309,3 +318,21 @@ class DeleteItemView(DeleteView):
 
     def get_success_url(self):
         return reverse('clothing_items_list', args=(self.object.category.id,))
+
+
+class PhotoView(UpdateView):
+    model = Photo
+    template_name = 'home/update_photo.html'
+    form_class = PhotoForm
+
+    def get_success_url(self):
+        return reverse('crop-photo', args=(self.object.pk, ))
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(PhotoView,
+                        self).get_context_data(object_list=None, **kwargs)
+
+        photo = Photo.objects.filter(pk=self.kwargs['pk']).first()
+        context['child_photo'] = photo
+
+        return context

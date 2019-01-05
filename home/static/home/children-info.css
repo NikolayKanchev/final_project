@@ -158,9 +158,46 @@ a:hover{
 }
 
 .edit-child-details{
-    margin-left: 220px;
-    margin-top: -80px;
+    margin-left: 215px;
+    margin-top: -78px;
     position: absolute;
+}
+
+.pencil{
+    border-radius: 50%;
+    padding: 2px 5px;
+}
+
+.photo-crop-link{
+    position: absolute;
+    border-radius: 50%;
+    width: 78px;
+    height: 78px;
+    margin-top: -77px;
+    margin-left: -2px;
+    overflow: hidden;
+    opacity: 0.8;
+}
+
+.photo{
+    position: absolute;
+    margin-left: -3px;
+    margin-top: -2px;
+    display: none;
+}
+
+.photo-crop-link:hover .photo{
+    display: inherit;
+    animation: move 1s ease-in-out;
+}
+
+@keyframes move {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 #edit-size{
@@ -198,9 +235,8 @@ a:hover{
 }
 
 #picture{
-    width: 135px;
+    width: 80px;
     height: auto;
-    margin: 0 0 0 -25px;
 }
 
 #img-hearts{
@@ -276,9 +312,8 @@ a:hover{
     }
 
     #picture-small-drop-down{
-        width: 70px;
+        width: 45px;
         height: auto;
-        margin: 0 0 0 -11px;
         border-radius: 50%;
         box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
     }

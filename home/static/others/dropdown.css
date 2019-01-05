@@ -64,9 +64,9 @@
 }
 
 #picture-dropdown{
-    width: 178px;
+    width: 110px;
     height: auto;
-    margin: 0 0 0 -25px;
+    /*margin: 0 0 0 -25px;*/
 }
 
 #img-hearts-dropdown{
@@ -93,12 +93,6 @@
     .nav-list > li:hover span{
         color: #ec6ead;
     }
-
-
-}
-
-
-@media screen and (max-width: 760px){
     .dropdown-menu{
         height: 200px;
     }

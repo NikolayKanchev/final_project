@@ -1,8 +1,11 @@
-from django import forms
 from django.forms import HiddenInput, TextInput
 
 from accounts.models import User
 from home.models import Child, Section, Category, ClothingItem, ShoeItem, Item
+
+from PIL import Image
+from django import forms
+from .models import Photo
 
 
 class ChildForm(forms.ModelForm):
@@ -185,4 +188,39 @@ class ItemForm(forms.ModelForm):
     class Meta:
         model = Item
         fields = '__all__'
+
+
+class PhotoForm(forms.ModelForm):
+    x = forms.FloatField(widget=forms.HiddenInput())
+    y = forms.FloatField(widget=forms.HiddenInput())
+    width = forms.FloatField(widget=forms.HiddenInput())
+    height = forms.FloatField(widget=forms.HiddenInput())
+
+    class Meta:
+        model = Photo
+        fields = ('file', 'x', 'y', 'width', 'height', 'child')
+        widgets = {
+            'file': forms.FileInput(attrs={
+                'accept': 'image/*'  # this is not an actual validation! don't rely on that!
+            })
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(PhotoForm, self).__init__(*args, **kwargs)
+        self.fields['child'].widget = HiddenInput()
+
+    def save(self, **kwargs):
+        photo = super(PhotoForm, self).save()
+
+        x = self.cleaned_data.get('x')
+        y = self.cleaned_data.get('y')
+        w = self.cleaned_data.get('width')
+        h = self.cleaned_data.get('height')
+
+        image = Image.open(photo.file)
+        cropped_image = image.crop((x, y, w+x, h+y))
+        resized_image = cropped_image.resize((500, 500), Image.ANTIALIAS)
+        resized_image.save(photo.file.path)
+
+        return photo
 

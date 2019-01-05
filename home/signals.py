@@ -1,6 +1,8 @@
-from django.db.models.signals import post_save
+import os
+
+from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
-from home.models import Child, Section, Category, ClothingItem
+from home.models import Child, Section, Category, ClothingItem, Photo
 
 
 @receiver(post_save, sender=Child)
@@ -9,6 +11,8 @@ def create_child_sections(sender, instance, created, **kwargs):
         Section.objects.create(child=instance, name='Clothes')
         Section.objects.create(child=instance, name='Shoes')
         Section.objects.create(child=instance, name='Toys')
+
+        Photo.objects.create(child=instance, file=None)
 
 
 @receiver(post_save, sender=Section)
@@ -29,9 +33,11 @@ def create_section_categories(sender, instance, created, **kwargs):
             Category.objects.create(section=instance, name='Musical')
 
 
-# @receiver(post_save, sender=Child)
-# def change_default_size_system(sender, instance, update_fields, **kwargs):
-#     print(update_fields)
-#     # instance.update(default_size_system=instance.size_system)
+@receiver(pre_save, sender=Photo)
+def delete_old_file(sender, instance, **kwargs):
+    if instance.pk:
+        old_file = Photo.objects.get(pk=instance.pk).file
+        if old_file:
+            os.remove(old_file.path)
 
 

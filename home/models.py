@@ -86,7 +86,7 @@ class Child(models.Model):
     user = models.ForeignKey(User, on_delete=CASCADE)
     name = models.CharField(max_length=250)
     gender = models.CharField(max_length=5, choices=CHILD_GENDER_CHOICES, default=None, blank=True, null=True)
-    picture = models.ImageField(upload_to='pic_folder/', default='pic_folder/None/no-img.jpg', blank=True)
+    # picture = models.ImageField(upload_to='', default='pic_folder/None/no-img.jpg', blank=True)
     date_of_birth = models.DateField(default=None, blank=True, null=True)
     size_system = models.CharField(max_length=5, choices=SIZE_SYSTEMS, default="EU")
     child_status = models.CharField(max_length=15, choices=CHILD_STATUS_CHOICES, default="F")
@@ -373,8 +373,8 @@ class Section(models.Model):
 
 
 class Category(models.Model):
-    section = models.ForeignKey(Section, on_delete=CASCADE)
-    name = models.CharField(max_length=50)
+    section = models.ForeignKey(Section, on_delete=CASCADE, default=None)
+    name = models.CharField(max_length=50, default=None, blank=True)
 
     @property
     def num_items(self):
@@ -478,3 +478,16 @@ class ShoeItem(Item):
     size_system = EU
 
     size = MultiSelectField(choices=SHOE_SIZES.get(size_system), max_choices=3, default=None, blank=True, null=True)
+
+
+class Photo(models.Model):
+    file = models.ImageField()
+    description = models.CharField(max_length=255, blank=True)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    child = models.ForeignKey(Child, on_delete=CASCADE, default=None)
+
+    class Meta:
+        verbose_name = 'photo'
+        verbose_name_plural = 'photos'
+
+
