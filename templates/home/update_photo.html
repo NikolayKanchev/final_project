@@ -9,10 +9,6 @@
 
   <h1 class="page-header">Update Photo</h1>
 
-{#    <div class="crop-cont">#}
-{#        <img id='photo' class="card-img-top" src="{{ child_photo.file.url }}" alt="photo">#}
-{#    </div>#}
-
     {% if child_photo.file %}
         <div class="crop-cont">
             <img id='photo' class="card-img-top" src="{{ child_photo.file.url }}" alt="photo">
@@ -20,11 +16,11 @@
     {% else %}
         {% if child_photo.child.gender == "BOY" %}
             <div class="crop-cont">
-                <img id='photo' class="card-img-top" src="{% static 'images/new-google-favicon-512.png' %}" alt="photo">
+                <img id='photo' class="card-img-top" src="{% static 'images/boy.png' %}" alt="photo">
             </div>
         {% else %}
             <div class="crop-cont">
-                <img id='photo' class="card-img-top" src="{% static 'images/teddy_bear.png' %}" alt="photo">
+                <img id='photo' class="card-img-top" src="{% static 'images/girl.png' %}" alt="photo">
             </div>
         {% endif %}
     {% endif %}
@@ -38,9 +34,8 @@
   </form>
 
   <hr>
+  <div class="back-cont">
     <a class="back" href="{% url 'home' pk=child_photo.child.pk %}"><<< Back</a>
-  <div>
-
   </div>
 
   <!-- MODAL TO CROP THE IMAGE -->

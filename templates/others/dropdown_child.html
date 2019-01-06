@@ -13,15 +13,14 @@
             <div id="dropdown-child">
                 <img id="img-hearts-dropdown" class="card-img-top" src="{% static 'images/hearts.png' %}" alt="hearts">
                 <div class="crop-container-dropdown">
-{#                    <img id='picture-dropdown' class="card-img-top" src="{{ c.picture.url }}" alt="{{ c.name }}'s picture">#}
                     {% for photo in c|get_photos %}
                         {% if photo.file %}
                             <img id='picture-dropdown' class="card-img-top" src="{{ photo.file.url }}" alt="{{ photo.file }}'s picture">
                         {% else %}
                             {% if c.gender == "BOY" %}
-                                <img id='picture-dropdown' class="card-img-top" src="{% static 'images/new-google-favicon-512.png' %}" alt="{{ chosen_child_photo }}'s picture">
+                                <img id='picture-dropdown' class="card-img-top" src="{% static 'images/boy.png' %}" alt="{{ chosen_child_photo }}'s picture">
                             {% else %}
-                                <img id='picture-dropdown' class="card-img-top" src="{% static 'images/teddy_bear.png' %}" alt="{{ chosen_child_photo }}'s picture">
+                                <img id='picture-dropdown' class="card-img-top" src="{% static 'images/girl.png' %}" alt="{{ chosen_child_photo }}'s picture">
                             {% endif %}
                         {% endif %}
                     {% endfor %}

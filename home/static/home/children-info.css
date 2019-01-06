@@ -179,6 +179,25 @@ a:hover{
     opacity: 0.8;
 }
 
+.photo-crop-link-update-child{
+    position: absolute;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin-top: -160px;
+    margin-left: -75px;
+    overflow: hidden;
+    opacity: 0.8;
+}
+
+.photo-update-child{
+    position: absolute;
+    border-radius: 50%;
+    margin-left: 35px;
+    margin-top: 35px;
+    display: none;
+}
+
 .photo{
     position: absolute;
     margin-left: -3px;
@@ -187,6 +206,11 @@ a:hover{
 }
 
 .photo-crop-link:hover .photo{
+    display: inherit;
+    animation: move 1s ease-in-out;
+}
+
+.photo-crop-link-update-child:hover .photo-update-child{
     display: inherit;
     animation: move 1s ease-in-out;
 }
@@ -237,6 +261,21 @@ a:hover{
 #picture{
     width: 80px;
     height: auto;
+}
+
+#picture-update-child{
+    width: 160px;
+    height: auto;
+}
+
+.crop-container-update-child{
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #img-hearts{

@@ -25,9 +25,9 @@
                                     <img id='picture' class="card-img-top" src="{{ chosen_child_photo.file.url }}" alt="{{ chosen_child_photo }}'s picture">
                                 {% else %}
                                     {% if chosen_child.gender == "BOY" %}
-                                        <img id='picture' class="card-img-top" src="{% static 'images/new-google-favicon-512.png' %}" alt="{{ chosen_child_photo }}'s picture">
+                                        <img id='picture' class="card-img-top" src="{% static 'images/boy.png' %}" alt="{{ chosen_child_photo }}'s picture">
                                     {% else %}
-                                        <img id='picture' class="card-img-top" src="{% static 'images/teddy_bear.png' %}" alt="{{ chosen_child_photo }}'s picture">
+                                        <img id='picture' class="card-img-top" src="{% static 'images/girl.png' %}" alt="{{ chosen_child_photo }}'s picture">
                                     {% endif %}
                                 {% endif %}
                             </div>
@@ -77,9 +77,9 @@
                                 <img id='picture' class="card-img-top" src="{{ photo.file.url }}" alt="{{ photo.file }}'s picture">
                             {% else %}
                                 {% if c.gender == "BOY" %}
-                                    <img id='picture' class="card-img-top" src="{% static 'images/new-google-favicon-512.png' %}" alt="{{ chosen_child_photo }}'s picture">
+                                    <img id='picture' class="card-img-top" src="{% static 'images/boy.png' %}" alt="{{ chosen_child_photo }}'s picture">
                                 {% else %}
-                                    <img id='picture' class="card-img-top" src="{% static 'images/teddy_bear.png' %}" alt="{{ chosen_child_photo }}'s picture">
+                                    <img id='picture' class="card-img-top" src="{% static 'images/girl.png' %}" alt="{{ chosen_child_photo }}'s picture">
                                 {% endif %}
                             {% endif %}
                         {% endfor %}
@@ -112,9 +112,9 @@
                         <img id='picture-small-drop-down' class="card-img-top" src="{{ chosen_child_photo.file.url }}" alt="{{ chosen_child_photo }}'s picture">
                     {% else %}
                         {% if chosen_child.gender == "BOY" %}
-                            <img id='picture-small-drop-down' class="card-img-top" src="{% static 'images/new-google-favicon-512.png' %}" alt="{{ chosen_child_photo }}'s picture">
+                            <img id='picture-small-drop-down' class="card-img-top" src="{% static 'images/boy.png' %}" alt="{{ chosen_child_photo }}'s picture">
                         {% else %}
-                            <img id='picture-small-drop-down' class="card-img-top" src="{% static 'images/teddy_bear.png' %}" alt="{{ chosen_child_photo }}'s picture">
+                            <img id='picture-small-drop-down' class="card-img-top" src="{% static 'images/girl.png' %}" alt="{{ chosen_child_photo }}'s picture">
                         {% endif %}
                     {% endif %}
                 </div>
