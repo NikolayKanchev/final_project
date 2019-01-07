@@ -1,7 +1,7 @@
 from django.forms import HiddenInput, TextInput
 
 from accounts.models import User
-from home.models import Child, Section, Category, ClothingItem, ShoeItem, Item
+from home.models import Child, Section, Category, Item
 
 from PIL import Image
 from django import forms
@@ -172,22 +172,27 @@ class UpdateSectionForm(forms.ModelForm):
         self.fields['child'].widget = HiddenInput()
 
 
-class ClothingItemForm(forms.ModelForm):
-    class Meta:
-        model = ClothingItem
-        fields = '__all__'
-
-
-class ShoeItemForm(forms.ModelForm):
-    class Meta:
-        model = ShoeItem
-        fields = '__all__'
-
-
 class ItemForm(forms.ModelForm):
     class Meta:
         model = Item
         fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        self.pk = kwargs.pop('pk')
+        self.child = kwargs.pop('child')
+        super(ItemForm, self).__init__(*args, **kwargs)
+        category = Category.objects.filter(pk=self.pk).first()
+        self.fields['category'].queryset = Category.objects.filter(pk=self.pk)
+        self.initial['category'] = category
+        self.fields['category'].widget = HiddenInput()
+
+        if category.section.name == "Clothes":
+            self.fields['clothing_size'].required = True
+            self.fields['clothing_size'].choices = self.child.sizes
+
+        if category.section.name == "Shoes":
+            self.fields['shoe_size'].required = True
+            self.fields['shoe_size'].choices = self.child.shoe_sizes
 
 
 class PhotoForm(forms.ModelForm):

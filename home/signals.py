@@ -2,7 +2,7 @@ import os
 
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
-from home.models import Child, Section, Category, ClothingItem, Photo
+from home.models import Child, Section, Category, Photo, Item
 
 
 @receiver(post_save, sender=Child)
@@ -39,5 +39,27 @@ def delete_old_file(sender, instance, **kwargs):
         old_file = Photo.objects.get(pk=instance.pk).file
         if old_file:
             os.remove(old_file.path)
+
+
+@receiver(post_save, sender=Item)
+def create_more_items_based_on_the_amount(sender, instance, created, **kwargs):
+    if created:
+
+        if instance.amount > 1:
+            for i in range(instance.amount - 1):
+                Item.objects.create(
+                    category=instance.category,
+                    picture=instance.picture,
+                    note=instance.note,
+                    brand=instance.brand,
+                    condition=instance.condition,
+                    sex=instance.sex,
+                    season=instance.season,
+                    color=instance.color,
+                    price=instance.price,
+                    amount=1,
+                    clothing_size=instance.clothing_size,
+                    shoe_size=instance.shoe_size,
+                )
 
 

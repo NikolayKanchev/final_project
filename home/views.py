@@ -1,12 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import JsonResponse
 from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from home.forms import ChildForm, PreemieForm, NotBornChildForm, UpdateSizeSystemForm, UpdateSizesForm, \
-    UpdateShoeSizesForm, SectionForm, CategoryForm, UpdateCategoryForm, UpdateSectionForm, ClothingItemForm, \
-    ShoeItemForm, ItemForm
-from home.models import Child, Section, Category, ClothingItem, ShoeItem, Item
-from django.shortcuts import render, redirect
+    UpdateShoeSizesForm, SectionForm, CategoryForm, UpdateCategoryForm, UpdateSectionForm, ItemForm
+from home.models import Child, Section, Category, Item
 from .models import Photo
 from .forms import PhotoForm
 
@@ -269,24 +267,6 @@ class DeleteSectionView(DeleteView):
 #     def render_to_response(self, context, **response_kwargs):
 #         return self.render_to_json_response(context, **response_kwargs)
 
-class AddClothingItemsView(CreateView):
-    model = ClothingItem
-    template_name = 'home/add_clothing_items.html'
-    form_class = ClothingItemForm
-
-    def get_success_url(self):
-        return reverse('home', args=(self.object.category.section.child.id,))
-
-
-class AddShoeItemsView(CreateView):
-    model = ShoeItem
-    template_name = 'home/add_shoe_items.html'
-    form_class = ShoeItemForm
-
-    def get_success_url(self):
-        return reverse('home', args=(self.object.category.section.child.id,))
-
-
 class AddItemsView(CreateView):
     model = Item
     template_name = 'home/add_items.html'
@@ -294,6 +274,21 @@ class AddItemsView(CreateView):
 
     def get_success_url(self):
         return reverse('home', args=(self.object.category.section.child.id,))
+
+    def get_form_kwargs(self):
+        kwargs = super(AddItemsView, self).get_form_kwargs()
+        kwargs.update({'pk': self.kwargs.get('pk')})
+        kwargs.update({'child': Category.objects.filter(pk=self.kwargs.get('pk')).first().section.child})
+        return kwargs
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(AddItemsView,
+                        self).get_context_data(object_list=None, **kwargs)
+        if 'pk' in self.kwargs:
+            obj = Category.objects.filter(pk=self.kwargs['pk']).first()
+            context['category_name'] = obj.name
+            context['section_name'] = obj.section.name
+        return context
 
 
 class ClothingItemsView(ListView):

@@ -159,19 +159,19 @@
                                 <span class="category-row-details blue">
                                     <span class="total format-sizes sm-width">{{ category.num_items }}</span>
 
-                                    {% if s.name == 'Clothes' %}
-                                        <span class="add-item format-sizes sm-width"><a href="{% url 'add_clothing_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
+{#                                    {% if s.name == 'Clothes' %}#}
+                                        <span class="add-item format-sizes sm-width"><a href="{% url 'add_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
                                         <span class="delete-item format-sizes sm-width"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
                                         <span class="needs-more format-sizes pink bolder">Needs more</span>
-                                    {% elif s.name == 'Shoes' %}
-                                        <span class="add-item format-sizes sm-width"><a href="{% url 'add_shoe_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
-                                        <span class="delete-item format-sizes sm-width"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
-                                        <span class="needs-more format-sizes pink bolder">Needs more</span>
-                                    {% else %}
-                                         <span class="add-item format-sizes sm-width"><a href="{% url 'add_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>
-                                        <span class="delete-item format-sizes sm-width"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>
-                                        <span class="needs-more format-sizes pink bolder">Needs more</span>
-                                    {% endif %}
+{#                                    {% elif s.name == 'Shoes' %}#}
+{#                                        <span class="add-item format-sizes sm-width"><a href="{% url 'add_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>#}
+{#                                        <span class="delete-item format-sizes sm-width"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>#}
+{#                                        <span class="needs-more format-sizes pink bolder">Needs more</span>#}
+{#                                    {% else %}#}
+{#                                         <span class="add-item format-sizes sm-width"><a href="{% url 'add_items' pk=category.pk %}"><span id=""><img src="{% static '/open-iconic-master/svg/plus.svg' %}" class="ico" alt="plus"></span></a></span>#}
+{#                                        <span class="delete-item format-sizes sm-width"><a><span id=""><img src="{% static '/open-iconic-master/svg/trash.svg' %}" class="ico" alt="trash"></span></a></span>#}
+{#                                        <span class="needs-more format-sizes pink bolder">Needs more</span>#}
+{#                                    {% endif %}#}
 
                                 </span>
                             </div>
