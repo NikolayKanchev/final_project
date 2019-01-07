@@ -19,9 +19,12 @@
                         {% else %}
                             {% if c.gender == "BOY" %}
                                 <img id='picture-dropdown' class="card-img-top" src="{% static 'images/boy.png' %}" alt="{{ chosen_child_photo }}'s picture">
-                            {% else %}
+                            {% elif c.gender == "GIRL"%}
                                 <img id='picture-dropdown' class="card-img-top" src="{% static 'images/girl.png' %}" alt="{{ chosen_child_photo }}'s picture">
+                            {% else %}
+                                <img id='picture-dropdown' style="padding: 15px" class="card-img-top" src="{% static 'images/Baby.png' %}" alt="{{ chosen_child_photo }}'s picture">
                             {% endif %}
+
                         {% endif %}
                     {% endfor %}
                 </div>
