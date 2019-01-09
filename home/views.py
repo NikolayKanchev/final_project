@@ -2,9 +2,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import JsonResponse
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+
 from home.forms import ChildForm, PreemieForm, NotBornChildForm, UpdateSizeSystemForm, UpdateSizesForm, \
-    UpdateShoeSizesForm, SectionForm, CategoryForm, UpdateCategoryForm, UpdateSectionForm, ItemForm
-from home.models import Child, Section, Category, Item
+    UpdateShoeSizesForm, SectionForm, CategoryForm, UpdateCategoryForm, UpdateSectionForm, ItemForm, \
+    UpdateClothingSizeFilterForm, UpdateShoeSizeFilterForm
+from home.models import Child, Section, Category, Item, SizeFilter
 from .models import Photo
 from .forms import PhotoForm
 
@@ -45,6 +47,7 @@ class HomeView(ListView):
                         self).get_context_data(object_list=None, **kwargs)
 
         if 'pk' in self.kwargs:
+
             obj = Child.objects.filter(pk=self.kwargs['pk']).first()
             context['chosen_child'] = obj
 
@@ -54,12 +57,16 @@ class HomeView(ListView):
             photo = Photo.objects.filter(child=obj).first()
             context['chosen_child_photo'] = photo
 
+            size_filter = SizeFilter.objects.filter(child=obj).first()
+            context['size_filter'] = size_filter
+
             if obj is not None and obj.age is None:
                 context['not_born_yet'] = True
             else:
                 context['not_born_yet'] = False
 
         else:
+
             obj = Child.objects.filter(user=self.request.user.pk).last()
             context['chosen_child'] = obj
 
@@ -68,6 +75,10 @@ class HomeView(ListView):
 
             photo = Photo.objects.filter(child=obj).first()
             context['chosen_child_photo'] = photo
+
+            # context['size_filter'] = SizeFilter.objects.filter(child=obj).first()
+            size_filter = SizeFilter.objects.filter(child=obj).first()
+            context['size_filter'] = size_filter
 
             if obj is not None and obj.age is None:
                 context['not_born_yet'] = True
@@ -331,3 +342,31 @@ class PhotoView(UpdateView):
         context['child_photo'] = photo
 
         return context
+
+
+class UpdateClothingFilterSizesView(UpdateView):
+    model = SizeFilter
+    template_name = 'home/update_clothing_sizes_filter.html'
+    form_class = UpdateClothingSizeFilterForm
+
+    def get_success_url(self):
+        return reverse('home', args=(self.object.child.id,))
+
+    def get_form_kwargs(self):
+        kwargs = super(UpdateClothingFilterSizesView, self).get_form_kwargs()
+        kwargs.update({'pk': self.kwargs.get('pk')})
+        return kwargs
+
+
+class UpdateShoeFilterSizesView(UpdateView):
+    model = SizeFilter
+    template_name = 'home/update_shoe_sizes_filter.html'
+    form_class = UpdateShoeSizeFilterForm
+
+    def get_success_url(self):
+        return reverse('home', args=(self.object.child.id,))
+
+    def get_form_kwargs(self):
+        kwargs = super(UpdateShoeFilterSizesView, self).get_form_kwargs()
+        kwargs.update({'pk': self.kwargs.get('pk')})
+        return kwargs

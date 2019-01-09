@@ -1,7 +1,7 @@
 from django.forms import HiddenInput, TextInput
 
 from accounts.models import User
-from home.models import Child, Section, Category, Item
+from home.models import Child, Section, Category, Item, SizeFilter
 
 from PIL import Image
 from django import forms
@@ -229,3 +229,31 @@ class PhotoForm(forms.ModelForm):
 
         return photo
 
+
+class UpdateClothingSizeFilterForm(forms.ModelForm):
+    class Meta:
+        model = SizeFilter
+        fields = ['child', 'clothing_size']
+
+    def __init__(self, *args, **kwargs):
+        self.pk = kwargs.pop('pk')
+        super(UpdateClothingSizeFilterForm, self).__init__(*args, **kwargs)
+        self.fields['child'].widget = HiddenInput()
+
+        self.fields['clothing_size'].required = True
+        self.fields['clothing_size'].choices = self.instance.child.sizes
+
+
+class UpdateShoeSizeFilterForm(forms.ModelForm):
+    class Meta:
+        model = SizeFilter
+        fields = ['child', 'shoe_size']
+
+    def __init__(self, *args, **kwargs):
+        self.pk = kwargs.pop('pk')
+        super(UpdateShoeSizeFilterForm, self).__init__(*args, **kwargs)
+
+        self.fields['child'].widget = HiddenInput()
+
+        self.fields['shoe_size'].required = True
+        self.fields['shoe_size'].choices = self.instance.child.shoe_sizes

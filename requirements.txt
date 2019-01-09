@@ -1,3 +1,4 @@
+django-filter
 factory
 faker
 Django==2.1.3

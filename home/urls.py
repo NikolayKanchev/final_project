@@ -4,7 +4,7 @@ from home.views import HomeView, UpdateChildView, DeleteChildView, AddFullTermCh
     AddPreemieView, AddNotBornView, UpdateSizeSystemView, UpdateSizesView, UpdateShoeSizesView, \
     AddSectionView, AddCategoryView, UpdateCategoryView, UpdateSectionView, DeleteSectionView, \
     DeleteCategoryView, AddItemsView, ClothingItemsView, \
-    UpdateItemView, DeleteItemView, PhotoView
+    UpdateItemView, DeleteItemView, PhotoView, UpdateShoeFilterSizesView, UpdateClothingFilterSizesView
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
@@ -28,4 +28,8 @@ urlpatterns = [
     path('update_item/<int:pk>/', UpdateItemView.as_view(), name='update_item'),
     re_path(r'del_item/(?P<pk>\d+)/$', DeleteItemView.as_view(), name='del_item'),
     path('crop/<int:pk>/', PhotoView.as_view(), name='crop-photo'),
+    path('update_shoe_filter_size/<int:pk>/', UpdateShoeFilterSizesView.as_view(), name='update_shoe_filter_size'),
+    path('update_clothing_filter_size/<int:pk>/', UpdateClothingFilterSizesView.as_view(),
+         name='update_clothing_filter_size'),
+
 ]

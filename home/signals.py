@@ -2,7 +2,7 @@ import os
 
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
-from home.models import Child, Section, Category, Photo, Item
+from home.models import Child, Section, Category, Photo, Item, SizeFilter
 
 
 @receiver(post_save, sender=Child)
@@ -13,6 +13,27 @@ def create_child_sections(sender, instance, created, **kwargs):
         Section.objects.create(child=instance, name='Toys')
 
         Photo.objects.create(child=instance, file=None)
+
+        if instance.child_status == "Not born yet":
+            SizeFilter.objects.create(child=instance, clothing_size=None,
+                                      shoe_size=None)
+        else:
+            clothing_sizes = []
+            if type(instance.get_clothes_size) is str:
+                clothing_sizes.append(str(instance.SIZES_DICT.get(instance.get_clothes_size)))
+            else:
+                clothing_sizes.append(str(instance.SIZES_DICT.get(instance.get_clothes_size[0])))
+                clothing_sizes.append(str(instance.SIZES_DICT.get(instance.get_clothes_size[1])))
+
+            shoe_sizes = []
+            if type(instance.get_shoe_size) is str:
+                shoe_sizes.append(str(instance.SHOE_SIZES_DICT.get(instance.get_shoe_size)))
+            else:
+                shoe_sizes.append(str(instance.SHOE_SIZES_DICT.get(instance.get_shoe_size[0])))
+                shoe_sizes.append(str(instance.SHOE_SIZES_DICT.get(instance.get_shoe_size[1])))
+
+            SizeFilter.objects.create(child=instance, clothing_size=clothing_sizes,
+                                      shoe_size=shoe_sizes)
 
 
 @receiver(post_save, sender=Section)
