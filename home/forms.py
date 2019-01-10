@@ -144,7 +144,6 @@ class CategoryForm(forms.ModelForm):
         self.fields['section'].queryset = Section.objects.all()
         self.initial['section'] = Section.objects.filter(pk=self.pk).first()
         self.fields['section'].widget = HiddenInput()
-        self.fields['num_items'].widget = HiddenInput()
 
 
 class UpdateCategoryForm(forms.ModelForm):
@@ -156,7 +155,6 @@ class UpdateCategoryForm(forms.ModelForm):
         self.pk = kwargs.pop("pk")
         super(UpdateCategoryForm, self).__init__(*args, **kwargs)
         self.fields['section'].widget = HiddenInput()
-        self.fields['num_items'].widget = HiddenInput()
 
 
 class UpdateSectionForm(forms.ModelForm):

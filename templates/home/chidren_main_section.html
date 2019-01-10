@@ -63,7 +63,7 @@
 
                         <div class="category-row">
                             <span class="category-row-name">
-                                <a href="{% url 'clothing_items_list' pk=category.id %}"><H6 class="pink">{{ category.name }}</H6></a>
+                                <a href="{% url 'items_list' pk=category.id %}"><H6 class="pink">{{ category.name }}</H6></a>
                             </span>
                             <span class="category-row-details blue">
                                 <span class="total format-sizes sm-width">{{ category|get_num_items }}</span>
@@ -183,7 +183,7 @@
 
                             <div class="category-row">
                                 <span class="category-row-name">
-                                    <a href="{% url 'clothing_items_list' pk=category.id %}"><H6 class="pink">{{ category.name }}</H6></a>
+                                    <a href="{% url 'items_list' pk=category.id %}"><H6 class="pink">{{ category.name }}</H6></a>
                                 </span>
                                 <span class="category-row-details blue">
                                     <span class="total format-sizes sm-width">{{ category|get_num_items }}</span>

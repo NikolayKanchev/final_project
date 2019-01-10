@@ -3,8 +3,9 @@ from django.urls import path, re_path
 from home.views import HomeView, UpdateChildView, DeleteChildView, AddFullTermChildView, \
     AddPreemieView, AddNotBornView, UpdateSizeSystemView, UpdateSizesView, UpdateShoeSizesView, \
     AddSectionView, AddCategoryView, UpdateCategoryView, UpdateSectionView, DeleteSectionView, \
-    DeleteCategoryView, AddItemsView, ClothingItemsView, \
-    UpdateItemView, DeleteItemView, PhotoView, UpdateShoeFilterSizesView, UpdateClothingFilterSizesView
+    DeleteCategoryView, AddItemsView, ItemsView, \
+    UpdateItemView, DeleteItemView, PhotoView, UpdateShoeFilterSizesView, UpdateClothingFilterSizesView, \
+    UpdateClothingFilterSizesSecondView, UpdateShoeFilterSizesSecondView
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
@@ -24,12 +25,17 @@ urlpatterns = [
     re_path(r'delete_section/(?P<pk>\d+)/$', DeleteSectionView.as_view(), name='delete_section'),
     re_path(r'delete_category/(?P<pk>\d+)/$', DeleteCategoryView.as_view(), name='delete_category'),
     path('add_items/<int:pk>/', AddItemsView.as_view(), name='add_items'),
-    path('list_items/<int:pk>/', ClothingItemsView.as_view(), name='clothing_items_list'),
+    path('list_items/<int:pk>/', ItemsView.as_view(), name='items_list'),
     path('update_item/<int:pk>/', UpdateItemView.as_view(), name='update_item'),
     re_path(r'del_item/(?P<pk>\d+)/$', DeleteItemView.as_view(), name='del_item'),
     path('crop/<int:pk>/', PhotoView.as_view(), name='crop-photo'),
-    path('update_shoe_filter_size/<int:pk>/', UpdateShoeFilterSizesView.as_view(), name='update_shoe_filter_size'),
+    path('update_shoe_filter_size/<int:pk>/', UpdateShoeFilterSizesView.as_view(),
+         name='update_shoe_filter_size'),
+    path('update_shoe_filter_size_second/<int:pk>/<int:category_pk>/', UpdateShoeFilterSizesSecondView.as_view(),
+         name='update_shoe_filter_size_second'),
     path('update_clothing_filter_size/<int:pk>/', UpdateClothingFilterSizesView.as_view(),
          name='update_clothing_filter_size'),
+    path('update_clothing_filter_size_second/<int:pk>/<int:category_pk>/', UpdateClothingFilterSizesSecondView.as_view(),
+         name='update_clothing_filter_size_second'),
 
 ]

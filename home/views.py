@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import JsonResponse
 from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
 
 from home.forms import ChildForm, PreemieForm, NotBornChildForm, UpdateSizeSystemForm, UpdateSizesForm, \
     UpdateShoeSizesForm, SectionForm, CategoryForm, UpdateCategoryForm, UpdateSectionForm, ItemForm, \
@@ -302,12 +302,40 @@ class AddItemsView(CreateView):
         return context
 
 
-class ClothingItemsView(ListView):
-    template_name = 'home/clothing_items_list.html'
-    context_object_name = 'items'
+class ItemsView(TemplateView):
+    template_name = 'home/items_list.html'
 
-    def get_queryset(self):
-        return Item.objects.filter(category=self.kwargs['pk']).order_by("pk")
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ItemsView,
+                        self).get_context_data(object_list=None, **kwargs)
+
+        if 'pk' in self.kwargs:
+            category = Category.objects.filter(pk=self.kwargs['pk']).first()
+            context['category'] = category
+            child = category.section.child
+            context['chosen_child'] = child
+
+            size_filter = SizeFilter.objects.filter(child=child).first()
+            context['size_filter'] = size_filter
+
+            items = Item.objects.filter(category=self.kwargs['pk']).order_by("pk")
+
+            filtered_items = []
+            for item in items:
+                if item.clothing_size:
+                    if item.clothing_size[0] in size_filter.clothing_size:
+                        filtered_items.append(item)
+
+                elif item.shoe_size:
+                    if item.shoe_size[0] in size_filter.shoe_size:
+                        filtered_items.append(item)
+
+                else:
+                    filtered_items = items
+
+            context['items'] = filtered_items
+
+        return context
 
 
 class UpdateItemView(UpdateView):
@@ -317,6 +345,11 @@ class UpdateItemView(UpdateView):
 
     def get_success_url(self):
         return reverse('clothing_items_list', args=(self.object.category.id,))
+
+    def get_form_kwargs(self):
+        kwargs = super(UpdateItemView, self).get_form_kwargs()
+        kwargs.update({'pk': self.kwargs.get('pk')})
+        return kwargs
 
 
 class DeleteItemView(DeleteView):
@@ -370,3 +403,15 @@ class UpdateShoeFilterSizesView(UpdateView):
         kwargs = super(UpdateShoeFilterSizesView, self).get_form_kwargs()
         kwargs.update({'pk': self.kwargs.get('pk')})
         return kwargs
+
+
+class UpdateClothingFilterSizesSecondView(UpdateClothingFilterSizesView):
+    def get_success_url(self):
+        category_pk = self.kwargs['category_pk']
+        return reverse('items_list', args=(category_pk,))
+
+
+class UpdateShoeFilterSizesSecondView(UpdateShoeFilterSizesView):
+    def get_success_url(self):
+        category_pk = self.kwargs['category_pk']
+        return reverse('items_list', args=(category_pk,))
