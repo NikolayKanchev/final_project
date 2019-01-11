@@ -353,6 +353,7 @@ class AllItemsView(ListView):
             category = Category.objects.filter(pk=self.kwargs['pk']).first()
             size_filter = SizeFilter.objects.filter(child=category.section.child).first()
             context['size_filter'] = size_filter
+            context['category'] = category
 
         return context
 

@@ -7,9 +7,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'home/css/items.css' %}">
 
     <div class="back-cont">
-        <a class="back-btn" href="{% url 'home' pk=items.first.category.section.child.pk %}"><<< Back</a>
+        <a class="back-btn" href="{% url 'home' pk=category.section.child.pk %}"><<< Back</a>
     </div>
-    <h2 class="blue"> Items in "{{ items.first.category.name }}"</h2>
+    <h2 class="blue"> Items in "{{ category.name }}"</h2>
     <h6 class="pink filter-position">
         {% if items.first.category.section.name == "Clothes" %}
           for sizes:
@@ -68,15 +68,13 @@
                             {% endif %}
                         </div>
                     {% endfor %}
-{#                    {% if items.count > 7 %}#}
-{#                    <div class="item-card-cont hidden"></div>#}
-{#                    <div class="item-card-cont hidden"></div>#}
-{#                    <div class="item-card-cont hidden"></div>#}
-{#                    <div class="item-card-cont hidden"></div>#}
-{#                    <div class="item-card-cont hidden"></div>#}
-{#                    <div class="item-card-cont hidden"></div>#}
-{#                    <div class="item-card-cont hidden"></div>#}
-{#                    {% endif %}#}
+                    <div class="item-card-cont hidden"></div>
+                    <div class="item-card-cont hidden"></div>
+                    <div class="item-card-cont hidden"></div>
+                    <div class="item-card-cont hidden"></div>
+                    <div class="item-card-cont hidden"></div>
+                    <div class="item-card-cont hidden"></div>
+                    <div class="item-card-cont hidden"></div>
                 </div>
 
             </form>
