@@ -338,6 +338,25 @@ class ItemsView(TemplateView):
         return context
 
 
+class AllItemsView(ListView):
+    template_name = 'home/all_items_list.html'
+    context_object_name = 'items'
+
+    def get_queryset(self):
+        return Item.objects.filter(category=self.kwargs['pk']).order_by("pk")
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(AllItemsView,
+                        self).get_context_data(object_list=None, **kwargs)
+
+        if 'pk' in self.kwargs:
+            category = Category.objects.filter(pk=self.kwargs['pk']).first()
+            size_filter = SizeFilter.objects.filter(child=category.section.child).first()
+            context['size_filter'] = size_filter
+
+        return context
+
+
 class UpdateItemView(UpdateView):
     model = Item
     template_name = 'home/update_item.html'

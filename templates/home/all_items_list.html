@@ -7,19 +7,19 @@
     <link rel="stylesheet" type="text/css" href="{% static 'home/css/items.css' %}">
 
     <div class="back-cont">
-        <a class="back-btn" href="{% url 'home' pk=category.section.child.pk %}"><<< Back</a>
+        <a class="back-btn" href="{% url 'home' pk=items.first.category.section.child.pk %}"><<< Back</a>
     </div>
-    <h2 class="blue"> Items in "{{ category.name }}"</h2>
+    <h2 class="blue"> Items in "{{ items.first.category.name }}"</h2>
     <h6 class="pink filter-position">
-        {% if category.section.name == "Clothes" %}
+        {% if items.first.category.section.name == "Clothes" %}
           for sizes:
-          <a href="{% url 'update_clothing_filter_size_second' pk=size_filter.pk category_pk=category.pk %}">
-              <span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes"> {{ size_filter.get_clothing_sizes }}</span>
+          <a href="{% url 'update_clothing_filter_size_second' pk=size_filter.pk category_pk=items.first.category.pk %}">
+              <span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes"> All </span>
           </a>
-        {% elif category.section.name == "Shoes" %}
+        {% elif items.first.category.section.name == "Shoes" %}
           for sizes:
-          <a href="{% url 'update_shoe_filter_size_second' pk=size_filter.pk category_pk=category.pk %}">
-              <span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes"> {{ size_filter.get_shoe_sizes }}</span>
+          <a href="{% url 'update_shoe_filter_size_second' pk=size_filter.pk category_pk=items.first.category.pk %}">
+              <span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes"> All </span>
           </a>
         {% endif %}
     </h6>

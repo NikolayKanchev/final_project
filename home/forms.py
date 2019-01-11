@@ -165,8 +165,6 @@ class UpdateSectionForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.pk = kwargs.pop("pk")
         super(UpdateSectionForm, self).__init__(*args, **kwargs)
-        # self.fields['child'].queryset = Child.objects.all()
-        # self.initial['child'] = Child.objects.filter(pk=self.pk).first()
         self.fields['child'].widget = HiddenInput()
 
 

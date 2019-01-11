@@ -23,13 +23,13 @@
 
                             </div>
                             <h3 class="blue">Current Wardrobe</h3>
-                            <h6 class="pink filter-position">for sizes: <a href="{% url 'update_clothing_filter_size' pk=size_filter.pk %}"><span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes"> {{ size_filter.clothing_size }}</span></a></h6>
+                            <h6 class="pink filter-position">for sizes: <a href="{% url 'update_clothing_filter_size' pk=size_filter.pk %}"><span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes"> {{ size_filter.get_clothing_sizes }}</span></a></h6>
 
 
                     {% elif s.name == "Shoes" %}
                         <div class="section boy">
                             <h3 class="blue">{{ s.name }}</h3>
-                            <h6 class="pink filter-position">of sizes: <a href="{% url 'update_shoe_filter_size' pk=size_filter.pk %}"><span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes"> {{ size_filter.shoe_size }}</span></a></h6>
+                            <h6 class="pink filter-position">of sizes: <a href="{% url 'update_shoe_filter_size' pk=size_filter.pk %}"><span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes"> {{ size_filter.get_shoe_sizes }}</span></a></h6>
 
                     {% else %}
                         <div class="section boy">
@@ -111,13 +111,13 @@
 
                             </div>
                         <h3 class="pink">Current Wardrobe</h3>
-                        <h6 class="blue filter-position">for sizes: <a href="{% url 'update_clothing_filter_size' pk=size_filter.pk %}"><span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes"> {{ size_filter.clothing_size }}</span></a></h6>
+                        <h6 class="blue filter-position">for sizes: <a href="{% url 'update_clothing_filter_size' pk=size_filter.pk %}"><span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes"> {{ size_filter.get_clothing_sizes }}</span></a></h6>
 
 
                      {% elif s.name == "Shoes" %}
                         <div class="section min-height girl">
                             <h3 class="pink"> Shoes </h3>
-                            <h6 class="blue filter-position">of sizes: <a href="{% url 'update_shoe_filter_size' pk=size_filter.pk %}"><span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes"> {{ size_filter.shoe_size }}</span></a></h6>
+                            <h6 class="blue filter-position">of sizes: <a href="{% url 'update_shoe_filter_size' pk=size_filter.pk %}"><span class="sizes-text" data-toggle="tooltip" data-placement="top" title="Change sizes"> {{ size_filter.get_shoe_sizes }}</span></a></h6>
 
                     {% else %}
                         <div class="section girl">

@@ -44,7 +44,7 @@
                                 {% for category in s|get_categories %}
                                 <tr>
                                     <td>
-                                        <a class="category-details" href="">
+                                        <a class="category-details" href="{% url 'all_items_list' pk=category.pk %}">
                                             <span class="category-name">{{ category.name }}</span>
                                             {% if category.num_items and category.num_items != 0 %}
                                                 {% if category.num_items <= 10 %}

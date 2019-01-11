@@ -513,17 +513,28 @@ class SizeFilter(models.Model):
                                      null=True)
     shoe_size = MultiSelectField(choices=SHOE_SIZES.get("EU"), default=None, blank=True, null=True)
 
-    # # Just the string representation
-    # def get_clothes_sizes_str(self):
-    #
-    #     if type(self.clothing_size) is tuple:
-    #         size1 = self.clothing_size[0]
-    #         size2 = self.clothing_size[1]
-    #
-    #         return f"{size1[1]} - {size2[1]}"
-    #     else:
-    #
-    #         size1 = self.clothing_size
-    #
-    #         return f"{size1[1]}"
+    @property
+    def get_clothing_sizes(self):
+        sizes = self.child.sizes
+        sizes_to_return = ""
+        for size in self.clothing_size:
+            if sizes_to_return == "":
+                sizes_to_return += (sizes[int(size)][1])
+            else:
+                sizes_to_return += ", " + (sizes[int(size)][1])
 
+            # print(int(sizes[int(size)][1]))
+        return sizes_to_return
+
+    @property
+    def get_shoe_sizes(self):
+        sizes = self.child.shoe_sizes
+        sizes_to_return = ""
+        for size in self.shoe_size:
+            if sizes_to_return == "":
+                sizes_to_return += (sizes[int(size)][1])
+            else:
+                sizes_to_return += ", " + (sizes[int(size)][1])
+
+            # print(int(sizes[int(size)][1]))
+        return sizes_to_return
