@@ -29,12 +29,15 @@
 {% block card_content %}
     <link rel="stylesheet" type="text/css" href="{% static 'home/css/items.css' %}">
 
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
+{#            <form method="post" enctype="multipart/form-data">#}
+{#                {% csrf_token %}#}
 
                 <div class="items-cont">
                     {% for i in items %}
                         <div class="item-card-cont">
+                            <div class="details-cont">
+                                <a class="btn details-btn" href="{% url 'update_item' pk=i.pk %}">Details</a>
+                            </div>
                             <div class="img-container">
                                 <img class="card-img-top" src="{{ i.picture.url }}" alt="picture">
                             </div>
@@ -51,17 +54,17 @@
                             {% if i.clothing_size or i.sex %}
                                 <div class="text-size">
                                 {% if i.clothing_size %}
-                                    <span class="blue">Size: </span><span class="pink"> {{ i.clothing_size }} </span>
+                                    <span class="blue">Size: </span><span class="pink"> {{ i.get_clothing_size }} </span>
                                     <span class="pink"></span>
                                     <span class="pink"></span>
+                                {% endif %}
+                                {% if i.shoe_size %}
+                                    <div class="text-size"><span class="blue">Size: </span><span class="pink"> {{ i.get_shoe_size }} </span></div>
                                 {% endif %}
                                 {% if i.sex %}
                                     <span class="blue">Sex: </span><span class="pink"> {{ i.sex }} </span>
                                 {% endif %}
                                 </div>
-                            {% endif %}
-                            {% if i.shoe_size %}
-                                <div class="text-size"><span class="blue">Size: </span><span class="pink"> {{ i.shoe_size }} </span></div>
                             {% endif %}
                             {% if i.condition %}
                                 <div class="text-size"><span class="blue">Condition: </span><span class="pink"> {{ i.condition }} </span></div>
@@ -77,6 +80,6 @@
                     <div class="item-card-cont hidden"></div>
                 </div>
 
-            </form>
+{#            </form>#}
 
 {% endblock %}

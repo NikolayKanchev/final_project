@@ -5,7 +5,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, T
 
 from home.forms import ChildForm, PreemieForm, NotBornChildForm, UpdateSizeSystemForm, UpdateSizesForm, \
     UpdateShoeSizesForm, SectionForm, CategoryForm, UpdateCategoryForm, UpdateSectionForm, ItemForm, \
-    UpdateClothingSizeFilterForm, UpdateShoeSizeFilterForm
+    UpdateClothingSizeFilterForm, UpdateShoeSizeFilterForm, UpdateItemForm
 from home.models import Child, Section, Category, Item, SizeFilter
 from .models import Photo
 from .forms import PhotoForm
@@ -280,7 +280,7 @@ class DeleteSectionView(DeleteView):
 
 class AddItemsView(CreateView):
     model = Item
-    template_name = 'home/add_items.html'
+    template_name = 'home/add_update_items.html'
     form_class = ItemForm
 
     def get_success_url(self):
@@ -360,23 +360,41 @@ class AllItemsView(ListView):
 
 class UpdateItemView(UpdateView):
     model = Item
-    template_name = 'home/update_item.html'
-    form_class = ItemForm
+    template_name = 'home/add_update_items.html'
+    form_class = UpdateItemForm
 
     def get_success_url(self):
-        return reverse('clothing_items_list', args=(self.object.category.id,))
+        if 'slug' in self.kwargs:
+            return reverse('all_items_list', args=(self.object.category.id,))
+        else:
+            return reverse('items_list', args=(self.object.category.id,))
 
     def get_form_kwargs(self):
         kwargs = super(UpdateItemView, self).get_form_kwargs()
         kwargs.update({'pk': self.kwargs.get('pk')})
+        kwargs.update({'item': Item.objects.filter(pk=self.kwargs.get('pk')).first()})
         return kwargs
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(UpdateItemView,
+                        self).get_context_data(object_list=None, **kwargs)
+        if 'pk' in self.kwargs:
+            obj = Item.objects.filter(pk=self.kwargs.get('pk')).first()
+            # context['c_name'] = obj.category.name
+            context['section_name'] = obj.category.section.name
+        if 'slug' in self.kwargs:
+            context['slug'] = self.kwargs.get('slug')
+        return context
 
 
 class DeleteItemView(DeleteView):
     model = Item
 
     def get_success_url(self):
-        return reverse('clothing_items_list', args=(self.object.category.id,))
+        if 'slug' in self.kwargs:
+            return reverse('all_items_list', args=(self.object.category.id,))
+        else:
+            return reverse('items_list', args=(self.object.category.id,))
 
 
 class PhotoView(UpdateView):

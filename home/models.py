@@ -463,6 +463,16 @@ class Item(models.Model):
     clothing_size = MultiSelectField(choices=CLOTHING_SIZES.get("EU"), max_choices=1, default=None, blank=True, null=True)
     shoe_size = MultiSelectField(choices=SHOE_SIZES.get("EU"), max_choices=1, default=None, blank=True, null=True)
 
+    @property
+    def get_clothing_size(self):
+        sizes = self.category.section.child.sizes
+        return sizes[int(self.clothing_size[0])][1]
+
+    @property
+    def get_shoe_size(self):
+        sizes = self.category.section.child.shoe_sizes
+        return sizes[int(self.shoe_size[0])][1]
+
 
 class Photo(models.Model):
     file = models.ImageField()
@@ -523,7 +533,6 @@ class SizeFilter(models.Model):
             else:
                 sizes_to_return += ", " + (sizes[int(size)][1])
 
-            # print(int(sizes[int(size)][1]))
         return sizes_to_return
 
     @property
@@ -536,5 +545,4 @@ class SizeFilter(models.Model):
             else:
                 sizes_to_return += ", " + (sizes[int(size)][1])
 
-            # print(int(sizes[int(size)][1]))
         return sizes_to_return

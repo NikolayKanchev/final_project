@@ -3,7 +3,13 @@
 {% load bootstrap4 %}
 {% load crispy_forms_tags %}
 
-{% block card_title %} Add {{ category_name }} {% endblock %}
+{% block card_title %}
+    {% if category_name %}
+        Add {{ category_name }}
+    {% else %}
+        Edit details
+    {% endif %}
+{% endblock %}
 
 {% block card_content %}
     {% include "others/tooltip_links.html" %}
@@ -174,7 +180,20 @@
 
                 </div>
             </form>
+            {% if not category_name %}
+                <br>
+                <div class="col-lg-12 col-md-12 col-sm-12 ml-0" style="padding: 0">
+                    {% if slug %}
+                        <form action="{% url 'del_item_from_all_items' pk=form.instance.pk slug="all_items" %}">
+                    {% else %}
+                        <form action="{% url 'del_item' pk=form.instance.pk %}">
+                    {% endif %}
 
+                        {% csrf_token %}
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </div>
+        {% endif %}
         </div>
 
       </div>

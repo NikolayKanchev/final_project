@@ -191,6 +191,29 @@ class ItemForm(forms.ModelForm):
             self.fields['shoe_size'].choices = self.child.shoe_sizes
 
 
+class UpdateItemForm(forms.ModelForm):
+    class Meta:
+        model = Item
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        self.pk = kwargs.pop('pk')
+        self.item = kwargs.pop('item')
+        super(UpdateItemForm, self).__init__(*args, **kwargs)
+        self.fields['category'].queryset = Category.objects.filter(section=self.item.category.section)
+        self.initial['category'] = self.item.category
+        self.fields['category'].widget = HiddenInput()
+        self.fields['amount'].widget = HiddenInput()
+
+        if self.item.category.section.name == "Clothes":
+            self.fields['clothing_size'].required = True
+            self.fields['clothing_size'].choices = self.item.category.section.child.sizes
+
+        if self.item.category.section.name == "Shoes":
+            self.fields['shoe_size'].required = True
+            self.fields['shoe_size'].choices = self.item.category.section.child.shoe_sizes
+
+
 class PhotoForm(forms.ModelForm):
     x = forms.FloatField(widget=forms.HiddenInput())
     y = forms.FloatField(widget=forms.HiddenInput())

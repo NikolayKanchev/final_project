@@ -21,8 +21,30 @@
     margin: 5px;
 }
 
+.details-cont{
+    position: absolute;
+    margin-left: 68px;
+    display: none;
+}
+
+.details-btn{
+    font-size: 14px;
+    border: 1px solid black;
+    color: black;
+    font-weight: bolder;
+}
+
+.details-btn:hover{
+    background-color: aliceblue;
+    color: black;
+}
+
 .item-card-cont:hover{
     box-shadow: 0 1px 1px 0 rgba(0,0,0,0.14), 0 6px 10px 5px rgba(0,0,0,0.12), 0 8px 10px -55px rgba(0,0,0,0.3);
+}
+
+.item-card-cont:hover .details-cont{
+    display: block;
 }
 
 .img-container{
