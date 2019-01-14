@@ -45,9 +45,23 @@ INSTALLED_APPS = [
     'multiselectfield',
     'crispy_forms',
     'bootstrap4',
+    'social_django',
     'accounts',
     'home',
 ]
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+SOCIAL_AUTH_GOOGLE_PLUS_KEY = '202776161287-siqtq0eg91g3vv6em8cpnfd2604kv31c.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_PLUS_SECRET = '6_xWXZcQ0BmENuGssKh1Nb-X'
+SOCIAL_AUTH_FACEBOOK_KEY = '1857625441001767'
+SOCIAL_AUTH_FACEBOOK_SECRET = '4c9d3b89eb2f0a134cc4fccbb912f1a7'
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GooglePlusAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,6 +71,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'parents_assistant.urls'
@@ -73,6 +89,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social_django.context_processors.backends',  # <--
+                'social_django.context_processors.login_redirect', # <--
             ],
         },
     },
@@ -145,3 +164,7 @@ LOGIN_REDIRECT_URL = '/home'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# LOGIN_URL = 'login'
+# LOGOUT_URL = 'logout'
+# LOGIN_REDIRECT_URL = 'home'

@@ -40,9 +40,22 @@ address{
     align-items: center;
 }
 
+#cards-sign-up{
+    height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .single-card{
     height: 350px !important;
 }
+
+.single-card-sign-up{
+    height: 450px !important;
+}
+
+
 
 .card{
     height: 100%;
@@ -110,6 +123,7 @@ address{
     margin-top: 25px;
     background-color: #3b5998;
     color: #eee;
+    margin-left: -18px;
 }
 
 #google-img{
@@ -127,10 +141,19 @@ address{
 
 #google{
     background-color: #eeeeee;
+    margin-left: -18px;
 }
 
 #social-container{
     list-style: none;
+    align-items: center;
+}
+
+#social-container-sign-up{
+    height: 300px;
+    list-style: none;
+    align-items: center;
+    padding-top: 40px;
 }
 
 #register-div{

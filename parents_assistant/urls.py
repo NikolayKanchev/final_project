@@ -11,6 +11,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('home/', include('home.urls')),
     path('manual/', TemplateView.as_view(template_name='user_manual/user-manual.html'), name='manual'),
+    path('social/', include('social_django.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

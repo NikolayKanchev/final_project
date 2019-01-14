@@ -1,25 +1,62 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load bootstrap4 %}
+{% load crispy_forms_tags %}
 
 {% block content %}
     <link rel="stylesheet" type="text/css" href="{% static 'login_register/style.css' %}">
 
+{#    {% if not form.non_field_errors and not form.field.errors %}#}
+{#        <div style="height: 70px; border: 1px solid red;"></div>#}
+{#    {% endif %}#}
+{#    {% for message in messages %}#}
+{#        <div class="alert alert-danger" style="text-align: center">#}
+{#            <strong>{{ message }}</strong>#}
+{#        </div>#}
+{#    {% endfor %}#}
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger" style="text-align: center">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger" style="text-align: center">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+
     <div class="container-fluid">
-        <div id="cards" class="row">
-            <div class="col-md-4 mt-5 single-card">
+        <div id="cards-sign-up" class="row">
+            <div class="col-md-4 mt-5 single-card-sign-up">
               <div class="card text-center">
                 <div class="card-body card_title">
                     <div id="form-container">
                         <h3 class="card-title">Sign up</h3>
                         <hr>
+
                         <form method="post" class="form">
-                            <br>
                             {% csrf_token %}
-                            {% bootstrap_form form layout='inline'%}
-                            <ul class="form-actions">
-                                <li><input id="submit" type="submit" value="Login" class="btn btn-primary" /></li>
-                            </ul>
+{#                            {% for field in form %}#}
+
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                {{ form.email|as_crispy_field }}
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                {{ form.password1|as_crispy_field }}
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                {{ form.password2|as_crispy_field }}
+                            </div>
+
+{#                            {% endfor %}#}
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                               <button type="submit" class="btn btn-primary style" >Save</button>
+                            </div>
                         </form>
                     </div>
 
@@ -29,7 +66,7 @@
 
             <h4 id="or">OR</h4>
 
-            <div class="col-md-4 mt-5 single-card">
+            <div class="col-md-4 mt-5 single-card-sign-up">
           <div class="card text-center">
             <div class="card-body">
 
@@ -37,18 +74,18 @@
                 <hr class="social-hr">
                 <div class="card_title">
                     <div id="form-container">
-                        <ul id="social-container">
+                        <ul id="social-container-sign-up">
                             <li>
-                                <button id="facebook" type="submit" class="btn social-btn">
+                                <a id="facebook" class="btn social-btn" href="{% url 'social:begin' 'facebook' %}">
                                     <i class="fab fa-facebook-f"></i>
                                     <span style="color: #eeeeee">Facebook</span>
-                                </button>
+                                </a>
                             </li>
                             <li>
-                                <button id="google" type="submit" class="btn social-btn">
+                                <a id="google" class="btn social-btn" href="{% url "social:begin" "google-plus" %}">
                                     <img id="google-img" src="{% static 'images/new-google-favicon-512.png' %}">
                                     <span style="color: gray; font-weight: 600">Google</span>
-                                </button>
+                                </a>
                             </li>
                         </ul>
                     </div>
