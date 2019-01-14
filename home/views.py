@@ -46,6 +46,8 @@ class HomeView(ListView):
         context = super(HomeView,
                         self).get_context_data(object_list=None, **kwargs)
 
+        context['default_categories'] = Category.get_default_category_names()
+
         if 'pk' in self.kwargs:
 
             obj = Child.objects.filter(pk=self.kwargs['pk']).first()

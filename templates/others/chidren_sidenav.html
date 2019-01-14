@@ -57,7 +57,7 @@
                                             {% endif %}
                                             <span></span>
                                         </a>
-                                        {% if category.name != "Bodies" and  category.name != "Blouses" and  category.name != "Trousers" and  category.name != "Shorts" and category.name != "Boots" and  category.name != "Sneakers" and  category.name != "Sandals" and category.name != "Baby" and  category.name != "Outdoor" and  category.name != "Musical" %}
+                                        {% if category.name not in default_categories %}
                                         <div class="dropdown sidenav">
                                           <a class="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <span id="icon-pink"><img src="{% static 'images/menu_pink.png' %}" class="icon-menu-2 margin-left" alt="icon-pink"></span>

@@ -380,6 +380,14 @@ class Category(models.Model):
     def num_items(self):
         return Item.objects.filter(category=self.pk).count()
 
+    @staticmethod
+    def get_default_category_names():
+        return ('Snowsuits & jackets', 'Knitwear & sweatshirts', 'Blouses & shirts',
+                'T-shirts', 'Bodysuits with long sleeves', 'Bodysuits with short sleeves',
+                'Sleepsuits', 'Dresses & skirts', 'Trousers', 'Leggings', 'Jeans', 'Shorts',
+                'Pyjamas', 'Tights', 'Underwear', 'Accessories', 'Swimwear',
+                'Boots', 'Sneakers', 'Sandals', 'Toys', 'Baby', 'Outdoor', 'Musical')
+
 
 class Item(models.Model):
     CLOTHING_SIZES = {

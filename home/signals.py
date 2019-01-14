@@ -40,10 +40,23 @@ def create_child_sections(sender, instance, created, **kwargs):
 def create_section_categories(sender, instance, created, **kwargs):
     if created:
         if instance.name == "Clothes":
-            Category.objects.create(section=instance, name='Bodies')
-            Category.objects.create(section=instance, name='Blouses')
+            Category.objects.create(section=instance, name='Snowsuits & jackets')
+            Category.objects.create(section=instance, name='Knitwear & sweatshirts')
+            Category.objects.create(section=instance, name='Blouses & shirts')
+            Category.objects.create(section=instance, name='T-shirts')
+            Category.objects.create(section=instance, name='Bodysuits with long sleeves')
+            Category.objects.create(section=instance, name='Bodysuits with short sleeves')
+            Category.objects.create(section=instance, name='Sleepsuits')
+            Category.objects.create(section=instance, name='Dresses & skirts')
             Category.objects.create(section=instance, name='Trousers')
+            Category.objects.create(section=instance, name='Leggings')
+            Category.objects.create(section=instance, name='Jeans')
             Category.objects.create(section=instance, name='Shorts')
+            Category.objects.create(section=instance, name='Pyjamas')
+            Category.objects.create(section=instance, name='Tights')
+            Category.objects.create(section=instance, name='Underwear')
+            Category.objects.create(section=instance, name='Accessories')
+            Category.objects.create(section=instance, name='Swimwear')
         elif instance.name == "Shoes":
             Category.objects.create(section=instance, name='Boots')
             Category.objects.create(section=instance, name='Sneakers')

@@ -38,10 +38,11 @@
 
                                 {% if user.is_authenticated %}
                                     <div id="horizontal-menu">
-
-                                        <a>Shopping list</a>
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Transfer<span class="caret"></span></a>
-                                        {% include "others/dropdown_transfer.html" %}
+                                        {% if chosen_child %}
+                                            <a>Shopping list</a>
+                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Transfer<span class="caret"></span></a>
+                                            {% include "others/dropdown_transfer.html" %}
+                                        {% endif %}
 
                                     </div>
                                 {% else %}
