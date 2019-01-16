@@ -11,6 +11,6 @@ class ChildTestCase(TestCase):
         alex = ChildFactory(date_of_birth=datetime.date(2016, 4, 26))
         emma = ChildFactory(date_of_birth=datetime.date(2018, 4, 21))
 
-        self.assertEqual(alex.age, relativedelta(years=+2, months=+7, days=+23))
-        self.assertEqual(emma.age, relativedelta(months=+7, days=+28))
+        self.assertEqual(alex.age, relativedelta(years=+2, months=+8, days=+22))
+        self.assertEqual(emma.age, relativedelta(months=+8, days=+27))
 
