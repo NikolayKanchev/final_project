@@ -23,6 +23,8 @@
     padding: 20px 50px;
     border-radius: 20px;
     margin-top: 20px;
+    max-height: 380px;
+    overflow: hidden;
     box-shadow: 0 1px 1px 0 rgba(0,0,0,0.14), 0 6px 10px 5px rgba(0,0,0,0.12), 0 8px 10px -55px rgba(0,0,0,0.3);
 }
 
@@ -74,7 +76,9 @@
 }
 
 .categories{
-    /*border: 1px solid red;*/
+    max-height: 185px;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
 .category-row{
